@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import 'colors';
 
 export const connectDB = async () => {
+  mongoose.set('strictQuery', true);
   try {
     mongoose.connect('mongodb://localhost:27017/football');
     console.log('MongoDB Connected'.green.bold);
