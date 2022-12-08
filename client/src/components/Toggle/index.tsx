@@ -10,7 +10,7 @@ export const ThemeToggler = ({ toggleTheme, theme }: ThemeTogglerProps) => {
   return (
     <Toggle>
       {theme === 'light' ? (
-        <BsMoon size={20} onClick={toggleTheme} style={{ color: "#ffffff" }} />
+        <BsMoon size={20} onClick={toggleTheme} />
       ) : (
         <BsSun size={20} onClick={toggleTheme} />
       )}

@@ -1,7 +1,11 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, withTheme } from 'styled-components';
 import { ThemeProps } from './themes';
 
-export const GlobalStyle = createGlobalStyle<{ theme: ThemeProps }>`
+interface GlobalStyleProps {
+  theme: ThemeProps;
+}
+
+const GlobalStyle = createGlobalStyle`
 * {
     margin: 0;
     padding: 0;
@@ -13,8 +17,8 @@ export const GlobalStyle = createGlobalStyle<{ theme: ThemeProps }>`
 }
 
 html, body {
-    background-color: ${({ theme }) => theme.background};
-    color: ${({ theme }) => theme.text};
+    background-color: ${({ theme }: GlobalStyleProps) => theme.background};
+    color: ${({ theme }: GlobalStyleProps) => theme.text};
     scroll-behavior: smooth;
     overflow-x: hidden;
     scrollbar-width: thin; 
@@ -24,13 +28,14 @@ html, body {
         border-radius: 0.5rem;
     }
     *::-webkit-scrollbar-track {
-        background: ${({ theme }) => theme.background};
+        background: ${({ theme }: GlobalStyleProps) => theme.background};
     }
     *::-webkit-scrollbar-thumb {
-        background: ${({ theme }) => theme.text};
+        background: ${({ theme }: GlobalStyleProps) => theme.text};
     }
     *::-webkit-scrollbar-thumb:hover {
         transition:all 0.2s ease-in-out;
     }
-
 }`;
+
+export default withTheme(GlobalStyle);
