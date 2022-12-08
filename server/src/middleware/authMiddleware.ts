@@ -1,5 +1,5 @@
 import { verifyToken } from '../config/token';
-import User from '../models/userModel';
+import { User } from '../models/userModel';
 
 export const protect = async (req: any, res: any, next: any) => {
   let token;
@@ -23,5 +23,3 @@ export const protect = async (req: any, res: any, next: any) => {
     throw new Error('Not authorized, no token');
   }
 };
-
-
