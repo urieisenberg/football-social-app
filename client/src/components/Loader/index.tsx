@@ -1,4 +1,4 @@
-import { LoaderWrapper, LoaderContainer, LoaderBall } from './style';
+import { LoaderWrapper, LoaderContainer, LoaderBall } from './styles';
 import { GiSoccerBall } from 'react-icons/gi';
 
 export const Loader = () => {
