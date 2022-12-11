@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from './theme/global';
@@ -12,11 +13,13 @@ function App() {
   const themeMode = theme === 'light' ? lightTheme : darkTheme;
 
   return (
-    <ThemeProvider theme={themeMode}>
-      <GlobalStyle />
-      <ThemeToggler toggleTheme={toggleTheme} theme={theme} />
-      <AnimatePresence></AnimatePresence>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={themeMode}>
+        <GlobalStyle />
+        <ThemeToggler toggleTheme={toggleTheme} theme={theme} />
+        <AnimatePresence></AnimatePresence>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
