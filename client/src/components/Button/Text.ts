@@ -35,13 +35,13 @@ export const TextButton = styled(motion.button).attrs({
   display: inline-block;
   letter-spacing: 0.1rem;
   background-color: ${({ theme, variant }) =>
-    variant ? theme[variant] : theme.primary};
+    variant ? theme[variant] : theme.background};
   color: ${({ theme }) => theme.text};
   border: ${({ noBorder, theme }) =>
     noBorder ? 'none' : `1px solid ${theme.primary}`};
   &:hover {
     background-color: ${({ theme, variant }) =>
-      !variant ? theme.background : theme[variant]};
+      variant ? theme[variant] : theme.primary};
     color: ${({ theme }) => theme.background};
     font-weight: 700;
   }
