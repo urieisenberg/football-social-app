@@ -1,11 +1,10 @@
-import { TextButton, TextButtonProps } from "../Text";
+import { TextButton, TextButtonProps } from '../Text';
 
 interface MainButtonProps extends TextButtonProps {
-  text: string;
-  icon?: React.ReactNode;
-  onClick: () => void;
-}
-
+  text?: string;
+  icon?: React.ReactElement;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+} 
 export const MainButton = ({
   text,
   icon,
