@@ -3,13 +3,16 @@ import styled from 'styled-components';
 export const Container = styled.div.attrs({
   className: 'container',
 })`
+  margin: auto;
   text-align: center;
   flex-direction: column;
   height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
-  @media (min-width: 768px) {
-    font-size: 16px;
+  
+  @media (max-width: 600px) {
+    font-size: 0.8rem;
   }
 
   > h1 {
@@ -20,5 +23,3 @@ export const Container = styled.div.attrs({
     padding: 20px;
   }
 `;
-
-

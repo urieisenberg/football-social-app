@@ -1,9 +1,14 @@
 import { useNavigate } from 'react-router-dom';
+import { Button } from '../../components/Button';
 import { Transition } from '../../components/Transition';
 import { Container } from './Container';
 
 export const Welcome = () => {
   const navigate = useNavigate();
+
+  const navigateToLogin = () => navigate('/login');
+  const navigateToRegister = () => navigate('/register');
+
   return (
     <Transition>
       <Container>
@@ -27,6 +32,10 @@ export const Welcome = () => {
           fans.  
         </h4>
         <br />
+        <div>
+          <Button text="Login" onClick={navigateToLogin} />
+          <Button text="Register" onClick={navigateToRegister} />
+        </div>
       </Container>
     </Transition>
   );
