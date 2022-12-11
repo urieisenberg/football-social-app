@@ -6,6 +6,7 @@ import GlobalStyle from './theme/global';
 import { lightTheme, darkTheme } from './theme/themes';
 import { useTheme } from './hooks/useTheme';
 import { ThemeToggler } from './components/Toggle';
+import { Routes } from './routes/Routes';
 
 function App() {
   const { theme, toggleTheme } = useTheme();
@@ -17,7 +18,9 @@ function App() {
       <ThemeProvider theme={themeMode}>
         <GlobalStyle />
         <ThemeToggler toggleTheme={toggleTheme} theme={theme} />
-        <AnimatePresence></AnimatePresence>
+        <AnimatePresence>
+          <Routes />
+        </AnimatePresence>
       </ThemeProvider>
     </BrowserRouter>
   );
