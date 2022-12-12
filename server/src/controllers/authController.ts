@@ -6,9 +6,9 @@ import { validateLogin, validateRegister } from '../validators';
 
 export const register = async (req: Request, res: Response) => {
   try {
-    const { name, email, password, team } = req.body;
+    const { username, email, password, team } = req.body;
     const validated = validateRegister.safeParse({
-      name,
+      username,
       email,
       password,
       team,
@@ -20,14 +20,14 @@ export const register = async (req: Request, res: Response) => {
     if (userEmailExists) {
       return res.status(400).json({ message: 'Email already exists' });
     }
-    const usernameExists = await User.findOne({ name });
+    const usernameExists = await User.findOne({ username });
     if (usernameExists) {
       return res.status(400).json({ message: 'Username already exists' });
     }
 
     const hashedPassword = await hashPassword(password);
     const user: IUser = new User({
-      name,
+      username,
       email,
       password: hashedPassword,
       team,
@@ -67,6 +67,14 @@ export const login = async (req: Request, res: Response) => {
         token: generateToken(user._id),
       });
     }
+  } catch (error: any) {
+    res.status(500).json({ message: 'Something went wrong' });
+  }
+};
+
+export const logout = async (req: Request, res: Response) => {
+  try {
+    res.json({ message: 'Logout' });
   } catch (error: any) {
     res.status(500).json({ message: 'Something went wrong' });
   }
