@@ -6,6 +6,7 @@ import GlobalStyle from './theme/global';
 import { lightTheme, darkTheme } from './theme/themes';
 import { useTheme } from './hooks/useTheme';
 import { ThemeToggler } from './components/Toggle';
+import { Toast } from './components/Toast';
 import { Routes } from './routes/Routes';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <AnimatePresence>
           <Routes />
         </AnimatePresence>
+        <Toast />
       </ThemeProvider>
     </BrowserRouter>
   );
