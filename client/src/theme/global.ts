@@ -38,37 +38,6 @@ html, body {
     }
 }
 
-.container {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-@media (min-width: 576px) {
-    .container {
-        width: 540px;
-    }
-}
-
-@media (min-width: 768px) {
-    .container {
-        width: 720px;
-    }
-}
-
-@media (min-width: 992px) {
-    .container {
-        width: 960px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .container {
-        width: 1140px;
-    }
-}
-
 `;
 
 export default withTheme(GlobalStyle);
