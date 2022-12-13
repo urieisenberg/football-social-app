@@ -1,5 +1,7 @@
 import express, { Application, Express, Request, Response } from 'express';
 import dotevn from 'dotenv';
+import morgan from 'morgan';
+import cors from 'cors';
 import 'colors';
 import { connectDB } from './config/connectDB';
 import { authRoutes } from './routes';
@@ -10,10 +12,12 @@ const port = process.env.PORT || 3000;
 dotevn.config();
 connectDB();
 
+app.use(morgan(':method :url :status :response-time ms'.bgWhite));
+app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`.green.bold);
+  console.log(`~~ Server running on port ${port} ~~`.green.bold);
 });
