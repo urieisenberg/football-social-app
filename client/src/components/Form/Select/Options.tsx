@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { components } from 'react-select';
 
- const Container = styled.div`
+const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -24,11 +24,11 @@ export const Options = (props: any) => {
     <components.Option {...props}>
       <Container>
         <img
-          src={props.data.image}
-          alt={props.data.label as string}
+          src={props.data.image || props.data.logo}
+          alt={props.data.label || props.data.name as string}
           width={30}
         />
-        <span>{props.data.label}</span>
+        <span>{props.data.label || props.data.name}</span>
       </Container>
     </components.Option>
   );
