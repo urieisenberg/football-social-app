@@ -1,6 +1,6 @@
 import { Schema, model, Document } from 'mongoose';
 
-interface INote extends Document {
+export interface INote extends Document {
   user: {
     type: Schema.Types.ObjectId;
     ref: 'User';
@@ -38,3 +38,5 @@ const noteSchema: Schema = new Schema(
   },
   { timestamps: true }
 );
+
+export const Note = model<INote>('Note', noteSchema);
