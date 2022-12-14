@@ -1,7 +1,12 @@
+import { Request, Response, NextFunction } from 'express';
 import { verifyToken } from '../config/token';
 import { User } from '../models/userModel';
 
-export const protect = async (req: any, res: any, next: any) => {
+export const protect = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   let token;
   if (
     req.headers.authorization &&
