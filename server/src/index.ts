@@ -12,8 +12,15 @@ const port = process.env.PORT || 3000;
 dotevn.config();
 connectDB();
 
+const corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200,
+  credentials: true,
+  accessControlAllowOrigin: '*',
+};
+
 app.use(morgan(':method :url :status :response-time ms'.bgWhite));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
