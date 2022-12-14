@@ -6,8 +6,8 @@ import { Container } from './Container';
 export const Welcome = () => {
   const navigate = useNavigate();
 
-  const navigateToLogin = () => navigate('/login');
-  const navigateToRegister = () => navigate('/register');
+  const navigateToLogin = () => navigate('login');
+  const navigateToRegister = () => navigate('register');
 
   return (
     <Transition>
