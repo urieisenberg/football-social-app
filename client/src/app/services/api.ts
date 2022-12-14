@@ -13,5 +13,6 @@ export const api = createApi({
       return headers;
     },
   }),
+  tagTypes: ['Ticket', 'User', 'Teams', 'Fixtures', 'Leagues', 'Post', 'Comment'],
   endpoints: (builder) => ({}),
 });
