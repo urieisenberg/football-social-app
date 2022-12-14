@@ -1,7 +1,7 @@
 import { FormFooter, FormLink } from '../styles';
 
 interface FormLinkProps {
-  type: 'login' | 'register';
+  type: 'login' | 'register' | 'ticket';
 }
 
 export const Link = ({ type }: FormLinkProps) => {
@@ -12,7 +12,9 @@ export const Link = ({ type }: FormLinkProps) => {
   return (
     <FormFooter>
       {text}
-      <FormLink to={`/welcome/${linkText.toLocaleLowerCase()}`}>{linkText}</FormLink>
+      <FormLink to={`/welcome/${linkText.toLocaleLowerCase()}`}>
+        {linkText}
+      </FormLink>
     </FormFooter>
   );
 };
