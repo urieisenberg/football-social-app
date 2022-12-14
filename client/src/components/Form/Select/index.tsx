@@ -20,9 +20,11 @@ interface TeamOption {
   logo: string;
 }
 
+export type SelectOptions = Option[] | TeamOption[];
+
 interface SelectProps {
   name: string;
-  options: Option[] | TeamOption[];
+  options: SelectOptions
   errors: FieldError;
 }
 
