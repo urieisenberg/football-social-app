@@ -26,3 +26,30 @@ export const createTicket = async (req: Request, res: Response) => {
     res.status(500).send('Something went wrong');
   }
 };
+
+export const updateTicket = async (req: Request, res: Response) => {
+  try {
+    const { subject, message, status } = req.body;
+    const validated = validateTicket.safeParse({ subject, message });
+    if (!validated.success) {
+      return res.status(400).json({ message: validated.error.message });
+    }
+
+    const ticket = await Ticket.findById(req.params.id);
+    if (!ticket) return res.status(404).send('Ticket not found');
+
+    if (ticket.user.toString() !== req.user.id)
+      return res.status(401).send('Not authorized to update ticket');
+
+    const updatedTicket = await Ticket.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    if (updatedTicket) res.status(200).json(updatedTicket);
+  } catch (error: any) {
+    res.status(500).send('Something went wrong');
+  }
+};
+
+
