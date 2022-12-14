@@ -14,15 +14,27 @@ interface Option {
   image?: string;
 }
 
+interface TeamOption {
+  name: string;
+  id: string | number;
+  logo: string;
+}
+
 interface SelectProps {
   name: string;
-  options: Option[];
+  options: Option[] | TeamOption[];
   errors: FieldError;
 }
 
 export const Select = ({ name, options, errors }: SelectProps) => {
   const { control } = useFormContext();
   const currentTheme = useTheme() as ThemeProps;
+
+  // const teamOptions = options.map((option) => ({
+  //   name: option.label,
+  //   id: option.value,
+  //   logo: option.image,
+  // }));
 
   return (
     <FormGroup>
@@ -36,8 +48,8 @@ export const Select = ({ name, options, errors }: SelectProps) => {
           render={({ field: { onChange, onBlur } }) => (
             <ReactSelect
               options={options}
+              onChange={(optionSelected) => onChange(optionSelected)}
               styles={selectStyles}
-              onChange={(value) => onChange(value)}
               onBlur={onBlur}
               menuPlacement="top"
               isSearchable={false}
@@ -60,8 +72,8 @@ export const Select = ({ name, options, errors }: SelectProps) => {
         />
         <FormError>
           {errors && name === 'team'
-            ? 'Please select your team'
-            : errors?.message}
+            ? 'Please select a team'
+            : errors && errors.message}
         </FormError>
       </FormCol>
     </FormGroup>
