@@ -10,7 +10,7 @@ export interface IUser extends Document {
     logo: string;
   };
   follows: Array<string>;
-  followers: Array<string>;
+  followed: Array<string>;
   favFixtures: Array<string>;
 }
 
