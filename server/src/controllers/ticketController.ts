@@ -52,4 +52,17 @@ export const updateTicket = async (req: Request, res: Response) => {
   }
 };
 
+export const deleteTicket = async (req: Request, res: Response) => {
+  try {
+    const ticket = await Ticket.findById(req.params.id);
+    if (!ticket) return res.status(404).send('Ticket not found');
 
+    if (ticket.user.toString() !== req.user.id)
+      return res.status(401).send('Not authorized to delete ticket');
+
+    await ticket.remove();
+    res.status(200).send('Ticket removed');
+  } catch (error: any) {
+    res.status(500).send('Something went wrong');
+  }
+};
