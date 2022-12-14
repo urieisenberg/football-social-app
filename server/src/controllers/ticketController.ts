@@ -66,3 +66,27 @@ export const deleteTicket = async (req: Request, res: Response) => {
     res.status(500).send('Something went wrong');
   }
 };
+
+export const getTicketById = async (req: Request, res: Response) => {
+  try {
+    const ticket = await Ticket.findById(req.params.id);
+    if (!ticket) return res.status(404).send('Ticket not found');
+
+    if (ticket.user.toString() !== req.user.id)
+      return res.status(401).send('Not authorized to view ticket');
+
+    res.status(200).json(ticket);
+  } catch (error: any) {
+    res.status(500).send('Something went wrong');
+  }
+};
+
+export const getTickets = async (req: Request, res: Response) => {
+  try {
+    const tickets = await Ticket.find({ user: req.user.id });
+    if (!tickets) return res.status(404).send('No tickets found');
+    res.status(200).json(tickets);
+  } catch (error: any) {
+    res.status(500).send('Something went wrong');
+  }
+};
