@@ -20,7 +20,7 @@ export const Item = ({ title, icon, link, action }: SidebarItemProps) => {
         <SidebarLink
           data-bs-toggle="tooltip"
           data-bs-placement="right"
-          title={title as any}
+          title={action ? 'Logout' : (title as string)}
           onClick={action}
           as={NavLink}
           to={`/${link}`}
