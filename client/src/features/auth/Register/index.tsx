@@ -9,6 +9,7 @@ import { RegisterUser, User } from '../../../app/types';
 import { Form } from '../../../components/Form';
 import { Loader } from '../../../components/Loader';
 import { toast } from 'react-toastify';
+import { teams } from '../../../utils/db/teams';
 
 export const Register = () => {
   const navigate = useNavigate();
@@ -70,6 +71,8 @@ export const Register = () => {
       title="Register"
       schema={registerSchema}
       onSubmit={onSubmit}
+      selectName="team"
+      selectOptions={teams}
       text="Please fill out the form below and select a team to register."
     />
   );
