@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction, response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { User, IUser } from '../models/userModel';
 import { generateToken, verifyToken } from '../config/token';
 import { comparePassword, hashPassword } from '../config/bcrypt';
