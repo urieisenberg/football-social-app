@@ -1,5 +1,5 @@
 import { components } from 'react-select';
-import styled from 'styled-components'; 
+import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;
@@ -21,11 +21,11 @@ export const Value = (props: any) => {
     <components.SingleValue {...props}>
       <Container>
         <img
-          src={props.data.image}
-          alt={props.data.label as string}
+          src={props.data.image || props.data.logo}
+          alt={props.data.label || (props.data.name as string)}
           width={30}
         />
-        <span>{props.data.label}</span>
+        <span>{props.data.label || props.data.name}</span>
       </Container>
     </components.SingleValue>
   );
