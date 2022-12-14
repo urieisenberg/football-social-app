@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 export interface IconButtonProps {
-  size?: string;
+  size?: number;
   home?: boolean;
 }
 
