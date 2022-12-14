@@ -50,7 +50,7 @@ export const Sidebar = () => {
       animate={`${isOpen}`}
     >
       <SidebarMenu initial={`${isOpen}`} animate={`${isOpen}`}>
-        {isOpen && <BackButton />}
+        {isOpen && <BackButton size={18} />}
         <SidebarToggle onClick={toggleSidebar}>
           {isOpen ? <GoThreeBars size={30} /> : <GoListUnordered size={30} />}
         </SidebarToggle>
