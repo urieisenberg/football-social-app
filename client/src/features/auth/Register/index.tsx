@@ -4,7 +4,7 @@ import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useRegisterMutation } from '../../../app/services/auth';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { setUser } from '../authSlice';
-import { registerSchema } from '../../../utils/schemas/registerSchema';
+import { registerSchema } from './registerSchema';
 import { RegisterUser, User } from '../../../app/types';
 import { Form } from '../../../components/Form';
 import { Loader } from '../../../components/Loader';
