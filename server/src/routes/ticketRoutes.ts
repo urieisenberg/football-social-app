@@ -7,8 +7,11 @@ import {
   getTickets,
 } from '../controllers/ticketController';
 import { protect } from '../middleware/authMiddleware';
+import { noteRoutes } from './noteRoutes';
 
 const router = Router();
+
+router.use('/:ticketId/notes', noteRoutes);
 
 router.route('/').post(protect, createTicket).get(protect, getTickets);
 router
