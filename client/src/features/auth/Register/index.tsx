@@ -37,23 +37,6 @@ export const Register = () => {
     });
   };
 
-  // const onSubmit = async (data: RegisterUser) => {
-  //   try {
-  //     register({
-  //       username: data.username,
-  //       email: data.email,
-  //       password: data.password,
-  //       team: data.team,
-  //     });
-  //   } catch (error) {
-  //     const fetchError = error as FetchBaseQueryError;
-  //     console.log('fetchError?.data', fetchError?.data)
-  //     toast.error(fetchError?.data as string, {
-  //       toastId: 'registerError',
-  //     });
-  //   }
-  // };
-
   if (isLoading) return <Loader />;
 
   return (
