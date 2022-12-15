@@ -20,11 +20,13 @@ export const Value = (props: any) => {
   return (
     <components.SingleValue {...props}>
       <Container>
-        <img
-          src={props.data.image || props.data.logo}
-          alt={props.data.label || (props.data.name as string)}
-          width={30}
-        />
+        {(props.data.logo || props.data.image) && (
+          <img
+            src={props.data.image || props.data.logo}
+            alt={props.data.label || (props.data.name as string)}
+            width={30}
+          />
+        )}
         <span>{props.data.label || props.data.name}</span>
       </Container>
     </components.SingleValue>
