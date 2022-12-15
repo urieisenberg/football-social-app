@@ -1,9 +1,8 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
-
 export const Public = () => {
-  const { user } = useAuth();
+  const { isAuthenticated } = useAuth();
 
-  return user ? <Navigate to="/league" /> : <Outlet />;
+  return isAuthenticated ? <Navigate to="/"/> : <Outlet />;
 };
