@@ -19,12 +19,14 @@ import { setUser } from '../features/auth/authSlice';
 export const useAuth = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
- 
+
   const storedUser = useMemo(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser && storedUser !== 'null') {
-      return JSON.parse(storedUser);
+    const user = localStorage.getItem('user');
+    if (user && user !== 'null') {
+      return JSON.parse(user);
     }
     return null;
   }, []);
+
+  const isAuthenticated = useMemo(() => storedUser !== null, [storedUser]);
 };
