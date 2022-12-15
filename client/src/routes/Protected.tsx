@@ -1,8 +1,18 @@
 import { Navigate, Outlet } from 'react-router-dom';
+import { Sidebar } from '../components/Sidebar';
 import { useAuth } from '../hooks/useAuth';
 
 export const Protected = () => {
-  const { user } = useAuth();
+  const { isAuthenticated } = useAuth();
 
-  return user ? <Outlet /> : <Navigate to="/welcome" />;
+  if (!isAuthenticated) return <Navigate to="/welcome" />;
+
+  return (
+    <>
+      <Sidebar />
+      <div className="withSidebar">
+        <Outlet />
+      </div>
+    </>
+  );
 };
