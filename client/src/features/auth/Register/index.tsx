@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useRegisterMutation } from '../../../app/services/auth';
+import { useAuthActions } from '../../../hooks/useAuthActions';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
-import { setUser } from '../authSlice';
 import { registerSchema } from './registerSchema';
 import { RegisterUser, User } from '../../../app/types';
 import { Form } from '../../../components/Form';
@@ -12,30 +10,23 @@ import { toast } from 'react-toastify';
 import { teams } from '../../../utils/db/teams';
 
 export const Register = () => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-
+  const { setUser } = useAuthActions();
   const [register, { data, isLoading, isSuccess, error }] =
     useRegisterMutation();
 
   useEffect(() => {
-    if (error) {
+    if (isSuccess) {
+      setUser(data as User);
+      toast.success(`Welcome ${data?.username}`, {
+        toastId: 'registerSuccess',
+      });
+    } else if (error) {
       const fetchError = error as FetchBaseQueryError;
       toast.error(fetchError?.data as string, {
         toastId: 'registerError',
       });
     }
-  }, [error]);
-
-  useEffect(() => {
-    if (isSuccess) {
-      dispatch(setUser(data as User));
-      toast.success(`Welcome ${data?.username}`, {
-        toastId: 'registerSuccess',
-      });
-      navigate('/');
-    }
-  }, [isSuccess, navigate, data, dispatch]);
+  }, [isSuccess, data, setUser, error]);
 
   const onSubmit = async (data: RegisterUser) => {
     await register({
@@ -67,7 +58,6 @@ export const Register = () => {
 
   return (
     <Form
-      formType="register"
       title="Register"
       schema={registerSchema}
       onSubmit={onSubmit}
