@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useAuth } from '../../hooks/useAuth';
 import { useToggle } from '../../hooks/useToggle';
 import { logout } from '../../features/auth/authSlice';
@@ -33,8 +32,7 @@ export const Sidebar = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const { user } = useAuth();
-  const currentUser = useTypedSelector((state) => state.auth.user);
+  const { user, isAuthenticated } = useAuth();
 
   const [isOpen, toggleSidebar] = useToggle(false);
 
@@ -43,7 +41,9 @@ export const Sidebar = () => {
     navigate('/welcome');
   };
 
-  return user ? (
+  if (!isAuthenticated) return null;
+
+  return (
     <SidebarContainer
       data-show-menu={isOpen}
       initial={`${isOpen}`}
@@ -59,7 +59,7 @@ export const Sidebar = () => {
           initial={`${isOpen}`}
           animate={`${isOpen}`}
         >
-          <img src={currentUser?.team?.logo} alt="team logo" />
+          <img src={user?.team?.logo} alt="team logo" />
         </SidebarProfile>
         <SidebarGroup>
           <Item
@@ -70,17 +70,17 @@ export const Sidebar = () => {
           <Item
             title="Players"
             icon={<GiSoccerKick size={20} />}
-            link={`team/${currentUser?.team.id}/${currentUser?.team.name}/players`}
+            link={`team/${user?.team.id}/${user?.team.name}/players`}
           />
           <Item
             title="Transfers"
             icon={<BiEuro size={20} />}
-            link={`team/${currentUser?.team.id}/${currentUser?.team.name}/transfers`}
+            link={`team/${user?.team.id}/${user?.team.name}/transfers`}
           />
           <Item
             title="Table"
             icon={<IoTrophyOutline size={20} />}
-            link={`team/${currentUser?.team.id}/${currentUser?.team.name}/standings`}
+            link={`team/${user?.team.id}/${user?.team.name}/standings`}
           />
           <Item
             title="Serie A Feed"
@@ -88,14 +88,14 @@ export const Sidebar = () => {
             link="feed/newest"
           />
           <Item
-            title={`${currentUser?.team?.name} Feed`}
+            title={`${user?.team?.name} Feed`}
             icon={<FaUserNinja size={20} />}
-            link={`team/${currentUser?.team.id}/${currentUser?.team.name}/feed`}
+            link={`team/${user?.team.id}/${user?.team.name}/feed`}
           />
           <Item
             title="Profile"
             icon={<IoPersonOutline size={20} />}
-            link={`profile/${currentUser?.username}`}
+            link={`profile/${user?.username}`}
           />
           <Item
             title="Contact"
@@ -105,7 +105,7 @@ export const Sidebar = () => {
           <Item
             title="Account"
             icon={<IoSettingsOutline size={20} />}
-            link={`account/${currentUser?.id}`}
+            link={`account/${user?.id}`}
           />
           <Item
             title={<span className="logout">Logout</span>}
@@ -116,5 +116,5 @@ export const Sidebar = () => {
         </SidebarGroup>
       </SidebarMenu>
     </SidebarContainer>
-  ) : null;
+  );
 };
