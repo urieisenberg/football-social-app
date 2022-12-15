@@ -29,4 +29,12 @@ export const useAuth = () => {
   }, []);
 
   const isAuthenticated = useMemo(() => storedUser !== null, [storedUser]);
+
+  useMemo(() => {
+    if (storedUser) {
+      dispatch(setUser(storedUser));
+    }
+  }, [dispatch, storedUser]);
+
+  return { user, isAuthenticated, storedUser };
 };
