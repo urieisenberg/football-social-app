@@ -33,8 +33,8 @@ export const IconButton = styled(motion.button).attrs({
   float: left;
   position: absolute;
   z-index: 1;
-  top: 10px;
-  left: 20px;
+  top: 5px;
+  left: 5px;
   margin-left: ${({ home }) => (home ? '60px' : '0px')};
   &:hover {
     color: ${({ theme }) => theme.primary};
