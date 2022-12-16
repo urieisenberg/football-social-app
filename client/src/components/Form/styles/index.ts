@@ -10,3 +10,4 @@ export * from './Group';
 export * from './Container';
 export * from './Text';
 export * from './Footer';
+export * from './TextArea';
