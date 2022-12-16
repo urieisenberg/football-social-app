@@ -1,21 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { authApi } from '../../app/services/auth';
-import { User } from '../../app/types';
+import { User, AuthState } from '../../app/types';
 import { RootState } from '../../app/store';
 
-interface AuthState {
-  user: User | null;
-}
+const user = JSON.parse(localStorage.getItem('user') || 'null');
 
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: JSON.parse(localStorage.getItem('user') || 'null'),
+    user: user,
+    token: user ? user.token : null,
   } as AuthState,
   reducers: {
     setUser: (state, action: PayloadAction<User>) => {
       localStorage.setItem('user', JSON.stringify(action.payload));
       state.user = action.payload;
+      state.token = user?.token;
     },
     logout: (state) => {
       localStorage.clear();
