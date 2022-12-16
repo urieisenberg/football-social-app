@@ -22,15 +22,6 @@ const authSlice = createSlice({
       state.user = null;
     },
   },
-  // extraReducers: (builder) => {
-  //   builder.addMatcher(
-  //     authApi.endpoints.register.matchFulfilled,
-  //     (state, action) => {
-  //       localStorage.setItem('user', JSON.stringify(action.payload));
-  //       state.user = action.payload;
-  //     }
-  //   );
-  // },
 });
 
 export const selectCurrentUser = (state: RootState) => state.auth.user;
