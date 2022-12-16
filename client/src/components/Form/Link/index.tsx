@@ -1,7 +1,7 @@
 import { FormFooter, FormLink } from '../styles';
 
 interface FormLinkProps {
-  type: 'login' | 'register' | 'ticket';
+  type: 'login' | 'register';
 }
 
 export const Link = ({ type }: FormLinkProps) => {
