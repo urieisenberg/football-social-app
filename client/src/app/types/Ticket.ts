@@ -14,7 +14,6 @@ export interface TicketState {
 export interface CreateTicket {
   subject: 'general' | 'bug' | 'feature' | 'other';
   message: string;
-  status: 'open';
 }
 
 export interface TicketsResponse {
