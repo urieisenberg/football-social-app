@@ -43,7 +43,7 @@ export const AuthForm = ({
               />
             )}
             <Button text={title.toUpperCase()} />
-            <Link type={title.toLowerCase()} />
+            <Link type={title.toLowerCase() as 'login' | 'register'} />
           </FormContent>
         </FormContainer>
       </FormWrapper>
