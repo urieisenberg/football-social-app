@@ -10,7 +10,7 @@ import {
 
 export const ticketsApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getTickets: builder.query<TicketsResponse, void>({
+    getTickets: builder.query<TicketsResponse, number>({
       query: () => '/tickets',
       providesTags: (result) =>
         result
