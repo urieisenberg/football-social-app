@@ -36,7 +36,13 @@ html, body {
     *::-webkit-scrollbar-thumb:hover {
         transition:all 0.2s ease-in-out;
     }
+    
 }
+
+.withSidebar {
+    margin-left: 7rem;
+}
+
 
 .logout {
     color: ${({ theme }: GlobalStyleProps) => theme.error};
