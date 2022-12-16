@@ -37,6 +37,7 @@ export const SidebarToggle = styled(motion.div).attrs({
   align-self: center;
   border-radius: 5px;
   alignself: left !important;
+  @media (max-width: 600px) {
+    display: none;
+  }
 `;
-
-
