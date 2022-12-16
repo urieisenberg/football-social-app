@@ -10,9 +10,9 @@ export const Protected = () => {
   return (
     <>
       <Sidebar />
-      <div className="withSidebar">
-        <Outlet />
-      </div>
+        <div className="withSidebar">
+          <Outlet />
+        </div>
     </>
   );
 };
