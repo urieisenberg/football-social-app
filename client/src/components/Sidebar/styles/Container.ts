@@ -11,7 +11,7 @@ export const SidebarContainer = styled(motion.div).attrs({
     },
   },
 })`
-  position: sticky;
+  position: absolute;
   top: 0;
   left: 0;
   float: left;
