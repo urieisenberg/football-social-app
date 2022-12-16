@@ -10,6 +10,9 @@ export const SidebarMenu = styled(motion.div).attrs({
         duration: 0.2,
       },
       overflow: 'hidden',
+      [`@media (max-width: 600px)`]: {
+        width: '4rem',
+      },
     },
     false: {
       width: '4rem',
