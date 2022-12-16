@@ -7,8 +7,7 @@ import { lightTheme, darkTheme } from './theme/themes';
 import { useTheme } from './hooks/useTheme';
 import { ThemeToggler } from './components/Toggle';
 import { Toast } from './components/Toast';
-import { Routes } from './routes/Routes';
-import { Sidebar } from './components/Sidebar';
+import { Routes } from './routes';
 
 function App() {
   const { theme, toggleTheme } = useTheme();
@@ -21,7 +20,6 @@ function App() {
         <GlobalStyle />
         <ThemeToggler toggleTheme={toggleTheme} theme={theme} />
         <AnimatePresence>
-          <Sidebar />
           <Routes />
         </AnimatePresence>
         <Toast />
