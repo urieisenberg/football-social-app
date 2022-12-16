@@ -1,8 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { useAuth } from '../../hooks/useAuth';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { useAuthActions } from '../../hooks/useAuthActions';
 import { useToggle } from '../../hooks/useToggle';
-import { logout } from '../../features/auth/authSlice';
 import { Item } from './Item';
 import { BackButton } from '../Button';
 import { GiSoccerKick, GiSoccerField } from 'react-icons/gi';
@@ -30,19 +29,11 @@ import {
 
 export const Sidebar = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
-  const { user, isAuthenticated } = useAuth();
+  const user = useAppSelector((state) => state.auth.user);
+  const { logout } = useAuthActions();
 
-  const [isOpen, toggleSidebar] = useToggle(false);
-
-  const handleLogout = () => {
-    dispatch(logout());
-    navigate('/welcome');
-  };
-
-  if (!isAuthenticated) return null;
-
+  const [isOpen, toggleSidebar] = useToggle();
   return (
     <SidebarContainer
       data-show-menu={isOpen}
@@ -51,7 +42,11 @@ export const Sidebar = () => {
     >
       <SidebarMenu initial={`${isOpen}`} animate={`${isOpen}`}>
         {isOpen && <BackButton size={18} />}
-        <SidebarToggle onClick={toggleSidebar}>
+        <SidebarToggle
+          onClick={() => {
+            if (typeof toggleSidebar === 'function') toggleSidebar();
+          }}
+        >
           {isOpen ? <GoThreeBars size={30} /> : <GoListUnordered size={30} />}
         </SidebarToggle>
         <SidebarProfile
@@ -111,7 +106,7 @@ export const Sidebar = () => {
             title={<span className="logout">Logout</span>}
             icon={<IoPowerOutline size={20} className="logout" />}
             link="welcome"
-            action={handleLogout}
+            action={logout}
           />
         </SidebarGroup>
       </SidebarMenu>
