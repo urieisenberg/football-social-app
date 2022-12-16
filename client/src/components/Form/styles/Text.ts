@@ -8,6 +8,9 @@ export const FormText = styled(Form.Text)`
   @media (min-width: 576px) {
     margin-bottom: 1rem;
   }
+  @media (max-width: 576px) {
+    display: none;
+  }
   @media (max-height: 500px) {
     display: none;
   }
