@@ -1,8 +1,8 @@
 import { GoMail, GoLock } from 'react-icons/go';
-import { AiOutlineUser, AiOutlineMail } from 'react-icons/ai';
+import { AiOutlineUser } from 'react-icons/ai';
 
 export interface InputIconsProps {
-  type: 'username' | 'email' | 'password' | 'message';
+  type: 'username' | 'email' | 'password';
 }
 
 export const InputIcons = ({ type }: InputIconsProps) => {
@@ -13,8 +13,6 @@ export const InputIcons = ({ type }: InputIconsProps) => {
       return <GoMail size={20} />;
     case 'password':
       return <GoLock size={20} />;
-    case 'message':
-      return <AiOutlineMail size={20} />;
     default:
       return null;
   }
