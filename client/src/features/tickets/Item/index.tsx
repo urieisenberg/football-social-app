@@ -3,7 +3,6 @@ import {
   useGetTicketQuery,
   useDeleteTicketMutation,
 } from '../../../app/services/tickets';
-import { useTicketActions } from '../../../hooks/useTicketActions';
 import { toast } from 'react-toastify';
 import {
   TicketContainer,
@@ -33,7 +32,7 @@ export const Ticket = () => {
   let content;
   if (isLoading) content = <Loader />;
   else if (error) content = <div>Something went wrong</div>;
-  else
+  else if (isSuccess)
     content = (
       <TicketContainer>
         <TicketContent>
