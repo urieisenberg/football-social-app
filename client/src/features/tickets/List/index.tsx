@@ -11,29 +11,26 @@ import { Loader } from '../../../components/Loader';
 export const TicketsList = () => {
   const user = useAppSelector((state) => state.auth.user);
   const tickets = useAppSelector((state) => state.ticket.tickets);
-  const { data, isLoading, isSuccess, error } = useGetTicketsQuery(
+  const { data, isLoading, isSuccess, error, isFetching } = useGetTicketsQuery(
     user?.id as number
   );
 
-  const { getTickets } = useTicketActions();
-
-  useEffect(() => {
-    if (isSuccess) {
-      getTickets(data as any);
-    }
-  }, [data, isSuccess, getTickets]);
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     getTickets(data as any);
+  //   }
+  // }, [data, isSuccess, getTickets, ticketsLength]);
 
   let content;
   if (isLoading) content = <Loader />;
-  if (tickets.length === 0 || error)
+  else if (error || data?.length === 0)
     content = <ListNotFound>No tickets found</ListNotFound>;
-  else
+  else if (isSuccess)
     content = (
       <>
         {tickets.map((ticket) => (
           <Transition key={ticket._id}>
             <TicketsListItem ticket={ticket} />
-            {tickets?.length > 5 && <TopButton />}
           </Transition>
         ))}
       </>
@@ -51,6 +48,7 @@ export const TicketsList = () => {
             <span></span>
           </ListHeading>
           {content}
+          {tickets?.length > 5 && <TopButton />}
         </ListContainer>
       </Container>
     </Transition>
