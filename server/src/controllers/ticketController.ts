@@ -61,7 +61,7 @@ export const deleteTicket = async (req: Request, res: Response) => {
       return res.status(401).send('Not authorized to delete ticket');
 
     await ticket.remove();
-    res.status(200).send('Ticket removed');
+    res.status(200).send(ticket._id);
   } catch (error: any) {
     res.status(500).send('Something went wrong');
   }
