@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ticketsApi } from '../../app/services/tickets';
-import { Ticket, TicketState } from '../../app/types';
+import { Ticket, TicketState, UpdateTicket } from '../../app/types';
 
 const ticketSlice = createSlice({
   name: 'ticket',
@@ -12,13 +12,27 @@ const ticketSlice = createSlice({
     setTickets: (state, action: PayloadAction<Ticket[]>) => {
       state.tickets = action.payload;
     },
+    setTicket: (state, action: PayloadAction<Ticket>) => {
+      state.tickets.push(action.payload);
+    },
+    updateTicket: (state, action: PayloadAction<Ticket>) => {
+      const { id, ticket } = action.payload as unknown as UpdateTicket;
+      const index = state.tickets.findIndex((ticket) => ticket._id === id);
+      if (index >= 0) {
+        state.tickets[index] = { ...state.tickets[index], ...ticket };
+      }
+    },
     removeTicket: (state, action: PayloadAction<number>) => {
-      state.tickets = state.tickets.filter(
-        (ticket) => ticket.id !== action.payload
+      const index = state.tickets.findIndex(
+        (ticket) => ticket._id === action.payload
       );
+      if (index >= 0) {
+        state.tickets.splice(index, 1);
+      }
     },
   },
 });
 
-export const { setTickets, removeTicket } = ticketSlice.actions;
+export const { setTicket, setTickets, updateTicket, removeTicket } =
+  ticketSlice.actions;
 export default ticketSlice.reducer;
