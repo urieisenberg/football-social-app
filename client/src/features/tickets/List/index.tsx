@@ -11,15 +11,9 @@ import { Loader } from '../../../components/Loader';
 export const TicketsList = () => {
   const user = useAppSelector((state) => state.auth.user);
   const tickets = useAppSelector((state) => state.ticket.tickets);
-  const { data, isLoading, isSuccess, error, isFetching } = useGetTicketsQuery(
+  const { data, isLoading, isSuccess, error } = useGetTicketsQuery(
     user?.id as number
   );
-
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     getTickets(data as any);
-  //   }
-  // }, [data, isSuccess, getTickets, ticketsLength]);
 
   let content;
   if (isLoading) content = <Loader />;
