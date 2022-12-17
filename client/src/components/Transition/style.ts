@@ -33,5 +33,4 @@ export const MotionTransition = styled(motion.div).attrs({
     },
   },
 })`
-  position: absolute;
 `;
