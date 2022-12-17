@@ -1,27 +1,25 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useCreateTicketMutation } from '../../../app/services/tickets';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { ticketSchema } from '../utils/ticketSchema';
 import { useTicketActions } from '../../../hooks/useTicketActions';
 import { ticketsSelectOptions } from '../utils/selectOptions';
-import {
-  CreateTicket as Create,
-  Ticket,
-} from '../../../app/types';
+import { CreateTicket as Create, Ticket } from '../../../app/types';
 import { Form } from '../../../components/Form';
 import { Loader } from '../../../components/Loader';
 import { toast } from 'react-toastify';
 import { CreateContainer } from '../styles';
 
 export const CreateTicket = () => {
-  const { addTicket } = useTicketActions();
+  const navigate = useNavigate();
 
   const [createTicket, { data, isLoading, isSuccess, error }] =
     useCreateTicketMutation();
 
   useEffect(() => {
     if (isSuccess) {
-      addTicket(data as Ticket);
+      navigate('/contact/tickets');
       toast.success(`Ticket created`, {
         toastId: 'createTicketSuccess',
       });
@@ -31,7 +29,7 @@ export const CreateTicket = () => {
         toastId: 'createTicketError',
       });
     }
-  }, [error, isSuccess, data, addTicket]);
+  }, [error, isSuccess, data, navigate]);
 
   const onSubmit = async (data: Create) => {
     await createTicket({
@@ -44,7 +42,7 @@ export const CreateTicket = () => {
 
   return (
     <CreateContainer>
-      <Form
+      <Form 
         title="Create Ticket"
         schema={ticketSchema}
         onSubmit={onSubmit}
