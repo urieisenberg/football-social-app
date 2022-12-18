@@ -12,43 +12,28 @@ import {
   searchPosts,
   searchUserPosts,
 } from '../controllers';
+import { commentRoutes } from './commentRoutes';
 
 const router = Router();
 
-router
-    .route('/')
-    .post(protect, createPost)
-    .get(protect, getPosts)
+router.use('/:postId/comments', commentRoutes);
 
+router.route('/').post(protect, createPost).get(protect, getPosts);
 
-router
-    .route('/search/:searchTerm?')
-    .get(protect, searchPosts)
+router.route('/search/:searchTerm?').get(protect, searchPosts);
 
-router
-    .route('/:id')
-    .put(protect, updatePost)
-    .delete(protect, deletePost)
+router.route('/:id').put(protect, updatePost).delete(protect, deletePost);
+
+router.route('/:id/like').put(protect, likePost);
+
+router.route(':username/posts').get(protect, getUserPosts);
 
 router
-    .route('/:id/like')
-    .put(protect, likePost)
+  .route(':username/posts/search/:searchTerm?')
+  .get(protect, searchUserPosts);
 
-router
-    .route(':username/posts')
-    .get(protect, getUserPosts)
+router.route('/team').get(protect, getTeamPosts);
 
-router
-    .route(':username/posts/search/:searchTerm?')
-    .get(protect, searchUserPosts)
-
-router
-    .route('/team')
-    .get(protect, getTeamPosts)
-
-router
-    .route('/liked')
-    .get(protect, getLikedPosts)
+router.route('/liked').get(protect, getLikedPosts);
 
 export { router as postRoutes };
-    
