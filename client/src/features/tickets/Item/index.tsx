@@ -46,6 +46,11 @@ export const Ticket = () => {
               </span>
               <TicketHR />
               <span>
+                Last Updated:{' '}
+                {new Date(data?.updatedAt as string).toLocaleString()}
+              </span>
+              <TicketHR />
+              <span>
                 Status: <span></span>
                 <ItemStatus status={data?.status}>{data?.status}</ItemStatus>
               </span>
@@ -59,9 +64,14 @@ export const Ticket = () => {
             {/* Modal */}
             <TicketActions>
               <Button noBorder text="add note" variant="warning" />
-              <Button noBorder text="edit ticket" variant="success" onClick={()=> {
-                navigate(`/contact/tickets/${data?._id}/edit`)
-              }} />
+              <Button
+                noBorder
+                text="edit ticket"
+                variant="success"
+                onClick={() => {
+                  navigate(`/contact/tickets/${data?._id}/edit`);
+                }}
+              />
               <Button
                 noBorder
                 text="close ticket"
