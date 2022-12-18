@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
-import { Ticket, ITicket } from '../models/ticketModel';
-import { User } from '../models/userModel';
+import { Ticket, ITicket, User } from '../models';
 import { validateTicket } from '../validators/ticketSchema';
 
 export const createTicket = async (req: Request, res: Response) => {
