@@ -19,6 +19,7 @@ export const ticketsApi = api.injectEndpoints({
     }),
     getTicket: builder.query<Ticket, string>({
       query: (id) => `/tickets/${id}`,
+      providesTags: [{ type: 'Ticket', id: 'LIST' }],
     }),
     createTicket: builder.mutation<Ticket, CreateTicket>({
       query: (body) => ({
@@ -39,7 +40,7 @@ export const ticketsApi = api.injectEndpoints({
           method: 'PUT',
           body: patch,
         }),
-        invalidatesTags: [{ type: 'Ticket', id: 'LIST' }],
+        invalidatesTags: [{ type: 'Ticket', id: 'LIST' }], 
         async onQueryStarted({ _id, ...patch }, { dispatch, queryFulfilled }) {
           const result = await queryFulfilled;
           dispatch(updateTicket(result.data as unknown as Ticket));
