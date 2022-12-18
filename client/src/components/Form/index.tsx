@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm, FormProvider, FieldError } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IForm, FormErrors } from './types';
@@ -11,6 +12,7 @@ export const Form = ({
   schema,
   selectOptions,
   selectName,
+  editable,
   onSubmit,
 }: IForm) => {
   const methods = useForm({
@@ -21,7 +23,12 @@ export const Form = ({
   const {
     handleSubmit,
     formState: { errors },
+    reset,
   } = methods;
+
+  useEffect(() => {
+    if (editable) reset(editable);
+  }, [editable, reset]);
 
   return (
     <Transition>
