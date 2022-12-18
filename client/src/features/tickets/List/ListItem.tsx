@@ -15,7 +15,7 @@ export const TicketsListItem = ({ ticket }: Props) => {
       </ItemHeading>
       <ItemHeading>{ticket?.subject}</ItemHeading>
       <ItemStatus status={ticket?.status}> {ticket?.status}</ItemStatus>
-      <Link to={`/contact/ticket/${ticket?._id}`}>
+      <Link to={`/contact/tickets/${ticket?._id}`}>
         <Button text="View" />
       </Link>
     </ItemContainer>
