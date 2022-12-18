@@ -5,7 +5,7 @@ import {
   deleteNote,
   getNotes,
   deleteNotes,
-} from '../controllers/noteController';
+} from '../controllers';
 import { protect } from '../middleware/authMiddleware';
 
 const router = Router({ mergeParams: true });
