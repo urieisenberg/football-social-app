@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import 'colors';
 import { connectDB } from './config/connectDB';
-import { authRoutes, ticketRoutes } from './routes';
+import { authRoutes, ticketRoutes, postRoutes } from './routes';
 
 const app: Application = express();
 const port = process.env.PORT || 3000;
@@ -25,6 +25,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/tickets', ticketRoutes);
+app.use('/api/posts', postRoutes);
 
 app.listen(port, () => {
   console.log(`~~ Server running on port ${port} ~~`.green.bold);
