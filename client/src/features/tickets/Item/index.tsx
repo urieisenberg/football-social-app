@@ -59,7 +59,9 @@ export const Ticket = () => {
             {/* Modal */}
             <TicketActions>
               <Button noBorder text="add note" variant="warning" />
-              <Button noBorder text="edit ticket" variant="success" />
+              <Button noBorder text="edit ticket" variant="success" onClick={()=> {
+                navigate(`/contact/tickets/${data?._id}/edit`)
+              }} />
               <Button
                 noBorder
                 text="close ticket"
