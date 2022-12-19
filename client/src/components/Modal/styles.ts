@@ -6,7 +6,6 @@ export const ModalContainer = styled(Modal)`
   border: none;
   color: ${({ theme }) => theme.text};
   @media (max-width: 768px) {
- 
   }
 
   .modal-content {
@@ -21,7 +20,4 @@ export const ModalContent = styled(Modal.Body).attrs({
 export const ModalExit = styled.div`
   color: ${({ theme }) => theme.text};
   cursor: pointer;
-  &:hover {
-    translate: 0.1rem;
-  }
 `;
