@@ -1,8 +1,9 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import {
   useGetTicketQuery,
-  useDeleteTicketMutation,
-} from '../../../app/services/tickets';
+  useCloseTicketMutation,
+} from '../../../app/services/server-api/tickets';
+import { useToggle } from '../../../hooks/useToggle';
 import { toast } from 'react-toastify';
 import {
   TicketContainer,
@@ -13,9 +14,12 @@ import {
   Container,
 } from '../styles';
 import { Loader } from '../../../components/Loader';
+import { Modal } from '../../../components/Modal';
+import { CreateNote } from '../../notes/Create';
 import { Button } from '../../../components/Button';
 import { Transition } from '../../../components/Transition';
-import { DeleteTicket } from '../../../app/types';
+import { UpdateTicket } from '../../../app/types';
+import { Notes } from '../../notes/List';
 
 export const Ticket = () => {
   const navigate = useNavigate();
@@ -23,10 +27,13 @@ export const Ticket = () => {
   const { data, isLoading, isSuccess, error } = useGetTicketQuery(
     ticketId as string
   );
-  const [deleteTicket] = useDeleteTicketMutation();
 
-  const onDelete = async (data: DeleteTicket) => {
-    await deleteTicket(data);
+  const [showNoteModal, toggleNoteModal] = useToggle();
+
+  const [closeTicket] = useCloseTicketMutation();
+
+  const onCloseTicket = async ({ id }: UpdateTicket) => {
+    await closeTicket({ id });
   };
 
   let content;
@@ -59,11 +66,22 @@ export const Ticket = () => {
               <TicketHR />
               <span>Description: {data?.message}</span>
               <TicketHR />
-              {/* Notes */}
+              Notes: <Notes ticketId={data?._id as string} />
+              <TicketHR />
             </div>
-            {/* Modal */}
+            <Modal show={showNoteModal} setShow={toggleNoteModal}>
+              <CreateNote
+                setShow={toggleNoteModal}
+                ticketId={data?._id as string}
+              />
+            </Modal>
             <TicketActions>
-              <Button noBorder text="add note" variant="warning" />
+              <Button
+                noBorder
+                text="add note"
+                variant="warning"
+                onClick={() => toggleNoteModal()}
+              />
               <Button
                 noBorder
                 text="edit ticket"
@@ -77,8 +95,8 @@ export const Ticket = () => {
                 text="close ticket"
                 variant="error"
                 onClick={() => {
-                  onDelete({ id: data?._id as number });
-                  toast.success('Ticket deleted');
+                  onCloseTicket({ id: data?._id as number });
+                  toast.success('Ticket Closed');
                   navigate('/contact/tickets');
                 }}
               />
