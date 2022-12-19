@@ -19,6 +19,7 @@ export const TextArea = ({ type, placeholder, errors }: TextAreaProps) => {
         render={({ field }) => (
           <FormTextArea
             {...field}
+            type={type}
             onBlur={field.onBlur}
             onChange={field.onChange}
             placeholder={
