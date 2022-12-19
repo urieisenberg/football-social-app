@@ -30,10 +30,6 @@ export interface UpdateTicket {
   ticket?: Ticket;
 }
 
-export interface CloseTicket {
-  id: number;
-}
-
 export interface DeleteTicket {
   id: number;
 }
