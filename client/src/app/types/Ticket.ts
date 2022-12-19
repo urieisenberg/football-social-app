@@ -1,9 +1,14 @@
+import { Note } from './Note';
+
 export interface Ticket {
-  id: number | string;
+  _id: number | string;
   user: number;
   subject: 'general' | 'bug' | 'feature' | 'other';
   message: string;
   status: 'open' | 'closed';
+  createdAt: string;
+  updatedAt?: string;
+  notes?: Note[];
 }
 
 export interface TicketState {
@@ -20,18 +25,16 @@ export interface TicketsResponse {
   tickets: Ticket[];
 }
 
-// export interface UpdateTicket {
-//   id: number;
-//   subject: 'general' | 'bug' | 'feature' | 'other';
-//   message: string;
-//   status: 'open' | 'closed';
-// }
+export interface UpdateTicket {
+  id: number;
+  ticket?: Ticket;
+}
 
-export interface DeleteTicket {
+export interface CloseTicket {
   id: number;
 }
 
-export interface GetTicket {
+export interface DeleteTicket {
   id: number;
 }
 
