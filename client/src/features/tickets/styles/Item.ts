@@ -36,5 +36,7 @@ export const ItemStatus = styled(Badge)<ItemProps>`
   text-align: center;
   width: 50px;
   max-height: 20px;
-  background: ${({ status }) => (status === 'open' ? 'green' : 'red')};
+  background-color: ${({ theme, status }) =>
+    status === 'open' ? theme.success : theme.error} !important;
+  color: ${({ theme }) => theme.background};
 `;
