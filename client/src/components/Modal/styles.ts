@@ -5,9 +5,6 @@ export const ModalContainer = styled(Modal)`
   background: ${({ theme }) => theme.background};
   border: none;
   color: ${({ theme }) => theme.text};
-  @media (max-width: 768px) {
-  }
-
   .modal-content {
     background: transparent;
   }
