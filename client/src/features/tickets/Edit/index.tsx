@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {
   useUpdateTicketMutation,
   useGetTicketQuery,
-} from '../../../app/services/tickets';
+} from '../../../app/services/server-api/tickets';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { ticketSchema } from '../utils/ticketSchema';
 import { ticketsSelectOptions } from '../utils/selectOptions';
