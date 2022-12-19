@@ -1,6 +1,11 @@
 import { FormProps, SelectOptions } from './types';
 import { Button } from '../Button';
-import { FormContainer, FormContent, FormText, FormTitle } from './styles';
+import {
+  FormContainer,
+  FormContent,
+  FormText,
+  FormTitle,
+} from './styles';
 import { Select } from './Select';
 import { TextArea } from './TextArea';
 
@@ -12,12 +17,11 @@ export const CreateForm = ({
   errors,
   onSubmit,
 }: FormProps) => {
-  return (
+  let formContent = text.includes('ticket') ? (
     <FormContainer>
       <FormContent onSubmit={onSubmit}>
         <FormTitle>
           <h1>{title}</h1>
-
           <FormText>{text}</FormText>
         </FormTitle>
         <Select
@@ -33,5 +37,12 @@ export const CreateForm = ({
         <Button text={title.toUpperCase()} />
       </FormContent>
     </FormContainer>
+  ) : (
+    <FormContent onSubmit={onSubmit}>
+      <TextArea type="text" placeholder={text} errors={errors.text} />
+      <Button text={title.toUpperCase()} />
+    </FormContent>
   );
+
+  return formContent;
 };
