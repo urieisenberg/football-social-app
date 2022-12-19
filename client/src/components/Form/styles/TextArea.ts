@@ -3,7 +3,6 @@ import Form from 'react-bootstrap/Form';
 
 export const FormTextArea = styled(Form.Control).attrs({
   as: 'textarea',
-  rows: 3,
   type: 'textarea',
 })`
   color: ${({ theme }) => theme.text};
