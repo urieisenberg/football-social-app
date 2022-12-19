@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Form from "react-bootstrap/Form";
+import Form from 'react-bootstrap/Form';
 
 export const FormContent = styled(Form)`
   width: 30rem;
@@ -10,4 +10,7 @@ export const FormContent = styled(Form)`
   color: ${({ theme }) => theme.text};
   align-items: center;
 
+  @media (max-width: 768px) {
+    max-width: 200px;
+  }
 `;
