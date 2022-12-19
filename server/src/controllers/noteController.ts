@@ -7,7 +7,7 @@ export const createNote = async (req: Request, res: Response) => {
     const user = await User.findById(req.user.id);
     if (!user) return res.status(401).send('User not found');
 
-    const ticket = await Ticket.findById(req.params.id);
+    const ticket = await Ticket.findById(req.params.ticketId);
     if (!ticket) return res.status(404).send('Ticket not found');
 
     if (ticket.user.toString() !== req.user.id)
@@ -19,13 +19,13 @@ export const createNote = async (req: Request, res: Response) => {
       return res.status(400).json({ message: validated.error.message });
     }
 
-    const note: INote = new Note({
+    const note: INote = await Note.create({
       user: req.user.id,
       ticket: req.params.ticketId,
       text,
     });
     if (note) res.status(200).json(note);
-    await note.save();
+    else res.status(400).send('Invalid note data');
   } catch (error: any) {
     res.status(500).send('Something went wrong');
   }
@@ -36,7 +36,7 @@ export const updateNote = async (req: Request, res: Response) => {
     const user = await User.findById(req.user.id);
     if (!user) return res.status(401).send('User not found');
 
-    const ticket = await Ticket.findById(req.params.id);
+    const ticket = await Ticket.findById(req.params.ticketId);
     if (!ticket) return res.status(404).send('Ticket not found');
 
     if (ticket.user.toString() !== req.user.id)
@@ -67,7 +67,7 @@ export const deleteNote = async (req: Request, res: Response) => {
     const user = await User.findById(req.user.id);
     if (!user) return res.status(401).send('User not found');
 
-    const ticket = await Ticket.findById(req.params.id);
+    const ticket = await Ticket.findById(req.params.ticketId);
     if (!ticket) return res.status(404).send('Ticket not found');
 
     if (ticket.user.toString() !== req.user.id)
@@ -91,13 +91,13 @@ export const getNotes = async (req: Request, res: Response) => {
     const user = await User.findById(req.user.id);
     if (!user) return res.status(401).send('User not found');
 
-    const ticket = await Ticket.findById(req.params.id);
+    const ticket = await Ticket.findById(req.params.ticketId);
     if (!ticket) return res.status(404).send('Ticket not found');
 
     if (ticket.user.toString() !== req.user.id)
       return res.status(401).send('Not authorized to view notes');
 
-    const notes = await Note.find({ ticket: req.params.id });
+    const notes = await Note.find({ ticket: req.params.ticketId });
     if (notes) res.status(200).json(notes);
   } catch (error: any) {
     res.status(500).send('Something went wrong');
@@ -109,7 +109,7 @@ export const deleteNotes = async (req: Request, res: Response) => {
     const user = await User.findById(req.user.id);
     if (!user) return res.status(401).send('User not found');
 
-    const ticket = await Ticket.findById(req.params.id);
+    const ticket = await Ticket.findById(req.params.ticketId);
     if (!ticket) return res.status(404).send('Ticket not found');
 
     if (ticket.user.toString() !== req.user.id)
