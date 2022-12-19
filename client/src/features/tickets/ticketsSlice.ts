@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ticketsApi } from '../../app/services/tickets';
 import { Ticket, TicketState, UpdateTicket } from '../../app/types';
 
 const ticketSlice = createSlice({
