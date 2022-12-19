@@ -66,6 +66,25 @@ export const deleteTicket = async (req: Request, res: Response) => {
   }
 };
 
+export const closeTicket = async (req: Request, res: Response) => {
+  try {
+    const ticket = await Ticket.findById(req.params.id);
+    if (!ticket) return res.status(404).send('Ticket not found');
+
+    if (ticket.user.toString() !== req.user.id)
+      return res.status(401).send('Not authorized to close ticket');
+
+    const updatedTicket = await Ticket.findByIdAndUpdate(
+      req.params.id,
+      { status: 'closed' },
+      { new: true }
+    );
+    if (updatedTicket) res.status(200).json(updatedTicket);
+  } catch (error: any) {
+    res.status(500).send('Something went wrong');
+  }
+};
+
 export const getTicketById = async (req: Request, res: Response) => {
   try {
     const ticket = await Ticket.findById(req.params.id);
