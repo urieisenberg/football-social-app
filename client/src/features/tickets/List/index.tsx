@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import { useGetTicketsQuery } from '../../../app/services/tickets';
-import { useTicketActions } from '../../../hooks/useTicketActions';
+import {
+  useGetTicketsQuery,
+} from '../../../app/services/server-api/tickets';
 import { TicketsListItem } from './ListItem';
 import { TopButton } from '../../../components/Button';
 import { Transition } from '../../../components/Transition';
