@@ -10,7 +10,7 @@ export interface ThemeProps {
 export const lightTheme: ThemeProps = {
   background: '#F2F2F2',
   text: '#000000',
-  primary: '#000000',
+  primary: '#2746E6',
   error: '#CF6679',
   success: '#00a600',
   warning: '#FF9100',
@@ -20,7 +20,7 @@ export const lightTheme: ThemeProps = {
 export const darkTheme: ThemeProps = {
   background: '#000000',
   text: '#F2F2F2',
-  primary: '#F2F2F2',
+  primary: '#2746E6',
   error: '#CF6679',
   success: '#00a600',
   warning: '#FF9100',
