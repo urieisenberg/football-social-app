@@ -9,3 +9,4 @@ export * from './Image';
 export * from './Options';
 export * from './Follow';
 export * from './Container';
+export * from './Edit';
