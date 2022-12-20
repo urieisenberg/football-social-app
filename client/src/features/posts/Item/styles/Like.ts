@@ -2,10 +2,9 @@ import styled from 'styled-components';
 
 export const Like = styled.div`
   position: absolute;
-  right: 40px;
-  top: 80px;
+  right: 10px;
+  top: 90px;
   @media only screen and (max-width: 768px) {
-    top: 75px;
     font-size: 1rem;
   }
 `;
