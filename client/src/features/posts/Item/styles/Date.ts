@@ -16,9 +16,9 @@ export const UpdatedAt = styled.div.attrs({
   className: 'text-muted',
 })`
   position: absolute;
-  top: 120px;
+  bottom: -25px;
   right: 5px;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   @media only screen and (max-width: 768px) {
     font-size: 0.5rem;
   }
