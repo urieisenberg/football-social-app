@@ -4,8 +4,8 @@ import { validatePost } from '../validators/postSchema';
 
 export const createPost = async (req: Request, res: Response) => {
   try {
-    const { text } = req.body;
-    const validated = validatePost.safeParse({ text });
+    const { text, type } = req.body;
+    const validated = validatePost.safeParse({ text, type });
     if (!validated.success) {
       return res.status(400).json({ message: validated.error.message });
     }
@@ -18,14 +18,15 @@ export const createPost = async (req: Request, res: Response) => {
       text,
       pic: user.team.logo,
       username: user.username,
-      team: user.team,
+      team: user.team.name,
       comments: [],
       likes: [],
     });
 
-    if (post) res.status(200).json(post);
-    await post.save();
+    if (post) await post.save();
+    res.status(200).json(post);
   } catch (error: any) {
+    console.log(error);
     res.status(500).send('Something went wrong');
   }
 };
