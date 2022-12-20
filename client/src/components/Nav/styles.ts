@@ -12,16 +12,17 @@ interface NavLinkProps {
 
 export const NavWrapper = styled(Navbar).attrs({
   expand: 'lg',
-  className: 'container text-center',
+  className:
+    'container text-center justify-content-center d-flex align-items-center ',
 })`
   background-color: ${({ theme }) => theme.background};
   color: ${({ theme }) => theme.text};
 `;
 
 export const NavContainer = styled(Container)`
-  margin: 0 auto;
   @media (max-width: 990px) {
     display: inline-block;
+    font-size: 0.8rem;
   }
 `;
 
@@ -45,7 +46,7 @@ export const NavItem = styled(motion.span).attrs({
     mass: 1,
   },
 })<NavItemProps>`
-  margin: 10px;
+  margin: auto 0.5rem;
   &:hover {
     cursor: pointer;
     font-weight: bold;
