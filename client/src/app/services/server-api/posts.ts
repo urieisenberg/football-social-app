@@ -45,8 +45,8 @@ export const postsApi = api.injectEndpoints({
         dispatch(setPosts([...store.getState().post.posts, result.data]));
       },
     }),
-    deletePost: builder.mutation<void, DeletePost>({
-      query: ({ id }) => ({
+    deletePost: builder.mutation<void, string>({
+      query: (id) => ({
         url: `${URL}/${id}`,
         method: 'DELETE',
       }),
@@ -58,7 +58,7 @@ export const postsApi = api.injectEndpoints({
       ],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         const result = await queryFulfilled;
-        dispatch(deletePost(arg.id));
+        dispatch(deletePost(arg));
       },
     }),
     updatePost: builder.mutation<void, Pick<Post, '_id'> & Partial<Post>>({
