@@ -26,4 +26,3 @@ export const TicketActions = styled.div`
 `;
 
 export const TicketHR = styled.hr``;
-
