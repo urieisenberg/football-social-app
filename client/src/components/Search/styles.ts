@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-export const SearchContainer = styled.div.attrs({
-  className: '',
-})`
+export const SearchContainer = styled.div`
   margin: auto;
   text-align: center;
   justify-content: center;
@@ -17,6 +15,7 @@ export const SearchContainer = styled.div.attrs({
 export const SearchInput = styled.input.attrs({
   className: 'form-control text-center',
 })`
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.background} !important;
+  color: ${({ theme }) => theme.text} !important;
   border: none;
 `;
