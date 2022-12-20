@@ -72,6 +72,7 @@ export const postsApi = api.injectEndpoints({
         { type: 'Post', id: 'LIKED' },
         { type: 'Post', id: 'TEAM' },
         { type: 'Post', id: 'USER' },
+        { type: 'Post', id: 'SEARCH' },
       ],
       async onQueryStarted({ _id, ...patch }, { dispatch, queryFulfilled }) {
         const result = await queryFulfilled;
@@ -112,6 +113,7 @@ export const postsApi = api.injectEndpoints({
         { type: 'Post', id: 'LIKED' },
         { type: 'Post', id: 'TEAM' },
         { type: 'Post', id: 'USER' },
+        { type: 'Post', id: 'SEARCH' },
       ],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         const result = await queryFulfilled;
@@ -120,7 +122,7 @@ export const postsApi = api.injectEndpoints({
     }),
     searchPosts: builder.query<Post[], SearchPosts>({
       query: ({ searchTerm }) => `${URL}/search/${searchTerm}`,
-      providesTags: [{ type: 'Post', id: 'LIST' }],
+      providesTags: [{ type: 'Post', id: 'SEARCH' }],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         const result = await queryFulfilled;
         dispatch(setPosts(result.data));
