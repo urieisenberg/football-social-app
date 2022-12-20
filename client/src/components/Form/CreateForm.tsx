@@ -3,11 +3,13 @@ import { Button } from '../Button';
 import {
   FormContainer,
   FormContent,
+  FormShare,
   FormText,
   FormTitle,
 } from './styles';
 import { Select } from './Select';
 import { TextArea } from './TextArea';
+import { Share } from './Share';
 
 export const CreateForm = ({
   title,
@@ -37,6 +39,10 @@ export const CreateForm = ({
         <Button text={title.toUpperCase()} />
       </FormContent>
     </FormContainer>
+  ) : title.includes('post') ? (
+    <FormShare onSubmit={onSubmit}>
+      <Share type="text" placeholder={text} errors={errors.text} />
+    </FormShare>
   ) : (
     <FormContent onSubmit={onSubmit}>
       <TextArea type="text" placeholder={text} errors={errors.text} />
