@@ -3,6 +3,7 @@ import { useUpdatePostMutation } from '../../../app/services/server-api/posts';
 import { Post } from '../../../app/types';
 import { Editable } from '../../../components/Form/Editable';
 import { toast } from 'react-toastify';
+import { EditInput } from '../Item/styles';
 
 interface EditPostProps {
   post: Post;
@@ -38,7 +39,8 @@ export const EditPost = ({
       text={postContent}
       action={handleUpdate}
     >
-      <input
+      <EditInput
+        autoFocus
         value={postContent}
         onChange={(e) => setPostContent(e.target.value)}
       />
