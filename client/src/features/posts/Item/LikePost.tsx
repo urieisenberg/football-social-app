@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useLikePostMutation } from '../../../app/services/server-api/posts';
 import { Post } from '../../../app/types';
@@ -16,6 +16,10 @@ export const LikePost = ({ post }: LikePostProps) => {
   );
 
   const [likePost] = useLikePostMutation();
+
+  useEffect(() => {
+    setLikedByUser(user && post.likes?.includes(user._id));
+  }, [post.likes, user]);
 
   const handleLike = async () => {
     await likePost(post._id);
