@@ -1,7 +1,5 @@
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import {
-  useGetTicketsQuery,
-} from '../../../app/services/server-api/tickets';
+import { useGetTicketsQuery } from '../../../app/services/server-api/tickets';
 import { TicketsListItem } from './ListItem';
 import { TopButton } from '../../../components/Button';
 import { Transition } from '../../../components/Transition';
@@ -11,9 +9,7 @@ import { Loader } from '../../../components/Loader';
 export const TicketsList = () => {
   const user = useAppSelector((state) => state.auth.user);
   const tickets = useAppSelector((state) => state.ticket.tickets);
-  const { data, isLoading, isSuccess, error } = useGetTicketsQuery(
-    user?.id as number
-  );
+  const { data, isLoading, isSuccess, error } = useGetTicketsQuery();
 
   let content;
   if (isLoading) content = <Loader />;
