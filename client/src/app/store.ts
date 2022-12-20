@@ -3,8 +3,9 @@ import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { api } from './services/server-api';
 import { authApi } from './services/server-api/auth';
 import authReducer from '../features/auth/authSlice';
-import ticketReducer from '../features/tickets/ticketsSlice';
+import ticketReducer from '../features/tickets/ticketSlice';
 import noteReducer from '../features/notes/noteSlice';
+import postReducer from '../features/posts/postSlice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     [api.reducerPath]: api.reducer,
     ticket: ticketReducer,
     note: noteReducer,
+    post: postReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),
