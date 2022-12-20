@@ -21,8 +21,6 @@ export const EditPost = ({
   const [updatePost, { isLoading }] = useUpdatePostMutation();
   const [postContent, setPostContent] = useState(post.text);
 
-  console.log('postContent', postContent);
-
   const handleUpdate = async () => {
     await updatePost({ _id: post._id, type: post.type, text: postContent });
     toast.success('Post updated', {
