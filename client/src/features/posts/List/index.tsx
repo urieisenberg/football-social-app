@@ -8,6 +8,7 @@ import {
   ListNotFound,
 } from './styles';
 import { Transition } from '../../../components/Transition';
+import { TopButton } from '../../../components/Button';
 
 interface PostListProps {
   posts: Post[];
@@ -35,7 +36,9 @@ export const PostList = ({ title, posts, searchPosts }: PostListProps) => {
         {' '}
         <ListTitle>{title}</ListTitle>
         <ListContainer>
-          <ListContent>{content}</ListContent>
+          <ListContent>
+            {content} {posts?.length >= 3 && <TopButton />}
+          </ListContent>
         </ListContainer>
       </ListWrapper>
     </Transition>
