@@ -4,14 +4,14 @@ import {
   setTickets,
   updateTicket,
   removeTicket,
-} from '../../../features/tickets/ticketsSlice';
+} from '../../../features/tickets/ticketSlice';
 import { store } from '../../store';
 
 const URL = '/tickets';
 
 export const ticketsApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getTickets: builder.query<Ticket[], number>({
+    getTickets: builder.query<Ticket[], void>({
       query: () => `${URL}`,
       providesTags: [{ type: 'Ticket', id: 'LIST' }],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
