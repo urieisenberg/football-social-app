@@ -33,8 +33,8 @@ export const createPost = async (req: Request, res: Response) => {
 
 export const updatePost = async (req: Request, res: Response) => {
   try {
-    const { text } = req.body;
-    const validated = validatePost.safeParse({ text });
+    const { text, type } = req.body;
+    const validated = validatePost.safeParse({ text, type });
     if (!validated.success) {
       return res.status(400).json({ message: validated.error.message });
     }
