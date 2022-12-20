@@ -41,7 +41,13 @@ export const PostOptions = ({
           ) : (
             <>
               <Option>
-                <BsX onClick={toggleOptions} size={16} />
+                <BsX
+                  onClick={() => {
+                    toggleOptions();
+                    showEdit && toggleEdit();
+                  }}
+                  size={16}
+                />
               </Option>
               <Option>
                 <BsPen onClick={toggleEdit} size={16} />
