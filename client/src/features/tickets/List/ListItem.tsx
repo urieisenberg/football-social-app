@@ -25,7 +25,7 @@ export const TicketsListItem = ({ ticket }: Props) => {
   ticket.status === 'open'
     ? (actionContent = (
         <Button
-          text="View"
+          text="view"
           variant="primary"
           onClick={() => navigate(`/contact/tickets/${ticket?._id}`)}
         />
