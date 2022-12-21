@@ -1,21 +1,17 @@
 import { Request, Response } from 'express';
 import { Post, User } from '../models';
-import { validatePost } from '../validators/postSchema';
+import { postSchema as schema } from '../schemas/postSchema';
+import { validateSchema, findPost } from '../helpers';
 
 export const createPost = async (req: Request, res: Response) => {
   try {
-    const { text, type } = req.body;
-    const validated = validatePost.safeParse({ text, type });
-    if (!validated.success) {
-      return res.status(400).json({ message: validated.error.message });
-    }
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(401).send('User not found');
+    validateSchema({ schema, req, res });
+    const user = req.user;
 
     const post = new Post({
       user: req.user.id,
       type: req.body.type,
-      text,
+      text: req.body.text,
       pic: user.team.logo,
       username: user.username,
       team: user.team.name,
@@ -33,18 +29,10 @@ export const createPost = async (req: Request, res: Response) => {
 
 export const updatePost = async (req: Request, res: Response) => {
   try {
-    const { text, type } = req.body;
-    const validated = validatePost.safeParse({ text, type });
-    if (!validated.success) {
-      return res.status(400).json({ message: validated.error.message });
-    }
-
-    const post = await Post.findById(req.params.id);
-    if (!post) return res.status(404).send('Post not found');
-
+    validateSchema({ schema, req, res });
+    const post = await findPost(req.params.id);
     if (post.user.toString() !== req.user.id)
       return res.status(401).send('Not authorized to update post');
-
     const updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
@@ -56,8 +44,7 @@ export const updatePost = async (req: Request, res: Response) => {
 
 export const deletePost = async (req: Request, res: Response) => {
   try {
-    const post = await Post.findById(req.params.id);
-    if (!post) return res.status(404).send('Post not found');
+    const post = await findPost(req.params.id);
 
     if (post.user.toString() !== req.user.id)
       return res.status(401).send('Not authorized to delete post');
@@ -82,15 +69,12 @@ export const getPosts = async (req: Request, res: Response) => {
 
 export const getTeamPosts = async (req: Request, res: Response) => {
   try {
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(401).send('User not found');
-
     const posts = await Post.find({
       type: 'team',
-      team: user.team.id,
+      team: req.user.team.id,
     }).sort({ createdAt: -1 });
     if (posts) res.status(200).json(posts);
-    else res.status(404).send(`No posts found for ${user.team.name}`);
+    else res.status(404).send(`No posts found for ${req.user.team.name}`);
   } catch (error: any) {
     res.status(500).send('Something went wrong');
   }
@@ -98,15 +82,14 @@ export const getTeamPosts = async (req: Request, res: Response) => {
 
 export const getUserPosts = async (req: Request, res: Response) => {
   try {
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(401).send('User not found');
-
+    const user = await User.findOne({ username: req.params.username });
+    if (!user) return res.status(404).send('User not found');
     const posts = await Post.find({
       type: 'feed',
-      username: user.username,
+      username: user?.username,
     }).sort({ createdAt: -1 });
     if (posts) res.status(200).json(posts);
-    else res.status(404).send(`No posts found for ${user.username}`);
+    else res.status(404).send(`No posts found for ${user?.username}`);
   } catch (error: any) {
     res.status(500).send('Something went wrong');
   }
@@ -114,9 +97,7 @@ export const getUserPosts = async (req: Request, res: Response) => {
 
 export const getLikedPosts = async (req: Request, res: Response) => {
   try {
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(401).send('User not found');
-
+    const user = req.user;
     const posts = await Post.find({
       type: 'feed',
       likes: user.id,
@@ -147,9 +128,7 @@ export const searchPosts = async (req: Request, res: Response) => {
 
 export const searchUserPosts = async (req: Request, res: Response) => {
   try {
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(401).send('User not found');
-
+    const user = req.user;
     const { searchTerm } = req.params;
     const posts = await Post.find({
       type: 'feed',
@@ -167,8 +146,7 @@ export const searchUserPosts = async (req: Request, res: Response) => {
 
 export const likePost = async (req: Request, res: Response) => {
   try {
-    const post = await Post.findById(req.params.id);
-    if (!post) return res.status(404).send('Post not found');
+    const post = await findPost(req.params.id);
 
     const likes = post.likes.findIndex((id) => id === req.user.id);
     if (likes === -1) {
