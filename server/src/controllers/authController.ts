@@ -3,7 +3,7 @@ import { User, IUser } from '../models/userModel';
 import { generateToken } from '../config/token';
 import { comparePassword, hashPassword } from '../config/bcrypt';
 import { loginSchema, registerSchema } from '../schemas';
-import { validateSchema } from '../helpers';
+import { validateSchema, handleErrors } from '../helpers';
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -42,7 +42,7 @@ export const register = async (req: Request, res: Response) => {
       res.status(400).send('Oops! Something went wrong');
     }
   } catch (error: any) {
-    res.status(500).send('Something went wrong');
+    handleErrors(res, error);
   }
 };
 
@@ -67,7 +67,7 @@ export const login = async (req: Request, res: Response) => {
       res.status(401).send('Email or Password is incorrect');
     }
   } catch (error: any) {
-    res.status(500).send('Email or Password is incorrect');
+    handleErrors(res, error);
   }
 };
 
@@ -75,6 +75,6 @@ export const logout = async (req: Request, res: Response) => {
   try {
     res.json({ message: 'Logout' });
   } catch (error: any) {
-    res.status(500).send('Something went wrong');
+    handleErrors(res, error);
   }
 };
