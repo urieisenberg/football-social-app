@@ -28,7 +28,7 @@ export interface IPost extends Document {
     required: true;
   };
   likes: Array<string>;
-  comments: Array<string>;
+  comments: Array<Object>;
 }
 
 const postSchema: Schema = new Schema(
