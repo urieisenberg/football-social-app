@@ -23,8 +23,10 @@ export const createComment = async (req: Request, res: Response) => {
       pic: user.team.logo,
       username: user.username,
     });
-    if (newComment) post.comments.push(newComment);     
-    await post.save();
+    if (newComment) post.comments.push(newComment);
+    await post.save({
+      timestamps: false,
+    });
     await newComment.save();
     res.status(200).json(newComment);
   } catch (error: any) {
@@ -84,6 +86,3 @@ export const deleteComment = async (req: Request, res: Response) => {
     res.status(500).send('Something went wrong');
   }
 };
-
-
-
