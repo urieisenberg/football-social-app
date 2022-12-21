@@ -1,25 +1,19 @@
 import { Request, Response } from 'express';
 import { User, Post, Comment } from '../models';
-import { validateComment } from '../validators';
+import { commentSchema as schema } from '../schemas';
+import { findComment, findPost, validateSchema } from '../helpers';
 
 export const createComment = async (req: Request, res: Response) => {
   try {
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(401).send('User not found');
+    const user = req.user;
+    const post = await findPost(req.params.postId);
 
-    const post = await Post.findById(req.params.postId);
-    if (!post) return res.status(404).send('Post not found');
-
-    const { comment } = req.body;
-    const validated = validateComment.safeParse({ comment });
-    if (!validated.success) {
-      return res.status(400).json({ message: validated.error.message });
-    }
+    validateSchema({ schema, req, res });
 
     const newComment = new Comment({
       user: req.user.id,
       post: req.params.postId,
-      comment,
+      comment: req.body.comment,
       pic: user.team.logo,
       username: user.username,
     });
@@ -36,25 +30,15 @@ export const createComment = async (req: Request, res: Response) => {
 
 export const updateComment = async (req: Request, res: Response) => {
   try {
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(401).send('User not found');
-
-    const post = await Post.findById(req.params.id);
-    if (!post) return res.status(404).send('Post not found');
-
-    const comment = await Comment.findById(req.params.commentId);
-    if (!comment) return res.status(404).send('Comment not found');
+    const post = await findPost(req.params.postId);
+    const comment = await findComment(req.params.commentId);
 
     if (comment.user.toString() !== req.user.id)
       return res.status(401).send('Not authorized to update comment');
 
-    const { updatedComment } = req.body;
-    const validated = validateComment.safeParse({ updatedComment });
-    if (!validated.success) {
-      return res.status(400).json({ message: validated.error.message });
-    }
+    validateSchema({ schema, req, res });
 
-    comment.comment = updatedComment;
+    comment.comment = req.body.updatedComment;
     if (comment) res.status(200).json(comment);
     await comment.save();
   } catch (error: any) {
@@ -64,14 +48,8 @@ export const updateComment = async (req: Request, res: Response) => {
 
 export const deleteComment = async (req: Request, res: Response) => {
   try {
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(401).send('User not found');
-
-    const post = await Post.findById(req.params.postId);
-    if (!post) return res.status(404).send('Post not found');
-
-    const comment = await Comment.findById(req.params.commentId);
-    if (!comment) return res.status(404).send('Comment not found');
+    const post = await findPost(req.params.postId);
+    const comment = await findComment(req.params.commentId);
 
     if (comment.user.toString() !== req.user.id)
       return res.status(401).send('Not authorized to delete comment');
