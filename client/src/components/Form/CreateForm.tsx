@@ -39,9 +39,14 @@ export const CreateForm = ({
         <Button text={title.toUpperCase()} />
       </FormContent>
     </FormContainer>
-  ) : title.includes('post') ? (
+  ) : title.includes('post') || title.includes('comment') ? (
     <FormShare onSubmit={onSubmit}>
-      <Share type="text" placeholder={text} errors={errors.text} />
+      <Share
+        type="text"
+        placeholder={text}
+        errors={errors.text}
+        title={title}
+      />
     </FormShare>
   ) : (
     <FormContent onSubmit={onSubmit}>
