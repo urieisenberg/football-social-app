@@ -24,17 +24,24 @@ html, body {
     scrollbar-width: thin; 
     --moz-osx-font-smoothing: grayscale;
     *::-webkit-scrollbar {
-        width: 0.5rem;
-        border-radius: 0.5rem;
+        width: 6.5px;
+        height: 8px;
     }
     *::-webkit-scrollbar-track {
         background: ${({ theme }: GlobalStyleProps) => theme.background};
+        border-radius: 4px;
     }
     *::-webkit-scrollbar-thumb {
         background: ${({ theme }: GlobalStyleProps) => theme.text};
+        border-radius: 4px;
+        box-shadow: 0 8px 32px 0 rgba(127, 170, 240, 0.37);     
+
     }
     *::-webkit-scrollbar-thumb:hover {
         transition:all 0.2s ease-in-out;
+    }
+    *::-webkit-scrollbar-thumb:active {
+        background: ${({ theme }: GlobalStyleProps) => theme.primary};
     }
     
 }
