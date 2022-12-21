@@ -1,22 +1,16 @@
 import { Request, Response } from 'express';
 import { Ticket, ITicket, User } from '../models';
-import { validateTicket } from '../validators/ticketSchema';
+import { ticketSchema as schema } from '../schemas/ticketSchema';
+import { validateSchema } from '../helpers';
 
 export const createTicket = async (req: Request, res: Response) => {
   try {
-    const { subject, message } = req.body;
-    const validated = validateTicket.safeParse({ subject, message });
-    if (!validated.success) {
-      return res.status(400).json({ message: validated.error.message });
-    }
-
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(401).send('User not found');
+    validateSchema({ schema, req, res });
 
     const ticket: ITicket = new Ticket({
       user: req.user.id,
-      subject,
-      message,
+      subject: req.body.subject,
+      message: req.body.message,
       status: 'open',
     });
     if (ticket) res.status(200).json(ticket);
@@ -28,16 +22,11 @@ export const createTicket = async (req: Request, res: Response) => {
 
 export const updateTicket = async (req: Request, res: Response) => {
   try {
-    const { subject, message, status } = req.body;
-    const validated = validateTicket.safeParse({ subject, message });
-    if (!validated.success) {
-      return res.status(400).json({ message: validated.error.message });
-    }
-
+    validateSchema({ schema, req, res });
+    
     const ticket = await Ticket.findById(req.params.id);
-    if (!ticket) return res.status(404).send('Ticket not found');
 
-    if (ticket.user.toString() !== req.user.id)
+    if (ticket?.user.toString() !== req.user.id)
       return res.status(401).send('Not authorized to update ticket');
 
     const updatedTicket = await Ticket.findByIdAndUpdate(
@@ -54,13 +43,12 @@ export const updateTicket = async (req: Request, res: Response) => {
 export const deleteTicket = async (req: Request, res: Response) => {
   try {
     const ticket = await Ticket.findById(req.params.id);
-    if (!ticket) return res.status(404).send('Ticket not found');
 
-    if (ticket.user.toString() !== req.user.id)
+    if (ticket?.user.toString() !== req.user.id)
       return res.status(401).send('Not authorized to delete ticket');
 
-    await ticket.remove();
-    res.status(200).send(ticket._id);
+    await ticket?.remove();
+    res.status(200).send(ticket?._id);
   } catch (error: any) {
     res.status(500).send('Something went wrong');
   }
@@ -69,9 +57,8 @@ export const deleteTicket = async (req: Request, res: Response) => {
 export const closeTicket = async (req: Request, res: Response) => {
   try {
     const ticket = await Ticket.findById(req.params.id);
-    if (!ticket) return res.status(404).send('Ticket not found');
 
-    if (ticket.user.toString() !== req.user.id)
+    if (ticket?.user.toString() !== req.user.id)
       return res.status(401).send('Not authorized to close ticket');
 
     const updatedTicket = await Ticket.findByIdAndUpdate(
@@ -88,9 +75,8 @@ export const closeTicket = async (req: Request, res: Response) => {
 export const getTicketById = async (req: Request, res: Response) => {
   try {
     const ticket = await Ticket.findById(req.params.id);
-    if (!ticket) return res.status(404).send('Ticket not found');
 
-    if (ticket.user.toString() !== req.user.id)
+    if (ticket?.user.toString() !== req.user.id)
       return res.status(401).send('Not authorized to view ticket');
 
     res.status(200).json(ticket);
