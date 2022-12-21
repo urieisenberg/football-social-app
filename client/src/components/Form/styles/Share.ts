@@ -41,6 +41,17 @@ export const FormShareInput = styled(Form.Control).attrs({
     width: 90%;
   }
 `;
+
+export const FormShareAltInput = styled.input`
+  background: transparent;
+  border: none;
+  outline: none;
+  color: ${({ theme }) => theme.text};
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-left: 0.5rem;
+`;
+
 export const FormShareButton = styled(motion.button).attrs({
   whileHover: { scale: 1.05 },
   whileTap: { scale: 1.1 },
@@ -54,6 +65,22 @@ export const FormShareButton = styled(motion.button).attrs({
   color: ${({ theme }) => theme.text};
   background: tansparent;
   font-weight: 500;
+  &:hover {
+    color: ${({ theme }) => theme.primary};
+    font-weight: 600;
+    cursor: pointer;
+  }
+`;
+
+export const FormShareSubmit = styled(motion.button).attrs({
+  whileHover: { scale: 1.05 },
+  whileTap: { scale: 1.1 },
+})`
+  position: absolute;
+  left: 200px;
+  background: transparent;
+  border: none;
+  outline: none;
   &:hover {
     color: ${({ theme }) => theme.primary};
     font-weight: 600;
