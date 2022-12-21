@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Like = styled.div`
   position: absolute;
-  right: 10px;
+  right: 40px;
   top: 90px;
   @media only screen and (max-width: 768px) {
     font-size: 1rem;
