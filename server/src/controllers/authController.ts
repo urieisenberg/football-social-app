@@ -7,16 +7,6 @@ import { validateSchema } from '../helpers';
 
 export const register = async (req: Request, res: Response) => {
   try {
-    // const { username, email, password, team } = req.body;
-    // const validated = validateRegister.safeParse({
-    //   username,
-    //   email,
-    //   password,
-    //   team,
-    // });
-    // if (!validated.success) {
-    //   return res.status(400).json({ message: validated.error.message });
-    // }
     validateSchema({ schema: registerSchema, req, res });
     const { username, email, password, team } = req.body;
     const userEmailExists = await User.findOne({ email });
@@ -58,12 +48,6 @@ export const register = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
   try {
-    // const { email, password } = req.body;
-
-    // const validated = validateLogin.safeParse({ email, password });
-    // if (!validated.success) {
-    //   return res.status(400).json({ message: validated.error.message });
-    // }
     validateSchema({ schema: loginSchema, req, res });
     const { email, password } = req.body;
     const user = await User.findOne({ email });
