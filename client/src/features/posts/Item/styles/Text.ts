@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Text = styled.div`
-  margin-top: 35px;
+  margin-top: 40px;
   text-align: left;
   font-size: 1.2rem;
   font-weight: 400;
