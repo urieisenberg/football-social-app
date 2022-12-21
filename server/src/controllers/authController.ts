@@ -1,21 +1,24 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import { User, IUser } from '../models/userModel';
 import { generateToken } from '../config/token';
 import { comparePassword, hashPassword } from '../config/bcrypt';
-import { validateLogin, validateRegister } from '../validators';
+import { loginSchema, registerSchema } from '../schemas';
+import { validateSchema } from '../helpers';
 
 export const register = async (req: Request, res: Response) => {
   try {
+    // const { username, email, password, team } = req.body;
+    // const validated = validateRegister.safeParse({
+    //   username,
+    //   email,
+    //   password,
+    //   team,
+    // });
+    // if (!validated.success) {
+    //   return res.status(400).json({ message: validated.error.message });
+    // }
+    validateSchema({ schema: registerSchema, req, res });
     const { username, email, password, team } = req.body;
-    const validated = validateRegister.safeParse({
-      username,
-      email,
-      password,
-      team,
-    });
-    if (!validated.success) {
-      return res.status(400).json({ message: validated.error.message });
-    }
     const userEmailExists = await User.findOne({ email });
     if (userEmailExists) {
       return res.status(400).send('Email already exists');
@@ -39,8 +42,8 @@ export const register = async (req: Request, res: Response) => {
         email: user.email,
         team: user.team,
         token: generateToken(user._id),
-        follows: user.follows,
-        followed: user.followed,
+        following: user.following,
+        followers: user.followers,
         profilePicture: user.team.logo,
         favFixtures: user.favFixtures,
       });
@@ -55,12 +58,14 @@ export const register = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
+    // const { email, password } = req.body;
 
-    const validated = validateLogin.safeParse({ email, password });
-    if (!validated.success) {
-      return res.status(400).json({ message: validated.error.message });
-    }
+    // const validated = validateLogin.safeParse({ email, password });
+    // if (!validated.success) {
+    //   return res.status(400).json({ message: validated.error.message });
+    // }
+    validateSchema({ schema: loginSchema, req, res });
+    const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (user && (await comparePassword(password, user.password))) {
       res.status(200).json({
@@ -69,8 +74,8 @@ export const login = async (req: Request, res: Response) => {
         email: user.email,
         team: user.team,
         token: generateToken(user._id),
-        follows: user.follows,
-        followed: user.followed,
+        following: user.following,
+        followers: user.followers,
         profilePicture: user.team.logo,
         favFixtures: user.favFixtures,
       });
