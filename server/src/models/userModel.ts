@@ -9,8 +9,8 @@ export interface IUser extends Document {
     id: number;
     logo: string;
   };
-  follows: Array<string>;
-  followed: Array<string>;
+  following: Array<string>;
+  followers: Array<string>;
   favFixtures: Array<string>;
 }
 
@@ -40,7 +40,7 @@ const userSchema: Schema = new Schema(
       type: Object,
       required: true,
     },
-    follows: {
+    following: {
       type: Array,
       default: [],
     },
