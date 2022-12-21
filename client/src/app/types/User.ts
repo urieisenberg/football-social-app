@@ -9,7 +9,7 @@ export interface User {
     logo: string;
   };
   profilePicture: string;
-  follows: Array<string>;
+  following: Array<string>;
   followers: Array<string>;
   favFixtures: Array<string>;
 }
