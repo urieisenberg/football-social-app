@@ -1,28 +1,21 @@
 import { Request, Response } from 'express';
 import { Note, INote, Ticket, User } from '../models';
-import { validateNote } from '../validators';
+import { noteSchema as schema } from '../schemas';
+import { findTicket, findNote, validateSchema } from '../helpers';
 
 export const createNote = async (req: Request, res: Response) => {
   try {
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(401).send('User not found');
-
-    const ticket = await Ticket.findById(req.params.ticketId);
-    if (!ticket) return res.status(404).send('Ticket not found');
+    const ticket = await findTicket(req.params.ticketId);
 
     if (ticket.user.toString() !== req.user.id)
       return res.status(401).send('Not authorized to create note');
 
-    const { text } = req.body;
-    const validated = validateNote.safeParse({ text });
-    if (!validated.success) {
-      return res.status(400).json({ message: validated.error.message });
-    }
+    validateSchema({ schema, req, res });
 
     const note: INote = await Note.create({
       user: req.user.id,
       ticket: req.params.ticketId,
-      text,
+      text: req.body.text,
     });
     if (note) res.status(200).json(note);
     else res.status(400).send('Invalid note data');
@@ -33,28 +26,19 @@ export const createNote = async (req: Request, res: Response) => {
 
 export const updateNote = async (req: Request, res: Response) => {
   try {
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(401).send('User not found');
-
-    const ticket = await Ticket.findById(req.params.ticketId);
-    if (!ticket) return res.status(404).send('Ticket not found');
+    const ticket = await findTicket(req.params.ticketId);
 
     if (ticket.user.toString() !== req.user.id)
       return res.status(401).send('Not authorized to update note');
 
-    const note = await Note.findById(req.params.noteId);
-    if (!note) return res.status(404).send('Note not found');
+    const note = await findNote(req.params.noteId);
 
     if (note.user.toString() !== req.user.id)
       return res.status(401).send('Not authorized to update note');
 
-    const { text } = req.body;
-    const validated = validateNote.safeParse({ text });
-    if (!validated.success) {
-      return res.status(400).json({ message: validated.error.message });
-    }
+    validateSchema({ schema, req, res });
 
-    note.text = text;
+    note.text = req.body.text;
     if (note) res.status(200).json(note);
     await note.save();
   } catch (error: any) {
@@ -64,17 +48,12 @@ export const updateNote = async (req: Request, res: Response) => {
 
 export const deleteNote = async (req: Request, res: Response) => {
   try {
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(401).send('User not found');
-
     const ticket = await Ticket.findById(req.params.ticketId);
-    if (!ticket) return res.status(404).send('Ticket not found');
 
-    if (ticket.user.toString() !== req.user.id)
+    if (ticket?.user.toString() !== req.user.id)
       return res.status(401).send('Not authorized to delete note');
 
-    const note = await Note.findById(req.params.noteId);
-    if (!note) return res.status(404).send('Note not found');
+    const note = await findNote(req.params.noteId);
 
     if (note.user.toString() !== req.user.id)
       return res.status(401).send('Not authorized to delete note');
@@ -88,13 +67,9 @@ export const deleteNote = async (req: Request, res: Response) => {
 
 export const getNotes = async (req: Request, res: Response) => {
   try {
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(401).send('User not found');
-
     const ticket = await Ticket.findById(req.params.ticketId);
-    if (!ticket) return res.status(404).send('Ticket not found');
 
-    if (ticket.user.toString() !== req.user.id)
+    if (ticket?.user.toString() !== req.user.id)
       return res.status(401).send('Not authorized to view notes');
 
     const notes = await Note.find({ ticket: req.params.ticketId });
@@ -106,13 +81,9 @@ export const getNotes = async (req: Request, res: Response) => {
 
 export const deleteNotes = async (req: Request, res: Response) => {
   try {
-    const user = await User.findById(req.user.id);
-    if (!user) return res.status(401).send('User not found');
-
     const ticket = await Ticket.findById(req.params.ticketId);
-    if (!ticket) return res.status(404).send('Ticket not found');
 
-    if (ticket.user.toString() !== req.user.id)
+    if (ticket?.user.toString() !== req.user.id)
       return res.status(401).send('Not authorized to delete notes');
 
     await Note.deleteMany({ ticket: req.params.id });
