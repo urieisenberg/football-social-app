@@ -7,7 +7,7 @@ export const createComment = async (req: Request, res: Response) => {
     const user = await User.findById(req.user.id);
     if (!user) return res.status(401).send('User not found');
 
-    const post = await Post.findById(req.params.id);
+    const post = await Post.findById(req.params.postId);
     if (!post) return res.status(404).send('Post not found');
 
     const { comment } = req.body;
@@ -18,22 +18,15 @@ export const createComment = async (req: Request, res: Response) => {
 
     const newComment = new Comment({
       user: req.user.id,
-      post: req.params.id,
+      post: req.params.postId,
       comment,
       pic: user.team.logo,
       username: user.username,
     });
-    if (newComment) {
-      await Post.findByIdAndUpdate(
-        req.params.id,
-        {
-          $push: { comments: newComment },
-        },
-        { new: true, timestamps: false }
-      );
-      await newComment.save();
-      res.status(200).json(newComment);
-    }
+    if (newComment) post.comments.push(newComment);     
+    await post.save();
+    await newComment.save();
+    res.status(200).json(newComment);
   } catch (error: any) {
     res.status(500).send('Something went wrong');
   }
@@ -72,7 +65,7 @@ export const deleteComment = async (req: Request, res: Response) => {
     const user = await User.findById(req.user.id);
     if (!user) return res.status(401).send('User not found');
 
-    const post = await Post.findById(req.params.id);
+    const post = await Post.findById(req.params.postId);
     if (!post) return res.status(404).send('Post not found');
 
     const comment = await Comment.findById(req.params.commentId);
