@@ -2,7 +2,6 @@ import { api } from '.';
 import {
   Post,
   CreatePost,
-  DeletePost,
   SearchPosts,
   SearchUserPosts,
 } from '../../types';
