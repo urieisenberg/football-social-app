@@ -1,7 +1,13 @@
 import { Request, Response } from 'express';
-import { User, Post, Comment } from '../models';
+import { Comment } from '../models';
 import { commentSchema as schema } from '../schemas';
-import { findComment, findPost, validateSchema } from '../helpers';
+import {
+  findComment,
+  findPost,
+  validateSchema,
+  validateUpdate,
+  handleErrors,
+} from '../helpers';
 
 export const createComment = async (req: Request, res: Response) => {
   try {
@@ -24,17 +30,20 @@ export const createComment = async (req: Request, res: Response) => {
     await newComment.save();
     res.status(200).json(newComment);
   } catch (error: any) {
-    res.status(500).send('Something went wrong');
+    handleErrors(res, error);
   }
 };
 
 export const updateComment = async (req: Request, res: Response) => {
   try {
-    const post = await findPost(req.params.postId);
     const comment = await findComment(req.params.commentId);
 
-    if (comment.user.toString() !== req.user.id)
-      return res.status(401).send('Not authorized to update comment');
+    validateUpdate({
+      req,
+      res,
+      Model: Comment,
+      id: req.params.commentId,
+    });
 
     validateSchema({ schema, req, res });
 
@@ -42,17 +51,20 @@ export const updateComment = async (req: Request, res: Response) => {
     if (comment) res.status(200).json(comment);
     await comment.save();
   } catch (error: any) {
-    res.status(500).send('Something went wrong');
+    handleErrors(res, error);
   }
 };
 
 export const deleteComment = async (req: Request, res: Response) => {
   try {
     const post = await findPost(req.params.postId);
-    const comment = await findComment(req.params.commentId);
 
-    if (comment.user.toString() !== req.user.id)
-      return res.status(401).send('Not authorized to delete comment');
+    validateUpdate({
+      req,
+      res,
+      Model: Comment,
+      id: req.params.commentId,
+    });
 
     await Comment.findByIdAndDelete(req.params.commentId);
     post.comments = post.comments.filter(
@@ -63,6 +75,6 @@ export const deleteComment = async (req: Request, res: Response) => {
     });
     res.status(200).json({ message: 'Comment deleted' });
   } catch (error: any) {
-    res.status(500).send('Something went wrong');
+    handleErrors(res, error);
   }
 };
