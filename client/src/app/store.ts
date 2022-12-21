@@ -6,6 +6,7 @@ import authReducer from '../features/auth/authSlice';
 import ticketReducer from '../features/tickets/ticketSlice';
 import noteReducer from '../features/notes/noteSlice';
 import postReducer from '../features/posts/postSlice';
+import commentReducer from '../features/comments/commentSlice';
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     ticket: ticketReducer,
     note: noteReducer,
     post: postReducer,
+    comment: commentReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware),
