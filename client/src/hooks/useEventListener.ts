@@ -1,9 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 export const useEventListener = (
   eventType: string,
   handler: any,
-  element = window
+  element = document
 ) => {
   const handlerRef = useRef(handler);
 
