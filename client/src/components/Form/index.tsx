@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useKeyPress } from '../../hooks/useKeyPress';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IForm, FormErrors } from './types';
@@ -30,6 +31,9 @@ export const Form = ({
     if (editable) reset(editable);
   }, [editable, reset]);
 
+  useKeyPress('Enter', () => handleSubmit(onSubmit));
+  useKeyPress('Escape', () => reset);
+
   return (
     <Transition>
       <FormProvider {...methods}>
@@ -56,4 +60,3 @@ export const Form = ({
     </Transition>
   );
 };
-
