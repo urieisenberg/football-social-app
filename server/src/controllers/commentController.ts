@@ -80,7 +80,9 @@ export const deleteComment = async (req: Request, res: Response) => {
     post.comments = post.comments.filter(
       (comment: any) => comment._id.toString() !== req.params.commentId
     );
-    await post.save();
+    await post.save({
+      timestamps: false,
+    });
     res.status(200).json({ message: 'Comment deleted' });
   } catch (error: any) {
     res.status(500).send('Something went wrong');
