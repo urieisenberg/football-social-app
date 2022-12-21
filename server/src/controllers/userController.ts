@@ -1,7 +1,12 @@
 import { Request, Response } from 'express';
 import { User } from '../models';
 import { userUpdateSchema as schema } from '../schemas';
-import { findUser, validateSchema } from '../helpers';
+import {
+  findUser,
+  validateSchema,
+  validateUpdate,
+  handleErrors,
+} from '../helpers';
 
 export const getUser = async (req: Request, res: Response) => {
   try {
@@ -11,7 +16,7 @@ export const getUser = async (req: Request, res: Response) => {
     if (!user) return res.status(404).send('User not found');
     res.status(200).json(user);
   } catch (error: any) {
-    res.status(500).send('Something went wrong');
+    handleErrors(res, error);
   }
 };
 
@@ -21,7 +26,7 @@ export const deleteUser = async (req: Request, res: Response) => {
     await user.remove();
     res.status(200).send('User deleted');
   } catch (error: any) {
-    res.status(500).send('Something went wrong');
+    handleErrors(res, error);
   }
 };
 
@@ -36,7 +41,7 @@ export const updateUser = async (req: Request, res: Response) => {
     await user.save();
     res.status(200).json(user);
   } catch (error: any) {
-    res.status(500).send('Something went wrong');
+    handleErrors(res, error);
   }
 };
 
@@ -58,7 +63,7 @@ export const followUser = async (req: Request, res: Response) => {
     );
     res.status(200).json(req.params.id);
   } catch (error: any) {
-    res.status(500).send('Something went wrong');
+    handleErrors(res, error);
   }
 };
 
@@ -80,7 +85,7 @@ export const unfollowUser = async (req: Request, res: Response) => {
     );
     res.status(200).json(req.params.id);
   } catch (error: any) {
-    res.status(500).send('Something went wrong');
+    handleErrors(res, error);
   }
 };
 
@@ -113,7 +118,7 @@ export const getFollowers = async (req: Request, res: Response) => {
     });
     res.status(200).json(followersList);
   } catch (error: any) {
-    res.status(500).send('Something went wrong');
+    handleErrors(res, error);
   }
 };
 
@@ -146,7 +151,7 @@ export const getFollowing = async (req: Request, res: Response) => {
     });
     res.status(200).json(followingList);
   } catch (error: any) {
-    res.status(500).send('Something went wrong');
+    handleErrors(res, error);
   }
 };
 
