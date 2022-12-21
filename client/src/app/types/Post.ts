@@ -7,7 +7,17 @@ export interface Post {
   pic: string;
   team: string;
   likes: Array<string>;
-  comments: Array<string>;
+  comments: [
+    {
+      post: string;
+      user: string;
+      comment: string;
+      pic: string;
+      username: string;
+      _id: string;
+      createdAt: string;
+    }
+  ];
   createdAt: string;
   updatedAt?: string;
 }
@@ -23,10 +33,6 @@ export interface PostState {
 export interface CreatePost {
   text: string;
   type: 'feed' | 'team';
-}
-
-export interface DeletePost {
-  id: string;
 }
 
 export interface SearchPosts {
