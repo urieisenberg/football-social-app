@@ -13,7 +13,7 @@ import {
   setLikedPosts,
   setTeamPosts,
   setUserPosts,
-} from '../../../features/posts/postSlice';
+} from '../../actions/postSlice';
 
 const URL = '/posts';
 

@@ -5,7 +5,7 @@ import {
   setComments,
   updateComment,
   deleteComment,
-} from '../../../features/comments/commentSlice';
+} from '../../actions/commentSlice';
 
 const URL = '/comments';
 

@@ -4,7 +4,7 @@ import {
   setTickets,
   updateTicket,
   removeTicket,
-} from '../../../features/tickets/ticketSlice';
+} from '../../actions/ticketSlice';
 import { store } from '../../store';
 
 const URL = '/tickets';

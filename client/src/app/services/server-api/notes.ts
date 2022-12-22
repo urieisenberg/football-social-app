@@ -5,7 +5,7 @@ import {
   setNotes,
   updateNote,
   removeNote,
-} from '../../../features/notes/noteSlice';
+} from '../../actions/noteSlice';
 
 export const notesApi = api.injectEndpoints({
   endpoints: (builder) => ({
