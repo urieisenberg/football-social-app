@@ -1,4 +1,4 @@
-export const TEAM_NAME_TO_TWITTER_PAGE = {
+export const TEAM_NAME_TO_TWITTER_PAGE: { [key: string]: string } = {
   Juventus: 'juventusfcen',
   Inter: 'Inter_en',
   'AC Milan': 'acmilan',
