@@ -1,5 +1,5 @@
 import { footballApi } from '.';
-import { Team, TeamInfo } from '../../types';
+import { Team, TeamInfo } from './types';
 import {
   transformTeamInfoResponse,
   transformTeamTransfersResponse,
