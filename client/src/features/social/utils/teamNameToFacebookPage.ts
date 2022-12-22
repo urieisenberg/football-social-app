@@ -1,4 +1,4 @@
-export const TEAM_NAME_TO_FACEBOOK_PAGE = {
+export const TEAM_NAME_TO_FACEBOOK_PAGE: { [key: string]: string } = {
   Juventus: 'Juventus',
   Inter: 'Inter',
   'AC Milan': 'ACMilan',
