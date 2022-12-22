@@ -1,4 +1,4 @@
-import { LeagueInfo } from '../../../types';
+import { LeagueInfo } from '../types';
 
 export const transformLeagueInfoResponse = (response: any) => {
   return response.response[0] as LeagueInfo;
