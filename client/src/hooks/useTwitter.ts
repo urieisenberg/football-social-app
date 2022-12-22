@@ -1,13 +1,11 @@
 import { useState, useLayoutEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { useTheme } from 'styled-components';
-import { ThemeProps } from '../theme/themes';
 import { TEAM_NAME_TO_TWITTER_PAGE } from '../features/social/utils/teamNameToTwitterPage';
 
 interface ITwitter {
   twitterPage: string;
   isLoading: boolean;
-  twitterTheme: ThemeProps;
+  twitterTheme: 'light' | 'dark';
 }
 
 export const useTwitter = (): ITwitter => {
@@ -16,7 +14,8 @@ export const useTwitter = (): ITwitter => {
   const [isLoading, setIsLoading] = useState(true);
   const isMounted = useRef(true);
 
-  const twitterTheme = useTheme() as ThemeProps;
+  const twitterTheme =
+    localStorage.getItem('theme') === 'light' ? 'light' : 'dark';
 
   useLayoutEffect(() => {
     const twitterPage = teamname
