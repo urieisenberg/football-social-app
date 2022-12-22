@@ -4,7 +4,7 @@ import {
   transformCurrentLeagueResponse,
   transformLeagueInfoResponse,
   transformLeagueTableResponse,
-} from './transformers';
+} from './transformResponses';
 
 export const leaguesApi = footballApi.injectEndpoints({
   endpoints: (builder) => ({
