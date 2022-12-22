@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { api } from './services/server-api';
-import { footballApi } from './services/football-api';
 import { authApi } from './services/server-api/auth';
+import { footballApi } from './services/football-api';
 import authReducer from './services/server-api/actions/authSlice';
 import ticketReducer from './services/server-api/actions/ticketSlice';
 import noteReducer from './services/server-api/actions/noteSlice';
