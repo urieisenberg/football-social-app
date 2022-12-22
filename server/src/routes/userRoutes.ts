@@ -12,18 +12,16 @@ import {
 
 const router = Router();
 
-router
-  .route('/')
-  .get(protect, getUser)
-  .delete(protect, deleteUser)
-  .put(protect, updateUser);
+router.route('/').delete(protect, deleteUser).put(protect, updateUser);
+
+router.route('/:username').get(protect, getUser);
 
 router.route('/follow/:id').put(protect, followUser);
 
 router.route('/unfollow/:id').put(protect, unfollowUser);
 
-router.route('/followers/:id').get(protect, getFollowers);
+router.route(':id/followers').get(protect, getFollowers);
 
-router.route('/following/:id').get(protect, getFollowing);
+router.route(':id/following').get(protect, getFollowing);
 
 export { router as userRoutes };
