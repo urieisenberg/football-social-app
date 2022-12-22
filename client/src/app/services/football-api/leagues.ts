@@ -1,5 +1,5 @@
 import { footballApi } from '.';
-import { LeagueInfo, LeagueTable } from '../../types';
+import { LeagueInfo, LeagueTable } from './types';
 import {
   transformCurrentLeagueResponse,
   transformLeagueInfoResponse,

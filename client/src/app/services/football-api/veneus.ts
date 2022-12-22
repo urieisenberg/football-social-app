@@ -1,5 +1,5 @@
 import { footballApi } from '.';
-import { Venue } from '../../types';
+import { Venue } from './types';
 import {
   transformVenueItemResponse,
   transformVenuesListResponse,
