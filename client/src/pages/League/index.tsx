@@ -3,12 +3,14 @@ import { LeagueInfo, LeagueTable, LeagueLogos } from '../../features/leagues';
 import { SERIA_A } from '../../app/types';
 import { Nav } from '../../components/Nav';
 import { Social } from '../../features/social';
+import { Venues } from '../../features/venues';
 
 export const League = () => {
   const { leagueid } = useParams();
 
   let elements = useRoutes([
     { path: '', element: <Navigate to="social" /> },
+    { path: 'venues/*', element: <Venues /> },
     { path: 'social/*', element: <Social /> },
     { path: 'table', element: <LeagueTable /> },
   ]);
