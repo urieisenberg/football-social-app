@@ -17,8 +17,8 @@ export const venuesApi = footballApi.injectEndpoints({
         return currentArg !== previousArg;
       },
     }),
-    getVenue: builder.query<Venue, Venue>({
-      query: ({ id }) => `${URL}?id=${id}`,
+    getVenue: builder.query<Venue, string>({
+      query: (venueid) => `${URL}?id=${venueid}`,
       transformResponse: transformVenueItemResponse,
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
