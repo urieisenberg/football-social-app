@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useUpdatePostMutation } from '../../../app/services/server-api/posts';
+import { useUpdatePostMutation } from '../api';
 import { Post } from '../../../app/types';
 import { Editable } from '../../../components/Form/Editable';
 import { toast } from 'react-toastify';

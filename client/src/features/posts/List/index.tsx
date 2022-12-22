@@ -33,7 +33,6 @@ export const PostList = ({ title, posts, searchPosts }: PostListProps) => {
     <Transition>
       {searchPosts}
       <ListWrapper>
-        {' '}
         <ListTitle>{title}</ListTitle>
         <ListContainer>
           <ListContent>

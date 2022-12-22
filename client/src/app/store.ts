@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { api } from './services/server-api';
-import { authApi } from './services/server-api/auth';
+import { authApi } from '../features/auth/api/auth';
 import { footballApi } from './services/football-api';
-import authReducer from './services/server-api/actions/authSlice';
-import ticketReducer from './services/server-api/actions/ticketSlice';
-import noteReducer from './services/server-api/actions/noteSlice';
-import postReducer from './services/server-api/actions/postSlice';
-import commentReducer from './services/server-api/actions/commentSlice';
-import userReducer from './services/server-api/actions/userSlice';
+import authReducer from '../features/auth/authSlice';
+import ticketReducer from '../features/tickets/ticketSlice';
+import noteReducer from '../features/notes/noteSlice';
+import postReducer from '../features/posts/postSlice';
+import commentReducer from '../features/comments/commentSlice';
+import userReducer from '../features/users/userSlice';
 
 export const store = configureStore({
   reducer: {

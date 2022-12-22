@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useGetLeagueInfoQuery } from '../../../app/services/football-api/leagues';
+import { useGetLeagueInfoQuery } from '../api';
 import { SERIA_A } from '../../../app/types';
 import { Transition } from '../../../components/Transition';
 import {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppSelector } from '../../../hooks/useAppSelector';
-import { useLikePostMutation } from '../../../app/services/server-api/posts';
+import { useLikePostMutation } from '../api';
 import { Post } from '../../../app/types';
 import { Like, LikeCount, LikeIcon } from './styles';
 import { BsHeart, BsHeartFill } from 'react-icons/bs';

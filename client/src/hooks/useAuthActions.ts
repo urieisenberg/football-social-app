@@ -10,7 +10,6 @@ export const useAuthActions = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-
   const setUser = (user: User) => {
     dispatch(login(user));
     navigate('/');

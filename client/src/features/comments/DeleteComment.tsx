@@ -1,5 +1,5 @@
 import { useAppSelector } from '../../hooks/useAppSelector';
-import { useDeleteCommentMutation } from '../../app/services/server-api/comments';
+import { useDeleteCommentMutation } from './api';
 import { Post, Comment } from '../../app/types';
 import { Delete } from './styles';
 import { BsX } from 'react-icons/bs';

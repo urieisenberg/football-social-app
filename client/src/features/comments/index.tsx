@@ -14,7 +14,7 @@ import {
 import { BsChatLeftTextFill, BsChatLeftText } from 'react-icons/bs';
 import {
   useCreateCommentMutation,
-} from '../../app/services/server-api/comments';
+} from './api';
 import { AnimatePresence } from 'framer-motion';
 
 interface CommentProps {
@@ -33,7 +33,6 @@ export const Comments = ({
   const [createComment] = useCreateCommentMutation();
 
   const onComment = async (data: Comment) => {
-    console.log(data);
     await createComment({
       postId: post._id,
       comment: data.comment,

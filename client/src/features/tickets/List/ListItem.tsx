@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useDeleteTicketMutation } from '../../../app/services/server-api/tickets';
+import { useDeleteTicketMutation } from '../api';
 import { DeleteTicket } from '../../../app/types';
 import { Ticket } from '../../../app/types';
 import { toast } from 'react-toastify';

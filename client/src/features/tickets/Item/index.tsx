@@ -2,7 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import {
   useGetTicketQuery,
   useCloseTicketMutation,
-} from '../../../app/services/server-api/tickets';
+} from '../api';
 import { useToggle } from '../../../hooks/useToggle';
 import { toast } from 'react-toastify';
 import {

@@ -1,6 +1,6 @@
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useToggle } from '../../../hooks/useToggle';
-import { useDeletePostMutation } from '../../../app/services/server-api/posts';
+import { useDeletePostMutation } from '../api';
 import { Post } from '../../../app/types';
 import { toast } from 'react-toastify';
 import { Options, Option, Text } from './styles';

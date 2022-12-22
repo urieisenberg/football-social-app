@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useGetVenuesQuery } from '../../../app/services/football-api/veneus';
-import { useGetLeagueInfoQuery } from '../../../app/services/football-api/leagues';
+import { useGetVenuesQuery } from '../api';
+import { useGetLeagueInfoQuery } from '../../leagues/api';
 import {
   VenuesContainer,
   VenuesTitle,

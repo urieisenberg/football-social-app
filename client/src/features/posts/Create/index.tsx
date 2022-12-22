@@ -1,4 +1,4 @@
-import { useCreatePostMutation } from '../../../app/services/server-api/posts';
+import { useCreatePostMutation } from '../api';
 import { CreatePost } from '../../../app/types';
 import { postSchema } from '../utils/postSchema';
 import { Form } from '../../../components/Form';

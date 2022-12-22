@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useGetVenueQuery } from '../../../app/services/football-api/veneus';
+import { useGetVenueQuery } from '../api';
 import { Loader } from '../../../components/Loader';
 import { Transition } from '../../../components/Transition';
 import {

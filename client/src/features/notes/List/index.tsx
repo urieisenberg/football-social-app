@@ -1,7 +1,7 @@
 import {
   useGetNotesQuery,
   useDeleteNoteMutation,
-} from '../../../app/services/server-api/notes';
+} from '../api';
 import { Transition } from '../../../components/Transition';
 import { NotesContainer, NotesContent } from '../styles';
 import { DeleteNote } from '../../../app/types';

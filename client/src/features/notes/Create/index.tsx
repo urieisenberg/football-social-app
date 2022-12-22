@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useCreateNoteMutation } from '../../../app/services/server-api/notes';
+import { useCreateNoteMutation } from '../api';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { noteSchema } from '../utils/noteSchema';
 import { CreateNote as AddNote } from '../../../app/types';

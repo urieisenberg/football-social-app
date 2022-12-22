@@ -12,6 +12,7 @@ import { Login } from '../features/auth/Login';
 import { NotFound } from '../pages/NotFound';
 import { Feed } from '../pages/Feed';
 import { Contact } from '../pages/Contact';
+import { League } from '../pages/League';
 
 export const Routes = () => {
   const location = useLocation();
@@ -20,7 +21,7 @@ export const Routes = () => {
       {/* Protected Routes */}
       <Route path="/" element={<Protected />}>
         <Route path="" element={<Navigate to="league/135" />} />
-        {/* <Route path="league/:leagueid/*" element={<League />} /> */}
+        <Route path="league/:leagueid/*" element={<League />} />
         <Route path="feed/*" element={<Feed />} />
         <Route path="contact/*" element={<Contact />} />
         <Route path="*" element={<NotFound />} />

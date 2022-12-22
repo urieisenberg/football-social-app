@@ -1,5 +1,5 @@
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom';
-import { useSearchVenuesQuery } from '../../../app/services/football-api/veneus';
+import { useSearchVenuesQuery } from '../api';
 import { Loader } from '../../../components/Loader';
 import { Transition } from '../../../components/Transition';
 import { TopButton } from '../../../components/Button';

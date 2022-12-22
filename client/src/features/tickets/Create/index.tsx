@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCreateTicketMutation } from '../../../app/services/server-api/tickets';
+import { useCreateTicketMutation } from '../api';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { ticketSchema } from '../utils/ticketSchema';
 import { ticketsSelectOptions } from '../utils/selectOptions';

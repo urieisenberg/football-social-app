@@ -2,7 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import {
   useGetCurrentLeagueQuery,
   useGetLeagueTableQuery,
-} from '../../../app/services/football-api/leagues';
+} from '../api';
 import { Transition } from '../../../components/Transition';
 import { Loader } from '../../../components/Loader';
 import {

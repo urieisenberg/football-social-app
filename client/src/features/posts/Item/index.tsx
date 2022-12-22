@@ -14,6 +14,7 @@ import {
   UpdatedAt,
   Text,
 } from './styles';
+import { FollowUser } from './Follow';
 
 interface PostItemProps {
   post: Post;
@@ -28,9 +29,6 @@ export const PostItem = ({ post }: PostItemProps) => {
   const createdAt = new Date(post.createdAt).toLocaleString();
   const updatedAt = post.updatedAt && new Date(post.updatedAt).toLocaleString();
 
-
-  console.log(post)
-
   return (
     <Wrapper>
       <Container>
@@ -43,7 +41,7 @@ export const PostItem = ({ post }: PostItemProps) => {
           <Name onClick={() => navigate(`/profile/${post.username}`)}>
             {post.username}
           </Name>
-          {/* Follow */}
+          <FollowUser post={post} />
           <CreatedAt>{createdAt}</CreatedAt>
           <PostOptions
             post={post}

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLoginMutation } from '../../../app/services/server-api/auth';
+import { useLoginMutation } from '../api/auth';
 import { useAuthActions } from '../../../hooks/useAuthActions';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { toast } from 'react-toastify';
