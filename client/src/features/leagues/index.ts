@@ -1,3 +1,3 @@
 export * from './Info';
-export * from './ItalianLogos';
+export * from './Logos';
 export * from './Table';
