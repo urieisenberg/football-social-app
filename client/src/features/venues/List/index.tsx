@@ -8,7 +8,7 @@ import {
   VenuesImage,
   VenuesName,
   VenuesItemContainer,
-} from '../style';
+} from '../styles';
 import { Loader } from '../../../components/Loader';
 import { Transition } from '../../../components/Transition';
 import { TopButton } from '../../../components/Button';
