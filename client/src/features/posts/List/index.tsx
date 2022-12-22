@@ -11,7 +11,7 @@ import { Transition } from '../../../components/Transition';
 import { TopButton } from '../../../components/Button';
 
 interface PostListProps {
-  posts: Post[];
+  posts: Post[] | undefined;
   title: string;
   searchPosts?: JSX.Element;
 }
@@ -37,7 +37,7 @@ export const PostList = ({ title, posts, searchPosts }: PostListProps) => {
         <ListTitle>{title}</ListTitle>
         <ListContainer>
           <ListContent>
-            {content} {posts?.length >= 3 && <TopButton />}
+            {content} {posts && posts?.length >= 3 && <TopButton />}
           </ListContent>
         </ListContainer>
       </ListWrapper>
