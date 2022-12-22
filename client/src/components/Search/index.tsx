@@ -11,7 +11,7 @@ export const Search = ({
   setSearchTerm,
   placeholder,
 }: SearchProps) => {
-  console.log(searchTerm);
+
   return (
     <SearchContainer>
       <SearchInput
