@@ -1,4 +1,4 @@
-import { Venue } from '../../../types';
+import { Venue } from '../types';
 
 export const transformVenueItemResponse = (response: any) => {
   return response.response[0] as Venue;
