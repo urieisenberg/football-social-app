@@ -79,6 +79,7 @@ export const FormShareSubmit = styled(motion.button).attrs({
   position: absolute;
   left: 200px;
   background: transparent;
+  color: ${({ theme }) => theme.text};
   border: none;
   outline: none;
   &:hover {
