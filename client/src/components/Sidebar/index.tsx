@@ -60,7 +60,7 @@ export const Sidebar = () => {
           <Item
             title="Seria A"
             icon={<GiSoccerField size={20} />}
-            link="league"
+            link="league/135"
           />
           <Item
             title="Players"
