@@ -3,7 +3,7 @@ import { teams } from '../../utils/db/teams';
 import { TeamInformation } from '../../features/teams/Info';
 import { VenuesItem } from '../../features/venues/Item';
 import { SocialLayout } from '../../features/social/Layout';
-import { PlayersLayout } from '../../features/players/Layout';
+import { TeamPlayersLayout } from '../../features/players/Layout';
 import { Standings } from '../../features/standings';
 import { Nav } from '../../components/Nav';
 
@@ -13,7 +13,7 @@ export const Team = () => {
   let elements = useRoutes([
     { path: '', element: <Navigate to="fixtures" /> },
     { path: 'fixtures/*', element: <>Fixtures</> },
-    { path: 'players/*', element: <PlayersLayout /> },
+    { path: 'players/*', element: <TeamPlayersLayout /> },
     { path: 'social/*', element: <SocialLayout /> },
     { path: 'standings/', element: <Standings /> },
     // { path: "coach", element: <CoachLayout /> },

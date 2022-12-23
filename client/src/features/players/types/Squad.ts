@@ -1,10 +1,11 @@
 import { Team } from '../../teams/types';
 
-interface SquadPlayer {
+export interface SquadPlayer {
   id: number;
   name: string;
   age: number;
   position: string;
+  number: number;
   photo: string;
 }
 

@@ -45,9 +45,6 @@ html, body {
     
 }
 
-
-
-
 .logout {
     color: ${({ theme }: GlobalStyleProps) => theme.error};
 }
