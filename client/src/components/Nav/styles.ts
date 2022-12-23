@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 import { Nav, Navbar, Container } from 'react-bootstrap';
 
 interface NavItemProps {
-  hide?: string;
-  mini?: string;
+  hide?: 'none' | 'block';
+  mini?: 'true' | 'false';
 }
 
 interface NavLinkProps {
-  active?: boolean;
+  active?: 'true' | 'false';
 }
 
 export const NavWrapper = styled(Navbar).attrs({
@@ -28,8 +28,8 @@ export const NavContainer = styled(Container)`
 `;
 
 export const NavLink = styled(Nav.Link)<NavLinkProps>`
-  color: ${({ active, theme }) => (active ? theme.info : theme.text)};
-  font-weight: ${({ active }) => (active ? 'bold' : 'normal')};
+  color: ${({ active, theme }) => (active === 'true' ? theme.primary : theme.text)};
+  font-weight: ${({ active }) => (active === 'true' ? 'bold' : 'normal')};
   text-decoration: none;
   text-transform: uppercase;
   &:hover {
@@ -56,6 +56,7 @@ export const NavItem = styled(motion.span).attrs({
   margin: 10px;
   font-size: ${({ mini }) => (mini === 'true' ? '0.9rem' : '1rem')};
   @media (max-width: 990px) {
+    font-size: ${({ mini }) => (mini === 'true' ? '0.8rem' : '0.9rem')};
     display: ${({ hide }) => hide === 'none' && 'none'};
   }
 `;
