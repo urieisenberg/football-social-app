@@ -4,6 +4,7 @@ import {
   transformTeamInfoResponse,
   transformTeamStatisticsResponse,
 } from '../utils/teamTransformResponse';
+import { setTeam } from '../teamSlice';
 
 export const teamsApi = footballApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -12,6 +13,10 @@ export const teamsApi = footballApi.injectEndpoints({
       transformResponse: transformTeamInfoResponse,
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
+      },
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        const result = await queryFulfilled;
+        dispatch(setTeam(result.data));
       },
     }),
     getTeamStatistics: builder.query<
