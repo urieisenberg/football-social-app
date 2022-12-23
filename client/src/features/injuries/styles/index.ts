@@ -7,10 +7,5 @@ export const InjuriesContainer = styled.div.attrs({
 `;
 
 export const InjuriesPlayers = styled.div.attrs({
-  className: 'row row-cols-auto gx-3',
+  className: 'row row-cols-auto mb-4 mt-4 m-auto align-items-center justify-content-center',
 })``;
-
-export const InjuriesDates = styled.span.attrs({
-    className: 'text-muted',
-  })``;
-  
