@@ -1,12 +1,12 @@
 import { Team, League } from '../../../app/types';
 
-export interface Injuries {
+export interface Injury {
   player: {
     id: number;
     name: string;
     photo: string;
     type: string;
-    reason: string;
+    reason: ['Injury', 'Red Card', 'Suspended', 'Yellow Cards'];
   };
   team: Team;
   fixture: {
@@ -16,3 +16,5 @@ export interface Injuries {
   };
   league: League;
 }
+
+export type ReasonOfInjury = Pick<Injury, 'player'>['player']['reason'];
