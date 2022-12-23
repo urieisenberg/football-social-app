@@ -26,7 +26,7 @@ export const TeamInformation = () => {
               {data?.team.name + ' since ' + data?.team?.founded}
             </InfoTitle>
             <InfoCountry>
-              {data?.venue?.city + ', ' + data?.venue?.country}
+              {data?.venue?.city + ', ' + data?.team?.country}
             </InfoCountry>
           </InfoContainer>
         </InfoWrapper>
