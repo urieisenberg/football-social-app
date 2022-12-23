@@ -1,4 +1,4 @@
-import { usePathname } from '../../../hooks/usePathname';
+import { PlayerStatistics } from '../types';
 import { TopButton } from '../../../components/Button';
 import { Card } from '../../../components/Card';
 import {
@@ -6,7 +6,6 @@ import {
   PlayersTitle,
   PlayersListContainer,
 } from '../styles';
-import { PlayerStatistics } from '../types';
 
 interface PlayersListProps {
   data: PlayerStatistics[];
@@ -14,8 +13,6 @@ interface PlayersListProps {
 }
 
 export const PlayersList = ({ data, title }: PlayersListProps) => {
-  const { pathMatch } = usePathname();
-
   let content;
   if (data.length === 0)
     content = (
@@ -50,7 +47,7 @@ export const PlayersList = ({ data, title }: PlayersListProps) => {
             />
           ))}
         </PlayersListContainer>
-        {!pathMatch('searchTerm', 'includes') && <TopButton />}
+        {data.length >= 10 && <TopButton />}
       </PlayersContainer>
     );
 
