@@ -2,15 +2,13 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 export const CardContainer = styled(motion.div).attrs({
-  className: 'col-auto mt-5 mb-5 m-auto text-center',
+  className: 'col-auto p-5',
   initial: { opacity: 0 },
   whileInView: { opacity: 1, transition: { duration: 0.9 } },
   viewport: { once: true },
   whileHover: { scale: 1.1 },
   whileTap: { scale: 1.3 },
 })`
-  max-width: 200px;
-  width: 100%;
 `;
 
 export const CardInfo = styled(motion.div).attrs({
@@ -29,13 +27,12 @@ export const CardInfo = styled(motion.div).attrs({
   margin-bottom: 10px !important;
 `;
 
-export const CardImage = styled(motion.img).attrs({
-  className: 'img-fluid',
-  whileHover: { scale: 1.1 },
-  whileTap: { scale: 1.3 },
+export const CardImage = styled.img.attrs({
+  className: 'img-fluid rounded',
 })`
   overflow: hidden;
-  width: 180px;
+  width: 100%
+  width: 200px;
 `;
 
 export const CardName = styled.div.attrs({
@@ -63,4 +60,3 @@ export const CardLogo = styled.img`
 export const CardDate = styled.span.attrs({
   className: 'text-muted',
 })``;
-
