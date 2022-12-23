@@ -45,9 +45,7 @@ html, body {
     
 }
 
-.withSidebar {
-    margin-left: 7rem;
-}
+
 
 
 .logout {
