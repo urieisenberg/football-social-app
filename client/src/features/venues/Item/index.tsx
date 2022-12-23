@@ -1,4 +1,6 @@
 import { useParams } from 'react-router-dom';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { usePathname } from '../../../hooks/usePathname';
 import { useGetVenueQuery } from '../api';
 import { Loader } from '../../../components/Loader';
 import { Transition } from '../../../components/Transition';
@@ -9,18 +11,19 @@ import {
   VenuesListContainer,
 } from '../styles';
 
-interface VenueItemProps {
-  teamVenue?: string;
-}
-
-export const VenuesItem = ({ teamVenue }: VenueItemProps) => {
+export const VenuesItem = () => {
   const { venueid } = useParams();
+  const { venue: teamVenue } = useAppSelector((state) => state.team);
+  const { pathMatch } = usePathname();
+
+  const venueToRender = pathMatch('league', 'includes') ? venueid : teamVenue;
+
   const {
     data: venue,
     isLoading,
     isSuccess,
     isError,
-  } = useGetVenueQuery((venueid as string) || (teamVenue as string));
+  } = useGetVenueQuery(venueToRender as string);
 
   let content;
   if (isLoading) content = <Loader />;
