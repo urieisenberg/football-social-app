@@ -1,8 +1,13 @@
-export const getInjureiesTransformResponse = (response: any) => {
-  let currentInjuriesPlayers: any[] = [];
-  const currentInjuries = response.response.filter((injury: any) => {
-    const isDuplicate = currentInjuriesPlayers.includes(injury.player.id);
-    !isDuplicate && currentInjuriesPlayers.push(injury.player.id);
-  });
+export const getInjureiesTransformResponse = (response: any): any[] => {
+  const currentInjuries = response.response.reduce(
+    (acc: any[], injury: { player: { id: any } }) => {
+      const isDuplicate = acc.find((i) => i.player.id === injury.player.id);
+      if (!isDuplicate) {
+        acc.push(injury);
+      }
+      return acc;
+    },
+    []
+  );
   return currentInjuries;
 };
