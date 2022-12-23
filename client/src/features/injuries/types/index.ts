@@ -16,5 +16,3 @@ export interface Injury {
   };
   league: League;
 }
-
-export type ReasonOfInjury = Pick<Injury, 'player'>['player']['reason'];
