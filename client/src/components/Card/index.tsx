@@ -1,4 +1,4 @@
-import { User, PlayerStatistics, League, Team } from '../../app/types';
+import { User, PlayerStatistics, League, Team, Injury } from '../../app/types';
 import {
   CardContainer,
   CardImage,
@@ -16,6 +16,7 @@ interface CardProps {
   team?: Team;
   user?: User;
   player?: PlayerStatistics;
+  injuries?: Injury;
 }
 
 export const Card = ({ name, image, type, team, player, user }: CardProps) => {
