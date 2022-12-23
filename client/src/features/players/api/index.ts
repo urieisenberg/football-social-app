@@ -4,8 +4,10 @@ import {
   SearchPlayerRequest,
   PlayerRequest,
   PlayerStatistics,
+  SquadPlayer,
 } from '../types';
 import {
+  transformGetSquadPlayersResponse,
   transformPlayersResponse,
   transformGetPlayersResponse,
 } from '../utils/playersTransformResponse';
@@ -14,9 +16,9 @@ const URL = 'players';
 
 export const playersApi = footballApi.injectEndpoints({
   endpoints: (build) => ({
-    getSquad: build.query<PlayerStatistics[], string>({
-      query: (teamid) => `${URL}/squad?team=${teamid}`,
-      transformResponse: transformGetPlayersResponse,
+    getSquad: build.query<SquadPlayer[], string>({
+      query: (teamid) => `${URL}/squads?team=${teamid}`,
+      transformResponse: transformGetSquadPlayersResponse,
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
       },
