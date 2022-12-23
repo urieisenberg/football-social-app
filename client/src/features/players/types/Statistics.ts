@@ -1,8 +1,8 @@
-import { LeagueInfo, Team } from '../../../app/types';
+import { League, Team } from '../../../app/types';
 
 export interface Statistics {
   team: Team;
-  league: LeagueInfo;
+  league: League;
   games: GameStatistics;
   substitutes: {
     in: number;

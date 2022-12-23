@@ -1,4 +1,4 @@
-import { LeagueInfo, Team } from '../../../app/types';
+import { League, Team } from '../../../app/types';
 
 interface FixtureTeam extends Team {
   winner: boolean;
@@ -26,7 +26,7 @@ export interface Fixture {
       city: string;
     };
   };
-  league: LeagueInfo;
+  league: League;
   teams: {
     home: FixtureTeam;
     away: FixtureTeam;
