@@ -1,5 +1,6 @@
 import { useRoutes, useParams, Outlet, Navigate } from 'react-router-dom';
-import { LeagueInfo, LeagueTable, LeagueLogos } from '../../features/leagues';
+import { LeagueInfo, LeagueLogos } from '../../features/leagues';
+import { Standings as LeagueTable } from '../../features/standings';
 import { SERIA_A } from '../../app/types';
 import { Nav } from '../../components/Nav';
 import { Social } from '../../features/social';
