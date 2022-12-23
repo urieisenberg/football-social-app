@@ -1,9 +1,8 @@
 import { footballApi } from '../../../app/services/football-api';
-import { LeagueInfo, LeagueTable } from '../types';
+import { LeagueInfo } from '../types';
 import {
   transformCurrentLeagueResponse,
   transformLeagueInfoResponse,
-  transformLeagueTableResponse,
 } from '../utils/leagueTransformeResponse';
 
 export const leaguesApi = footballApi.injectEndpoints({
@@ -28,13 +27,6 @@ export const leaguesApi = footballApi.injectEndpoints({
         return currentArg !== previousArg;
       },
     }),
-    getLeagueTable: builder.query<LeagueTable, string>({
-      query: (leagueid) => `standings?league=${leagueid}&season=2022`,
-      transformResponse: transformLeagueTableResponse,
-      forceRefetch({ currentArg, previousArg }) {
-        return currentArg !== previousArg;
-      },
-    }),
   }),
 });
 
@@ -42,5 +34,4 @@ export const {
   useGetLeagueQuery,
   useGetLeagueInfoQuery,
   useGetCurrentLeagueQuery,
-  useGetLeagueTableQuery,
 } = leaguesApi;
