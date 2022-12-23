@@ -1,4 +1,4 @@
-import { Team } from '../../team/types';
+import { Team } from '../../teams/types';
 
 interface SquadPlayer {
   id: number;

@@ -5,7 +5,7 @@ export * from '../../features/posts/types';
 export * from '../../features/comments/types';
 export * from '../../features/coachs/types';
 export * from '../../features/players/types';
-export * from '../../features/team/types';
+export * from '../../features/teams/types';
 export * from '../../features/venues/types';
 export * from '../../features/leagues/types';
 export * from '../../features/fixtures/types';
