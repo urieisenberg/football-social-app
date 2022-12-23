@@ -1,4 +1,5 @@
-import { NavLink as Link, useLocation } from 'react-router-dom';
+import { NavLink as Link } from 'react-router-dom';
+import { usePathname } from '../../hooks/usePathname';
 import {
   NavContainer,
   NavWrapper,
@@ -13,18 +14,29 @@ interface NavProps {
 }
 
 export const Nav = ({ links, mini }: NavProps) => {
-  const { pathname } = useLocation();
+  const { pathMatch } = usePathname();
 
   return (
     <NavWrapper>
       <NavContent>
         <NavContainer>
           {links.map((link) => (
-            <NavItem key={link} mini={mini}>
+            <NavItem
+              key={link}
+              mini={mini}
+              hide={
+                link === 'coach' ||
+                link === 'stadium' ||
+                link === 'feed' ||
+                link === 'social'
+                  ? 'none'
+                  : 'block'
+              }
+            >
               <NavLink
                 as={Link}
                 to={link.replaceAll(' ', '/')}
-                active={pathname === link.replaceAll(' ', '/') ? true : false}
+                active={pathMatch(link, 'includes') ? 'true' : 'false'}
               >
                 {link}
               </NavLink>
