@@ -1,4 +1,4 @@
-import { Team, LeagueInfo } from '../../../app/types';
+import { Team, League } from '../../../app/types';
 
 export interface Injuries {
   player: {
@@ -14,5 +14,5 @@ export interface Injuries {
     date: string;
     timestamp: number;
   };
-  league: LeagueInfo;
+  league: League;
 }
