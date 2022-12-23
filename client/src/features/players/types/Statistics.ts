@@ -2,7 +2,7 @@ import { Player, League, Team } from '../../../app/types';
 
 export interface PlayerStatistics {
   player: Player;
-  statistics: Statistics;
+  statistics: Statistics[];
 }
 
 export interface Statistics {
