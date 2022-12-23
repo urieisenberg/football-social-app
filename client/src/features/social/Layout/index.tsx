@@ -5,14 +5,14 @@ import {
   Navigate,
   useLocation,
 } from 'react-router-dom';
-import { Twitter } from './Twitter';
-import { Facebook } from './Facebook';
-import { Youtube } from './Youtube';
-import { Button } from '../../components/Button';
+import { Twitter } from '../Twitter';
+import { Facebook } from '../Facebook';
+import { Youtube } from '../Youtube';
+import { Button } from '../../../components/Button';
 import { FaTwitter, FaFacebook, FaYoutube } from 'react-icons/fa';
-import { SocialNav } from './styles';
+import { SocialNav } from '../styles';
 
-export const Social = () => {
+export const SocialLayout = () => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 

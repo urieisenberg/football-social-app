@@ -6,19 +6,19 @@ import {
   Outlet,
   Navigate,
 } from 'react-router-dom';
-import { useKeyPress } from '../../hooks/useKeyPress';
-import { Nav } from '../../components/Nav';
-import { Search } from '../../components/Search';
+import { useKeyPress } from '../../../hooks/useKeyPress';
+import { Nav } from '../../../components/Nav';
+import { Search } from '../../../components/Search';
 import {
   TopAssistsPlayersList,
   TopRedCardsPlayersList,
   TopYellowCardsPlayersList,
   TopScorersPlayersList,
   SearchedPlayersList,
-} from './List';
-import { PlayersSearchContainer } from './styles';
+} from '../List';
+import { PlayersSearchContainer } from '../styles';
 
-export const Players = () => {
+export const PlayersLayout = () => {
   const { leagueid } = useParams();
   const navigate = useNavigate();
 
