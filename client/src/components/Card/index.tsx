@@ -1,4 +1,10 @@
-import { User, PlayerStatistics, League, Team, Injury } from '../../app/types';
+import {
+  User,
+  PlayerStatistics,
+  SquadPlayer,
+  Team,
+  Injury,
+} from '../../app/types';
 import {
   CardContainer,
   CardImage,
@@ -15,7 +21,7 @@ interface CardProps {
   type?: string | number;
   team?: Team;
   user?: User;
-  player?: PlayerStatistics;
+  player?: PlayerStatistics | SquadPlayer;
   injuries?: Injury;
 }
 
