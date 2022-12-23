@@ -1,6 +1,3 @@
-import {  PlayerStatistics } from '../types';
-
-
 export const transformPlayersResponse = (response: any) => {
   console.log(response.response);
   return response.response;
