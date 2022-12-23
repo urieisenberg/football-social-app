@@ -32,8 +32,6 @@ export const Standings = () => {
     isLoading,
   } = useGetStandingsByLeagueQuery(leagueData || (leagueid as string));
 
-  console.log(table);
-
   let content;
   if (isLoading || !table) content = <Loader />;
   else if (tableIsSuccess && table)
