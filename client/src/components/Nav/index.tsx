@@ -9,9 +9,10 @@ import {
 
 interface NavProps {
   links: string[];
+  mini?: 'true' | 'false';
 }
 
-export const Nav = ({ links }: NavProps) => {
+export const Nav = ({ links, mini }: NavProps) => {
   const { pathname } = useLocation();
 
   return (
@@ -19,7 +20,7 @@ export const Nav = ({ links }: NavProps) => {
       <NavContent>
         <NavContainer>
           {links.map((link) => (
-            <NavItem key={link}>
+            <NavItem key={link} mini={mini}>
               <NavLink
                 as={Link}
                 to={link.replaceAll(' ', '/')}

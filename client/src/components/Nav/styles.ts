@@ -4,6 +4,7 @@ import { Nav, Navbar, Container } from 'react-bootstrap';
 
 interface NavItemProps {
   hide?: string;
+  mini?: string;
 }
 
 interface NavLinkProps {
@@ -32,13 +33,19 @@ export const NavLink = styled(Nav.Link)<NavLinkProps>`
   text-decoration: none;
   text-transform: uppercase;
   &:hover {
-    color: ${({ theme }) => theme.info};
+    color: ${({ theme }) => theme.primary};
+    cursor: pointer;
+    font-weight: bold;
   }
 `;
 
 export const NavItem = styled(motion.span).attrs({
-  whileTap: { scale: 0.95, transition: { duration: 0.1 } },
-  whileHover: { scale: 1.1, transition: { duration: 0.1 } },
+  whileTap: {
+    scale: 1.3,
+  },
+  whileHover: {
+    scale: 1.3,
+  },
   transition: {
     type: 'spring',
     stiffness: 100,
@@ -46,13 +53,10 @@ export const NavItem = styled(motion.span).attrs({
     mass: 1,
   },
 })<NavItemProps>`
-  margin: auto 0.5rem;
-  &:hover {
-    cursor: pointer;
-    font-weight: bold;
-  }
+  margin: 10px;
+  font-size: ${({ mini }) => (mini === 'true' ? '0.9rem' : '1rem')};
   @media (max-width: 990px) {
-    display: ${({ hide }) => hide && 'none'};
+    display: ${({ hide }) => hide === 'none' && 'none'};
   }
 `;
 
