@@ -1,5 +1,4 @@
-import { usePathname } from '../../hooks/usePathname';
-import { User, Player, Statistics, Injuries } from '../../app/types';
+import { User, PlayerStatistics, League, Team } from '../../app/types';
 import {
   CardContainer,
   CardImage,
@@ -8,40 +7,28 @@ import {
   CardName,
   CardLogo,
 } from './styles';
+import { Transition } from '../Transition';
 
 interface CardProps {
-  user: User;
-  player: Player;
-  statistics: Statistics;
-  injuries?: Injuries;
+  name: string;
+  image: string;
+  type?: string | number;
+  team?: Team;
+  user?: User;
+  player?: PlayerStatistics;
 }
 
-export const Card = ({ user, player, statistics }: CardProps) => {
-  const { pathMatch } = usePathname();
-
-  const isScorers = pathMatch('scorers', 'endsWith');
-  const isAssists = pathMatch('assists', 'endsWith');
-  const isRedCards = pathMatch('red', 'endsWith');
-  const isYellowCards = pathMatch('yellow', 'endsWith');
-  const isInjuries = pathMatch('injuries', 'endsWith');
-  const isLeague = pathMatch('league', 'includes');
-
+export const Card = ({ name, image, type, team, player, user }: CardProps) => {
   return (
-    <CardContainer>
-      {isScorers && <CardName>{statistics.goals.total}</CardName>}
-      {isAssists && <CardName>{statistics.goals.assists}</CardName>}
-      {isRedCards && <CardName>{statistics.cards.red}</CardName>}
-      {isYellowCards && <CardName>{statistics.cards.yellow}</CardName>}
-      {/* {isInjuries && <CardName>{statistics.injuries.games}</CardName>} */}
-
-      <CardInfo>
-        {isLeague && <CardLogo src={statistics.team.logo} alt="" />}
-        <CardImage
-          src={player.photo || user.profilePicture || statistics.team.logo}
-          alt=""
-        />
-      </CardInfo>
-      <CardName>{player.name || user.username}</CardName>
-    </CardContainer>
+    <Transition key="cards">
+      <CardContainer>
+        {type && <CardName>{type}</CardName>}
+        <CardInfo>
+          {team && <CardLogo src={team.logo} alt="" />}
+          <CardImage src={image} alt="" />
+        </CardInfo>
+        <CardName>{name}</CardName>
+      </CardContainer>
+    </Transition>
   );
 };
