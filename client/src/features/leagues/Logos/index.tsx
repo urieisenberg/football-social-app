@@ -1,29 +1,29 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { usePathname } from '../../../hooks/usePathname';
 import { Team } from '../../../app/types';
 import { teams } from '../../../utils/db/teams';
 import { LogosList, LogosContainer, LogosImage } from '../styles';
 
 export const LeagueLogos = () => {
   const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const {pathMatch} = usePathname();
 
   const onClick = (team: Team) => {
     let path;
     let teamPath = `/teams/${team.id}/${team.name}`;
-    if (pathname.includes('next')) {
+    if (pathMatch('next', 'includes')) {
       path = 'fixtures/next';
-    } else if (pathname.includes('last')) {
+    } else if (pathMatch('last', 'includes')) {
       path = 'fixtures/last';
-    } else if (pathname.includes('players')) {
+    } else if (pathMatch('players', 'includes')) {
       path = 'players';
-    } else if (pathname.includes('stadium')) {
+    } else if (pathMatch('stadium', 'includes')) {
       path = 'stadium';
-    } else if (pathname.includes('table')) {
+    } else if (pathMatch('table', 'includes')) {
       path = 'standings';
-    } else if (pathname.includes('social')) {
+    } else if (pathMatch('social', 'includes')) {
       path = 'social';
     } else path = '';
-
     return navigate(`${teamPath}/${path}`);
   };
 
