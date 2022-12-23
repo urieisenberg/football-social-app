@@ -1,5 +1,4 @@
 import { usePathname } from '../../../hooks/usePathname';
-import { Loader } from '../../../components/Loader';
 import { TopButton } from '../../../components/Button';
 import { Card } from '../../../components/Card';
 import {
@@ -12,15 +11,13 @@ import { PlayerStatistics } from '../types';
 interface PlayersListProps {
   data: PlayerStatistics[];
   title: string;
-  isLoading: boolean;
 }
 
-export const PlayersList = ({ data, title, isLoading }: PlayersListProps) => {
+export const PlayersList = ({ data, title }: PlayersListProps) => {
   const { pathMatch } = usePathname();
 
   let content;
-  if (isLoading) content = <Loader />;
-  else if (data.length === 0)
+  if (data.length === 0)
     content = (
       <PlayersContainer>
         <PlayersTitle>{title}</PlayersTitle>
