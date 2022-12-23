@@ -2,13 +2,15 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 export const CardContainer = styled(motion.div).attrs({
-  className: 'col-auto p-5',
+  className: 'col-auto p-4',
   initial: { opacity: 0 },
   whileInView: { opacity: 1, transition: { duration: 0.9 } },
   viewport: { once: true },
   whileHover: { scale: 1.1 },
   whileTap: { scale: 1.3 },
 })`
+  max-width: 250px;
+  width: 100%;
 `;
 
 export const CardInfo = styled(motion.div).attrs({
@@ -41,6 +43,7 @@ export const CardName = styled.div.attrs({
   font-weight: bold;
   font-size: 1rem;
   overflow-wrap: break-word;
+  line-break: anywhere;
   word-wrap: break-word;
   hyphens: auto;
 `;
