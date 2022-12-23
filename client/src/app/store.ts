@@ -9,6 +9,7 @@ import noteReducer from '../features/notes/noteSlice';
 import postReducer from '../features/posts/postSlice';
 import commentReducer from '../features/comments/commentSlice';
 import userReducer from '../features/users/userSlice';
+import teamReducer from '../features/teams/teamSlice';
 
 export const store = configureStore({
   reducer: {
@@ -21,6 +22,7 @@ export const store = configureStore({
     post: postReducer,
     comment: commentReducer,
     user: userReducer,
+    team: teamReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware, footballApi.middleware),
