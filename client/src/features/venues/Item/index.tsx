@@ -16,7 +16,7 @@ export const VenuesItem = () => {
   const { venue: teamVenue } = useAppSelector((state) => state.team);
   const { pathMatch } = usePathname();
 
-  const venueToRender = pathMatch('league', 'includes') ? venueid : teamVenue;
+  const venueToRender = pathMatch('league', 'includes') ? venueid : teamVenue.id;
 
   const {
     data: venue,
