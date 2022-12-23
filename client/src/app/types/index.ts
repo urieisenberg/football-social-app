@@ -9,3 +9,5 @@ export * from '../../features/team/types';
 export * from '../../features/venues/types';
 export * from '../../features/leagues/types';
 export * from '../../features/fixtures/types';
+export * from '../../features/injuries/types';
+
