@@ -12,7 +12,6 @@ interface InjuriesListProps {
 
 export const InjuriesList = ({ data, title }: InjuriesListProps) => {
   let content;
-  console.log(data)
   if (data.length === 0)
     content = <InjuriesContainer>No Injuries Found</InjuriesContainer>;
   else
