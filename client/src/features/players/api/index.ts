@@ -25,7 +25,7 @@ export const playersApi = footballApi.injectEndpoints({
     }),
     getPlayer: build.query<PlayerStatistics, PlayerRequest>({
       query: ({ playerid, teamid }) =>
-        `${URL}/player?player=${playerid}&team=${teamid}`,
+        `${URL}?id=${playerid}&team=${teamid}&season=2022`,
       transformResponse: transformGetPlayersResponse,
       forceRefetch({ currentArg, previousArg }) {
         return currentArg !== previousArg;
