@@ -23,14 +23,23 @@ interface CardProps {
   user?: User;
   player?: PlayerStatistics | SquadPlayer;
   injuries?: Injury;
+  navigate: () => void;
 }
 
-export const Card = ({ name, image, type, team, player, user }: CardProps) => {
+export const Card = ({
+  name,
+  image,
+  type,
+  team,
+  player,
+  user,
+  navigate,
+}: CardProps) => {
   return (
     <Transition key="cards">
       <CardContainer>
         {type && <CardName>{type}</CardName>}
-        <CardInfo>
+        <CardInfo onClick={navigate}>
           {team && <CardLogo src={team.logo} alt="" />}
           <CardImage src={image} alt="" />
         </CardInfo>
