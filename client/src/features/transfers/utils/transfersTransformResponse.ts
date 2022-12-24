@@ -1,19 +1,11 @@
-import { FetchBaseQueryMeta } from '@reduxjs/toolkit/query/react';
+import { Transfer } from '../types';
 
-export const transformTransfersResponse = (
-  response: any,
-  meta: FetchBaseQueryMeta,
-  arg: string
-) => {
-  const thisYearTransfers = response.transfers.filter((transfer: any) =>
-    transfer.date.includes('2022')
+export const transformTransfersResponse = (response: any) => {
+  const thisYearTransfers = response.response.filter(
+    (transfer: any) =>
+      transfer.transfers[0].date.includes('2022') ||
+      transfer.transfers[0].date.includes('2023')
   );
-  const arrived = thisYearTransfers.filter(
-    (transfer: any) => transfer.teams.in.id === parseInt(arg)
-  );
-  const left = thisYearTransfers.filter(
-    (transfer: any) => transfer.teams.out.id === parseInt(arg)
-  );
-
-  return { arrived, left };
+  
+  return thisYearTransfers as Transfer[];
 };
