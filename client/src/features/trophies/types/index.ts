@@ -4,3 +4,7 @@ export interface Trophy {
   country: string;
   place: string;
 }
+
+export interface TrophiesListProps {
+  trophies: Trophy[];
+}
