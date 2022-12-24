@@ -1,4 +1,4 @@
-import { useLocalStorage } from './useLocalStorage';
+import { useLocalStorage } from '../app/hooks/useLocalStorage';
 
 export const useTheme = () => {
   const [theme, setTheme] = useLocalStorage('theme', 'dark');

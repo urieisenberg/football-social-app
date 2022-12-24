@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { usePathname } from '../../../hooks/usePathname';
+import { usePathname } from '../../../routes/hooks/usePathname';
 import { useGetTransfersQuery } from '../api';
 import { Loader } from '../../../components/Loader';
 import { Transition } from '../../../components/Transition';

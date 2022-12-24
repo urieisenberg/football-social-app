@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useToggle } from '../../../hooks/useToggle';
+import { useToggle } from '../../../app/hooks/useToggle';
 import { Post } from '../../../app/types';
 import { Comments } from '../../comments';
 import { LikePost } from './LikePost';

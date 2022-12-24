@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../hooks/useAppSelector';
-import { useAuthActions } from '../../hooks/useAuthActions';
-import { useToggle } from '../../hooks/useToggle';
+import { useAppSelector } from '../../app/hooks/useAppSelector';
+import { useAuthActions } from '../../features/auth/hooks/useAuthActions';
+import { useToggle } from '../../app/hooks/useToggle';
 import { Item } from './Item';
 import { BackButton } from '../Button';
 import { GiSoccerKick, GiSoccerField } from 'react-icons/gi';

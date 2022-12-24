@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { Sidebar } from '../components/Sidebar';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../features/auth/hooks/useAuth';
 import { BackButton } from '../components/Button';
 
 export const Protected = () => {

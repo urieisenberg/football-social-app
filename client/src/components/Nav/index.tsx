@@ -1,5 +1,5 @@
 import { NavLink as Link } from 'react-router-dom';
-import { usePathname } from '../../hooks/usePathname';
+import { usePathname } from '../../routes/hooks/usePathname';
 import {
   NavContainer,
   NavWrapper,

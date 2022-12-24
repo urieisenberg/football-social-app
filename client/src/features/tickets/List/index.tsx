@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../../hooks/useAppSelector';
+import { useAppSelector } from '../../../app/hooks/useAppSelector';
 import { useGetTicketsQuery } from '../api';
 import { TicketsListItem } from './ListItem';
 import { TopButton } from '../../../components/Button';

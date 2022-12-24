@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import { usePathname } from '../../../hooks/usePathname';
+import { usePathname } from '../../../routes/hooks/usePathname';
 import { Team } from '../../../app/types';
-import { teams } from '../../../utils/db/teams';
+import { teams } from '../../../app/utils/db/teams';
 import { LogosList, LogosContainer, LogosImage } from '../styles';
 
 export const LeagueLogos = () => {

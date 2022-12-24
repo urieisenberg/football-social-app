@@ -3,7 +3,7 @@ import {
   useGetTicketQuery,
   useCloseTicketMutation,
 } from '../api';
-import { useToggle } from '../../../hooks/useToggle';
+import { useToggle } from '../../../app/hooks/useToggle';
 import { toast } from 'react-toastify';
 import {
   TicketContainer,

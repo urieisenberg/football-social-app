@@ -1,5 +1,5 @@
 import { useFormContext, Controller, FieldError } from 'react-hook-form';
-import { useToggle } from '../../../hooks/useToggle';
+import { useToggle } from '../../../app/hooks/useToggle';
 import { PasswordEyes } from '../PasswordEyes';
 import { InputIcons, InputIconsProps } from './Icons';
 import {

@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useRegisterMutation } from '../api/auth';
-import { useAuthActions } from '../../../hooks/useAuthActions';
+import { useAuthActions } from '../hooks/useAuthActions';
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query';
 import { registerSchema } from '../utils/registerSchema';
 import { RegisterUser, User } from '../../../app/types';
 import { Form } from '../../../components/Form';
 import { Loader } from '../../../components/Loader';
 import { toast } from 'react-toastify';
-import { teams } from '../../../utils/db/teams';
+import { teams } from '../../../app/utils/db/teams';
 
 export const Register = () => {
   const { setUser } = useAuthActions();

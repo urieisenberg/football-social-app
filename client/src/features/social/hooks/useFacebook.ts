@@ -1,6 +1,6 @@
 import { useState, useLayoutEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { TEAM_NAME_TO_FACEBOOK_PAGE } from '../features/social/utils/teamNameToFacebookPage';
+import { TEAM_NAME_TO_FACEBOOK_PAGE } from '../utils/teamNameToFacebookPage';
 
 interface IFacebook {
   facebookPage: string;

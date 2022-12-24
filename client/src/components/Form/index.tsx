@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useKeyPress } from '../../hooks/useKeyPress';
+import { useKeyPress } from '../../app/hooks/useKeyPress';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { IForm, FormErrors } from './types';

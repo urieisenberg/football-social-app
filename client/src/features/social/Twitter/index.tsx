@@ -1,4 +1,4 @@
-import { useTwitter } from '../../../hooks/useTwitter';
+import { useTwitter } from '../hooks/useTwitter';
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
 import { SocialContainer } from '../styles';
 import { Transition } from '../../../components/Transition';

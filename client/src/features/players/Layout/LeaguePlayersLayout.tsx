@@ -6,7 +6,7 @@ import {
   Outlet,
   Navigate,
 } from 'react-router-dom';
-import { useKeyPress } from '../../../hooks/useKeyPress';
+import { useKeyPress } from '../../../app/hooks/useKeyPress';
 import { Nav } from '../../../components/Nav';
 import { Search } from '../../../components/Search';
 import {

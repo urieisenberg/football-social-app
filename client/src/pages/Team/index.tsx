@@ -1,5 +1,5 @@
 import { useParams, useRoutes, Outlet, Navigate } from 'react-router-dom';
-import { teams } from '../../utils/db/teams';
+import { teams } from '../../app/utils/db/teams';
 import { TeamInformation } from '../../features/teams/Info';
 import { VenuesItem } from '../../features/venues/Item';
 import { SocialLayout } from '../../features/social/Layout';

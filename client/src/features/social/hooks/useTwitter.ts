@@ -1,6 +1,6 @@
 import { useState, useLayoutEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { TEAM_NAME_TO_TWITTER_PAGE } from '../features/social/utils/teamNameToTwitterPage';
+import { TEAM_NAME_TO_TWITTER_PAGE } from '../utils/teamNameToTwitterPage';
 
 interface ITwitter {
   twitterPage: string;

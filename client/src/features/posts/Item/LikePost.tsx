@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAppSelector } from '../../../hooks/useAppSelector';
+import { useAppSelector } from '../../../app/hooks/useAppSelector';
 import { useLikePostMutation } from '../api';
 import { Post } from '../../../app/types';
 import { Like, LikeCount, LikeIcon } from './styles';

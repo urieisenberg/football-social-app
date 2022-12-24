@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { useAppSelector } from '../../../../hooks/useAppSelector';
+import { useAppSelector } from '../../../../app/hooks/useAppSelector';
 import {
   useGetPostsQuery,
   useSearchPostsQuery,

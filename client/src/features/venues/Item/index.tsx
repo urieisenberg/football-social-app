@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
-import { useAppSelector } from '../../../hooks/useAppSelector';
-import { usePathname } from '../../../hooks/usePathname';
+import { useAppSelector } from '../../../app/hooks/useAppSelector';
+import { usePathname } from '../../../routes/hooks/usePathname';
 import { useGetVenueQuery } from '../api';
 import { Loader } from '../../../components/Loader';
 import { Transition } from '../../../components/Transition';

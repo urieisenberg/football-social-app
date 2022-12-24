@@ -1,5 +1,5 @@
-import { useAppSelector } from '../../../hooks/useAppSelector';
-import { useToggle } from '../../../hooks/useToggle';
+import { useAppSelector } from '../../../app/hooks/useAppSelector';
+import { useToggle } from '../../../app/hooks/useToggle';
 import { useDeletePostMutation } from '../api';
 import { Post } from '../../../app/types';
 import { toast } from 'react-toastify';

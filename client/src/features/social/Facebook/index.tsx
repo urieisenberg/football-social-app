@@ -1,4 +1,4 @@
-import { useFacebook } from '../../../hooks/useFacebook';
+import { useFacebook } from '../hooks/useFacebook';
 import { SocialContainer, FacebookIframe } from '../styles';
 import { Transition } from '../../../components/Transition';
 import { Loader } from '../../../components/Loader';

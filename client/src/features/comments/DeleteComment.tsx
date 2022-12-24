@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../hooks/useAppSelector';
+import { useAppSelector } from '../../app/hooks/useAppSelector';
 import { useDeleteCommentMutation } from './api';
 import { Post, Comment } from '../../app/types';
 import { Delete } from './styles';

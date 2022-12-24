@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useAppSelector } from '../../../hooks/useAppSelector';
-import { useAppDispatch } from '../../../hooks/useAppDispatch';
+import { useAppSelector } from '../../../app/hooks/useAppSelector';
+import { useAppDispatch } from '../../../app/hooks/useAppDispatch';
 import {
   useFollowUserMutation,
   useUnfollowUserMutation,

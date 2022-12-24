@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppSelector } from '../../../hooks/useAppSelector';
+import { useAppSelector } from '../../../app/hooks/useAppSelector';
 import { useNavigate } from 'react-router-dom';
 import {
   Container,

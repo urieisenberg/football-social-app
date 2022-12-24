@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useAppSelector } from './useAppSelector';
+import { useAppSelector } from '../../../app/hooks/useAppSelector';
 
 export const useAuth = () => {
   const user = useAppSelector((state) => state.auth.user);

@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from './useAppDispatch';
+import { useAppDispatch } from '../../../app/hooks/useAppDispatch';
 import {
   setUser as login,
   logout as setLogout,
-} from '../features/auth/authSlice';
-import { User } from '../app/types';
+} from '../authSlice';
+import { User } from '../../../app/types';
 
 export const useAuthActions = () => {
   const dispatch = useAppDispatch();
