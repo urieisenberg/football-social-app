@@ -2,7 +2,6 @@ export * from './useAppDispatch';
 export * from './useAppSelector';
 export * from './useKeyPress';
 export * from './useToggle';
-export * from './useEventListener';
 export * from '../../theme/useTheme';
 export * from '../../features/auth/hooks/useAuth';
 export * from '../../features/auth/hooks/useAuthActions';
@@ -14,4 +13,4 @@ export * from '../../routes/hooks/useNavigateToTeam';
 export * from '../../routes/hooks/useNavigateToFixture';
 export * from '../../routes/hooks/useNavigateToPlayer';
 export * from '../../routes/hooks/useNavigateToLeagueFixture';
-
+export * from '../../routes/hooks/useNavigateToProfile';
