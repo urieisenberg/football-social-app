@@ -1,3 +1,4 @@
+import { useNavigateToPlayer } from '../../../app/hooks';
 import { PlayerStatistics } from '../types';
 import { TopButton } from '../../../components/Button';
 import { Card } from '../../../components/Card';
@@ -13,6 +14,8 @@ interface PlayersListProps {
 }
 
 export const PlayersList = ({ data, title }: PlayersListProps) => {
+  const { navigateToPlayer } = useNavigateToPlayer();
+
   let content;
   if (data.length === 0)
     content = (
@@ -43,6 +46,13 @@ export const PlayersList = ({ data, title }: PlayersListProps) => {
                   : title.includes('Assists')
                   ? player.statistics[0].goals.assists + ' Assists'
                   : ''
+              }
+              navigate={() =>
+                navigateToPlayer(
+                  player.statistics[0].team.id,
+                  player.statistics[0].team.name,
+                  player.player.id
+                )
               }
             />
           ))}
