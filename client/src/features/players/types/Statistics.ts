@@ -61,7 +61,7 @@ export interface Statistics {
 }
 
 export interface GameStatistics {
-  appearance: number;
+  appearences: number;
   minutes: number;
   position: string;
   rating: string;
