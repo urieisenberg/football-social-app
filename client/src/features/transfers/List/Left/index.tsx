@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigateToTeam } from '../../../../app/hooks';
 import { TransfersListProps } from '../../types';
 import {
   TransfersOut,
@@ -10,17 +10,29 @@ import {
 import { AiOutlineArrowRight } from 'react-icons/ai';
 
 export const TransferLeftList = ({ transfers }: TransfersListProps) => {
-  const navigate = useNavigate();
+  const { navigateToTeam } = useNavigateToTeam();
 
   return (
     <TransfersOut>
       <TransfersName>{transfers.player.name}</TransfersName>
       <TransfersLogo
+        onClick={() =>
+          navigateToTeam(
+            transfers.transfers[0].teams.out.id,
+            transfers.transfers[0].teams.out.name
+          )
+        }
         src={transfers.transfers[0].teams.out.logo}
         alt={transfers.transfers[0].teams.out.name}
       />
       <AiOutlineArrowRight size={30} />
       <TransfersLogo
+        onClick={() =>
+          navigateToTeam(
+            transfers.transfers[0].teams.in.id,
+            transfers.transfers[0].teams.in.name
+          )
+        }
         src={transfers.transfers[0].teams.in.logo}
         alt={transfers.transfers[0].teams.in.name}
       />
