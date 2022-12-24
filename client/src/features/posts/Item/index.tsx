@@ -1,5 +1,7 @@
-import { useNavigate } from 'react-router-dom';
-import { useToggle } from '../../../app/hooks/useToggle';
+import {
+  useToggle,
+  useNavigateToProfile,
+} from '../../../app/hooks';
 import { Post } from '../../../app/types';
 import { Comments } from '../../comments';
 import { LikePost } from './LikePost';
@@ -21,7 +23,7 @@ interface PostItemProps {
 }
 
 export const PostItem = ({ post }: PostItemProps) => {
-  const navigate = useNavigate();
+  const navigateToProfile = useNavigateToProfile(post.username);
 
   const [showEdit, toggleEdit] = useToggle(false);
   const [showComments, toggleComments] = useToggle(false);
@@ -36,11 +38,9 @@ export const PostItem = ({ post }: PostItemProps) => {
           <Image
             src={post.pic}
             alt={post.username}
-            onClick={() => navigate(`/team/${post.team}`)}
+            onClick={navigateToProfile}
           />
-          <Name onClick={() => navigate(`/profile/${post.username}`)}>
-            {post.username}
-          </Name>
+          <Name onClick={navigateToProfile}>{post.username}</Name>
           <FollowUser post={post} />
           <CreatedAt>{createdAt}</CreatedAt>
           <PostOptions
