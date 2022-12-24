@@ -4,13 +4,13 @@ export const CoachContainer = styled.div.attrs({
   className: 'container text-center',
 })``;
 
-export const CoachHeader = styled.h3``;
+export const CoachHeader = styled.h4``;
 
 export const CoachRow = styled.div.attrs({
   className: 'row row-cols-auto align-items-center justify-content-center',
 })``;
 
-export const CoachItem = styled.div.attrs({
+export const CoachContent = styled.div.attrs({
   className: 'container ',
 })``;
 
@@ -25,9 +25,8 @@ export const CoachImage = styled.img`
   border-radius: 50%;
 `;
 
-export const CoachTeam = styled.div`
+export const CoachLink = styled.div`
   font-weight: 550;
-  margin-right: 10px;
   &:hover {
     cursor: pointer;
     transform: scale(1.05);
