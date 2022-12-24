@@ -1,6 +1,7 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useGetLeagueInfoQuery } from '../api';
 import { SERIA_A } from '../../../app/types';
+import { useNavigateToLeague } from '../../../app/hooks';
 import { Transition } from '../../../components/Transition';
 import {
   InfoWrapper,
@@ -13,7 +14,7 @@ import {
 
 export const LeagueInfo = () => {
   const { leagueid } = useParams();
-  const navigate = useNavigate();
+  const navigate = useNavigateToLeague(leagueid as string);
 
   const { data, isSuccess, isError } = useGetLeagueInfoQuery(
     leagueid as string
@@ -29,7 +30,7 @@ export const LeagueInfo = () => {
             {leagueid !== SERIA_A && (
               <InfoLogo src={data?.league.logo} alt={data?.league.name} />
             )}
-            <InfoTitle onClick={() => navigate(`/league/${leagueid}`)}>
+            <InfoTitle onClick={navigate}>
               {data?.league.name}
             </InfoTitle>
             <InfoCountry>{data?.country.name}</InfoCountry>
