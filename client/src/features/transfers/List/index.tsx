@@ -3,8 +3,8 @@ import { usePathname } from '../../../routes/hooks/usePathname';
 import { useGetTransfersQuery } from '../api';
 import { Loader } from '../../../components/Loader';
 import { Transition } from '../../../components/Transition';
-import { TransfersArrivedList } from './Arrived';
-import { TransferLeftList } from './Left';
+import { TransfersArrivedList } from './arrived';
+import { TransferLeftList } from './left';
 import { TransfersContainer } from '../styles';
 import { TopButton } from '../../../components/Button';
 

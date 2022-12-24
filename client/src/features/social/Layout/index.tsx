@@ -5,9 +5,9 @@ import {
   Navigate,
   useLocation,
 } from 'react-router-dom';
-import { Twitter } from '../Twitter';
-import { Facebook } from '../Facebook';
-import { Youtube } from '../Youtube';
+import { Twitter } from '../twitter';
+import { Facebook } from '../facebook';
+import { Youtube } from '../youtube';
 import { Button } from '../../../components/Button';
 import { FaTwitter, FaFacebook, FaYoutube } from 'react-icons/fa';
 import { SocialNav } from '../styles';

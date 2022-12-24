@@ -3,7 +3,7 @@ export * from '../../features/tickets/types';
 export * from '../../features/notes/types';
 export * from '../../features/posts/types';
 export * from '../../features/comments/types';
-export * from '../../features/coachs/types';
+export * from '../../features/coaches/types';
 export * from '../../features/players/types';
 export * from '../../features/teams/types';
 export * from '../../features/venues/types';

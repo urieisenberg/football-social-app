@@ -1,5 +1,5 @@
 import { useRoutes, Outlet, Navigate } from 'react-router-dom';
-import { TransfersList } from '../List';
+import { TransfersList } from '../list';
 import { Nav } from '../../../components/Nav';
 
 export const TransfersLayout = () => {

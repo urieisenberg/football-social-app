@@ -3,7 +3,7 @@ import { useUpdatePostMutation } from '../api';
 import { Post } from '../../../app/types';
 import { Editable } from '../../../components/Form/Editable';
 import { toast } from 'react-toastify';
-import { EditInput } from '../Item/styles';
+import { EditInput } from '../item/styles';
 
 interface EditPostProps {
   post: Post;

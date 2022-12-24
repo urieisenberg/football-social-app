@@ -8,9 +8,9 @@ import {
 } from 'react-router-dom';
 import { useKeyPress } from '../../../app/hooks/useKeyPress';
 import { Search } from '../../../components/Search';
-import { VenuesList } from '../List';
-import { VenuesItem } from '../Item';
-import { SearchVenues } from '../Search';
+import { VenuesList } from '../list';
+import { VenuesItem } from '../item';
+import { SearchVenues } from '../search';
 import { VenuesContainer, VenuesSearchContainer } from '../styles';
 
 export const VenuesLayout = () => {

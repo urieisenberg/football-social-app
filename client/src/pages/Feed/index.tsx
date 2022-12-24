@@ -1,6 +1,6 @@
 import { useRoutes, Outlet } from 'react-router-dom';
-import { PostsFeed } from '../../features/posts/List/Feed';
-import { SharePost } from '../../features/posts/Create';
+import { PostsFeed } from '../../features/posts/list/feed';
+import { SharePost } from '../../features/posts/create';
 import { Nav } from '../../components/Nav';
 
 export const Feed = () => {

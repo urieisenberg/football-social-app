@@ -15,7 +15,7 @@ import {
   TopYellowCardsPlayersList,
   TopScorersPlayersList,
   SearchedPlayersList,
-} from '../List';
+} from '../list';
 import { PlayersSearchContainer } from '../styles';
 
 export const LeaguePlayersLayout = () => {

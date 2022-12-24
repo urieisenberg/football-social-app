@@ -1,13 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useAppSelector } from '../../../../app/hooks/useAppSelector';
-import {
-  useGetPostsQuery,
-  useSearchPostsQuery,
-} from '../../api';
+import { useGetPostsQuery, useSearchPostsQuery } from '../../api';
 import { Post, SearchPosts } from '../../../../app/types';
 import { Search } from '../../../../components/Search';
-import { PostList } from '../';
+import { PostList } from '../index';
 
 export const PostsFeed = () => {
   const [searchTerm, setSearchTerm] = useState('');

@@ -6,12 +6,12 @@ const URL = 'trophies';
 
 export const trophiesApi = footballApi.injectEndpoints({
   endpoints: (builder) => ({
-    getPlayerTrophies: builder.query<Trophy[], number>({
-      query: (id) => `${URL}?player=${id}`,
+    getPlayerTrophies: builder.query<Trophy[], string>({
+      query: (playerid) => `${URL}?player=${playerid}`,
       transformResponse: transformTrophiesResponse,
     }),
-    getCoachTrophies: builder.query<Trophy[], number>({
-      query: (id) => `${URL}?coach=${id}`,
+    getCoachTrophies: builder.query<Trophy[], string>({
+      query: (coachid) => `${URL}?coach=${coachid}`,
       transformResponse: transformTrophiesResponse,
     }),
   }),

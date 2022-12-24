@@ -5,7 +5,7 @@ import { Post } from '../../../app/types';
 import { toast } from 'react-toastify';
 import { Options, Option, Text } from './styles';
 import { BsPen, BsThreeDotsVertical, BsTrash, BsX } from 'react-icons/bs';
-import { EditPost } from '../Edit';
+import { EditPost } from '../edit';
 
 interface PostOptionsProps {
   post: Post;

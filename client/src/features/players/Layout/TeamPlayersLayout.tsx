@@ -4,7 +4,7 @@ import {
   Navigate,
 } from 'react-router-dom';
 import { Nav } from '../../../components/Nav';
-import { SquadPlayersList } from '../List';
+import { SquadPlayersList } from '../list';
 import { InjuriesTeamList } from '../../injuries/List';
 
 export const TeamPlayersLayout = () => {

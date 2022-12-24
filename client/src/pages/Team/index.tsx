@@ -1,12 +1,13 @@
 import { useParams, useRoutes, Outlet, Navigate } from 'react-router-dom';
 import { teams } from '../../app/utils/db/teams';
-import { TeamInformation } from '../../features/teams/Info';
-import { VenuesItem } from '../../features/venues/Item';
-import { SocialLayout } from '../../features/social/Layout';
-import { TeamPlayersLayout } from '../../features/players/Layout';
-import { TransfersLayout } from '../../features/transfers/Layout';
+import { TeamInformation } from '../../features/teams/info';
+import { VenuesItem } from '../../features/venues/item';
+import { SocialLayout } from '../../features/social/layout';
+import { TeamPlayersLayout } from '../../features/players/layout';
+import { TransfersLayout } from '../../features/transfers/layout';
 import { Standings } from '../../features/standings';
 import { Nav } from '../../components/Nav';
+import { CoachLayout } from '../../features/coaches/Layout';
 
 export const Team = () => {
   const { teamid } = useParams();
@@ -17,7 +18,7 @@ export const Team = () => {
     { path: 'players/*', element: <TeamPlayersLayout /> },
     { path: 'social/*', element: <SocialLayout /> },
     { path: 'standings/', element: <Standings /> },
-    // { path: "coach", element: <CoachLayout /> },
+    { path: 'staff/*', element: <CoachLayout /> },
     { path: 'transfers/*', element: <TransfersLayout /> },
     { path: 'stadium', element: <VenuesItem /> },
     // {path:'feed', element: <>Feed</>},
@@ -32,7 +33,7 @@ export const Team = () => {
       'transfers',
       'standings',
       'stadium',
-      'coach',
+      'staff',
     ];
     if (currentTeam) links.push('social', 'feed');
     return links;

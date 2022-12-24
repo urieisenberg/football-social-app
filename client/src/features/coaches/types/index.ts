@@ -16,10 +16,11 @@ export interface Coach {
   weight: number;
   photo: string;
   team: Team;
-  career: {
-    team: Team;
-  };
-  start: string;
-  end: string;
+  career: CoachCareer[];
 }
 
+export interface CoachCareer {
+  start: string;
+  end: string;
+  team: Team;
+}

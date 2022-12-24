@@ -3,9 +3,9 @@ import { LeagueInfo, LeagueLogos } from '../../features/leagues';
 import { Standings as LeagueTable } from '../../features/standings';
 import { SERIA_A } from '../../app/types';
 import { Nav } from '../../components/Nav';
-import { SocialLayout } from '../../features/social/Layout';
-import { VenuesLayout } from '../../features/venues/Layout';
-import { LeaguePlayersLayout } from '../../features/players/Layout';
+import { SocialLayout } from '../../features/social/layout';
+import { VenuesLayout } from '../../features/venues/layout';
+import { LeaguePlayersLayout } from '../../features/players/layout';
 
 export const League = () => {
   const { leagueid } = useParams();

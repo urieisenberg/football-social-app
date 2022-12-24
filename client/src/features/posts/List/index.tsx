@@ -1,5 +1,5 @@
 import { Post } from '../../../app/types';
-import { PostItem } from '../Item';
+import { PostItem } from '../item';
 import {
   ListContainer,
   ListWrapper,
