@@ -4,7 +4,7 @@ export const CoachContainer = styled.div.attrs({
   className: 'container text-center',
 })``;
 
-export const CoachHeader = styled.h4``;
+export const CoachHeader = styled.h5``;
 
 export const CoachRow = styled.div.attrs({
   className: 'row row-cols-auto align-items-center justify-content-center',
@@ -18,7 +18,9 @@ export const CoachDetail = styled.div.attrs({
   className: 'col',
 })``;
 
-export const CoachTitle = styled.h5``;
+export const CoachTitle = styled.h5`
+  letter-spacing: 1px;
+`;
 
 export const CoachImage = styled.img`
   width: 140px;
