@@ -3,10 +3,7 @@ import { useGetSquadQuery } from '../../api';
 import { Loader } from '../../../../components/Loader';
 import { TopButton } from '../../../../components/Button';
 import { Card } from '../../../../components/Card';
-import {
-  PlayersContainer,
-  PlayersListContainer,
-} from '../../styles';
+import { PlayersContainer, PlayersListContainer } from '../../styles';
 
 export const SquadPlayersList = () => {
   const { teamid } = useParams();
@@ -14,7 +11,7 @@ export const SquadPlayersList = () => {
 
   let content;
   if (isLoading) content = <Loader />;
-  else if (isSuccess )
+  else if (isSuccess)
     content = (
       <PlayersContainer>
         <PlayersListContainer>
@@ -24,7 +21,7 @@ export const SquadPlayersList = () => {
               player={player}
               image={player.photo}
               name={player.name}
-              type={player.position + ' #' + player.number }
+              type={player.position}
             />
           ))}
         </PlayersListContainer>
