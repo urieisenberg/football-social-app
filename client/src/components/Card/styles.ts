@@ -9,7 +9,7 @@ export const CardContainer = styled(motion.div).attrs({
   whileHover: { scale: 1.1 },
   whileTap: { scale: 1.3 },
 })`
-  max-width: 250px;
+  max-width: 200px;
   width: 100%;
 `;
 
