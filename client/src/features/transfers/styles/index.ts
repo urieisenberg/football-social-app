@@ -2,15 +2,16 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 export const TransfersWrapper = styled.div.attrs({
-  className: 'container',
+  className: 'container align-items-center justify-content-center', 
 })``;
 
 export const TransfersContainer = styled(motion.div).attrs({
-  classname: 'row row-cols',
+  className:
+    'row row-cols-auto mb-4 mt-4 m-auto align-items-center justify-content-center',
 })``;
 
 export const TransfersIn = styled(motion.div).attrs({
-  className: 'col-auto mt-5 mb-5 m-auto text-center',
+  className: 'col-auto mt-5 mb-5 text-center',
   initial: { opacity: 0 },
   whileInView: { opacity: 1, transition: { duration: 0.8 } },
   viewport: { once: true },
@@ -18,13 +19,13 @@ export const TransfersIn = styled(motion.div).attrs({
 })`
   background-color: ${(props) => props.theme.primary};
   border-radius: 10px;
-  max-width: 200px;
   align-items: center;
-  justify-content: center;
+  margin: 60px;
+  width: 200px;
 `;
 
 export const TransfersOut = styled(motion.div).attrs({
-  className: 'col-auto mt-5 mb-5 m-auto text-center',
+  className: 'col-auto mt-5 mb-5 text-center',
   initial: { opacity: 0 },
   whileInView: { opacity: 1, transition: { duration: 0.8 } },
   viewport: { once: true },
@@ -32,11 +33,10 @@ export const TransfersOut = styled(motion.div).attrs({
 })`
   background-color: ${(props) => props.theme.error};
   border-radius: 10px;
-  max-width: 200px;
   align-items: center;
-  justify-content: center;
+  margin: 60px;
+  width: 200px;
 `;
-
 export const TransfersLogo = styled(motion.img).attrs({
   width: 50,
 })`
