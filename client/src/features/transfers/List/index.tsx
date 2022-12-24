@@ -1,23 +1,16 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { usePathname } from '../../../hooks/usePathname';
 import { useGetTransfersQuery } from '../api';
 import { Loader } from '../../../components/Loader';
 import { Transition } from '../../../components/Transition';
-import {
-  TransfersContainer,
-  TransfersWrapper,
-  TransfersDate,
-  TransfersIn,
-  TransfersOut,
-  TransfersPrice,
-  TransfersType,
-} from '../styles';
-import { AiOutlineArrowRight } from 'react-icons/ai';
+import { TransfersArrivedList } from './Arrived';
+import { TransferLeftList } from './Left';
+import { TransfersContainer } from '../styles';
+import { TopButton } from '../../../components/Button';
 
 export const TransfersList = () => {
   const { teamid } = useParams();
-  const navigate = useNavigate();
-  const pathMatch = usePathname();
+  const { pathMatch } = usePathname();
 
   const { data, isLoading, isSuccess } = useGetTransfersQuery(teamid as string);
 
@@ -31,6 +24,22 @@ export const TransfersList = () => {
   );
 
   let content;
+  if (isLoading) content = <Loader />;
+  else if (!left && !arrived) content = <div>No transfers found</div>;
+  else if (pathMatch('arrived', 'includes') && isSuccess)
+    content = arrived?.map((transfer: any) => (
+      <TransfersArrivedList key={transfer.id} transfers={transfer} />
+    ));
+  else if (pathMatch('left', 'includes') && isSuccess)
+    content = left?.map((transfer: any) => (
+      <TransferLeftList key={transfer.id} transfers={transfer} />
+    ));
 
-  return <div>TransfersList</div>;
+  return (
+    <Transition>
+      <TransfersContainer>
+        {content}
+      </TransfersContainer>
+    </Transition>
+  );
 };
