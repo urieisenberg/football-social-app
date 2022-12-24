@@ -20,7 +20,8 @@ export const NavWrapper = styled(Navbar).attrs({
   color: ${({ theme }) => theme.text};
 `;
 
-export const NavContainer = styled(Container)`
+export const NavContainer = styled(Nav)`
+  margin: 0 auto;
   @media (max-width: 990px) {
     display: inline-block;
     font-size: 0.8rem;
@@ -28,7 +29,8 @@ export const NavContainer = styled(Container)`
 `;
 
 export const NavLink = styled(Nav.Link)<NavLinkProps>`
-  color: ${({ active, theme }) => (active === 'true' ? theme.primary : theme.text)};
+  color: ${({ active, theme }) =>
+    active === 'true' ? theme.primary : theme.text};
   font-weight: ${({ active }) => (active === 'true' ? 'bold' : 'normal')};
   text-decoration: none;
   text-transform: uppercase;
@@ -44,7 +46,7 @@ export const NavItem = styled(motion.span).attrs({
     scale: 1.3,
   },
   whileHover: {
-    scale: 1.3,
+    scale: 1.1,
   },
   transition: {
     type: 'spring',
