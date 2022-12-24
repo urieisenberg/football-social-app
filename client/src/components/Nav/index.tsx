@@ -25,7 +25,7 @@ export const Nav = ({ links, mini }: NavProps) => {
               key={link}
               mini={mini}
               hide={
-                link === 'coach' ||
+                link === 'staff' ||
                 link === 'stadium' ||
                 link === 'feed' ||
                 link === 'social'
