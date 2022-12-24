@@ -17,3 +17,7 @@ export interface Transfer {
     }
   ];
 }
+
+export interface TransfersListProps {
+  transfers: Transfer;
+}
