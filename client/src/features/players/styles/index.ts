@@ -7,10 +7,11 @@ export const PlayersContainer = styled.div.attrs({
 `;
 
 export const PlayersListContainer = styled.div.attrs({
-  className: 'row row-cols-auto mb-4 mt-4 m-auto align-items-center justify-content-center',
+  className:
+    'row row-cols-auto mb-4 mt-4 m-auto align-items-center justify-content-center',
 })``;
 
-export const PlayersItem = styled.div.attrs({
+export const PlayersItemContainer = styled.div.attrs({
   className: 'row row-cols-auto mb-4 mt-4 m-auto',
 })`
   justify-content: center;
@@ -26,10 +27,9 @@ export const PlayersTitle = styled.h5.attrs({
   className: 'mt-4 mb-4 text-center',
 })``;
 
-export const PlayerSubTitle = styled.span`
-  font-size: 1rem;
+export const PlayersSubtitle = styled.h5`
   font-weight: bolder;
-  letter-spacing: 0.1rem;
+  letter-spacing: 1px;
   @media (max-width: 600px) {
     font-size: 0.7rem;
   }
@@ -46,7 +46,10 @@ export const PlayersTeam = styled.span`
 
 export const PlayersCol = styled.div.attrs({
   className: 'col',
-})``;
+})` 
+font-size: 1.2rem;
+letter-spacing: 1px;
+`;
 
 export const PlayersImage = styled.img`
   width: 150px;
@@ -58,8 +61,11 @@ export const PlayersBold = styled.span`
 `;
 
 export const PlayersRating = styled.span`
-  color: ${({ theme }) => theme.primary};
-  font-size: 0.9rem;
+  background-color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.text};
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  margin-left: 0.5rem;
   font-weight: bold;
   margin-right: 0.5rem;
 `;
