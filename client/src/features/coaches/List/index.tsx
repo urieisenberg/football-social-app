@@ -1,27 +1,26 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useGetCoachByTeamQuery } from '../api';
-import { CoachCareer } from '../types';
 import { Transition } from '../../../components/Transition';
 import { Loader } from '../../../components/Loader';
 import {
   CoachContainer,
   CoachDetail,
-  CoachItem,
+  CoachContent,
   CoachTitle,
   CoachImage,
   CoachLine,
   CoachHeader,
+  CoachLink,
   CoachRow,
-  CoachTeam,
 } from '../styles';
 
 export const CoachList = () => {
   const { teamid } = useParams();
+  const navigate = useNavigate();
+
   const { data, isLoading, isSuccess } = useGetCoachByTeamQuery(
     teamid as string
   );
-
-  console.log(data);
 
   let content;
   if (isLoading) content = <Loader />;
@@ -31,33 +30,28 @@ export const CoachList = () => {
         <CoachContainer>
           <CoachHeader>Staff:</CoachHeader>
           {data.map((coach, index) => (
-            <CoachItem key={coach.id}>
+            <CoachContent
+              key={coach.id}
+              onClick={() => navigate(`${coach.id}`)}
+            >
               <CoachDetail>
-                <CoachTitle>
-                  {coach.firstname + ' ' + coach.lastname}
-                </CoachTitle>
+                <CoachLink>
+                  <CoachTitle>
+                    {coach.firstname + ' ' + coach.lastname}
+                  </CoachTitle>
+                </CoachLink>
               </CoachDetail>
               <CoachDetail>
-                <CoachImage src={coach.photo} alt={coach.name} />
+                <CoachLink>
+                  <CoachImage src={coach.photo} alt={coach.name} />
+                </CoachLink>
               </CoachDetail>
               <CoachRow>
                 <CoachDetail>Age: {coach.age}</CoachDetail>
               </CoachRow>
-              <CoachDetail>Born: {coach.birth.date} </CoachDetail>
-              <CoachDetail>City: {coach.birth.place} </CoachDetail>
-              <CoachDetail>Country: {coach.birth.country} </CoachDetail>{' '}
               <CoachDetail>Nationality: {coach.nationality}</CoachDetail>
-              {coach?.career?.map((carreer: CoachCareer) => (
-                <CoachRow key={carreer.start}>
-                  <CoachTeam>{carreer.team.name}</CoachTeam>
-                  <CoachDetail>
-                    From: {carreer.start} till{' '}
-                    {carreer.end !== null ? carreer.end : 'present'}
-                  </CoachDetail>
-                </CoachRow>
-              ))}
               {index !== data.length - 1 && <CoachLine />}
-            </CoachItem>
+            </CoachContent>
           ))}
         </CoachContainer>
       </Transition>
