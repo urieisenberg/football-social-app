@@ -1,2 +1,2 @@
-export * from './LeagueInjuries';
-export * from './TeamInjuries';
+export * from './leagueInjuries';
+export * from './teamInjuries';

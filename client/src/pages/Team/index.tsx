@@ -7,7 +7,7 @@ import { TeamPlayersLayout } from '../../features/players/layout';
 import { TransfersLayout } from '../../features/transfers/layout';
 import { Standings } from '../../features/standings';
 import { Nav } from '../../components/Nav';
-import { CoachLayout } from '../../features/coaches/Layout';
+import { CoachLayout } from '../../features/coaches/layout';
 
 export const Team = () => {
   const { teamid } = useParams();

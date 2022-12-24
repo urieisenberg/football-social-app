@@ -5,7 +5,7 @@ import {
 import { Transition } from '../../../components/Transition';
 import { NotesContainer, NotesContent } from '../styles';
 import { DeleteNote } from '../../../app/types';
-import { NotesItem } from '../Item';
+import { NotesItem } from '../item';
 
 interface NotesProps {
   ticketId: string;

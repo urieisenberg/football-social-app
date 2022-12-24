@@ -1,5 +1,5 @@
 import { useRoutes, Outlet, Navigate } from 'react-router-dom';
-import { CoachList } from '../List';
+import { CoachList } from '../list';
 import { CoachItem } from '../styles';
 
 export const CoachLayout = () => {

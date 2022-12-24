@@ -5,7 +5,7 @@ import {
 } from 'react-router-dom';
 import { Nav } from '../../../components/Nav';
 import { SquadPlayersList } from '../list';
-import { InjuriesTeamList } from '../../injuries/List';
+import { InjuriesTeamList } from '../../injuries/list';
 
 export const TeamPlayersLayout = () => {
   let elements = useRoutes([

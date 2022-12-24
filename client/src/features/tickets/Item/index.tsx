@@ -15,11 +15,11 @@ import {
 } from '../styles';
 import { Loader } from '../../../components/Loader';
 import { Modal } from '../../../components/Modal';
-import { CreateNote } from '../../notes/Create';
+import { CreateNote } from '../../notes/create';
 import { Button } from '../../../components/Button';
 import { Transition } from '../../../components/Transition';
 import { UpdateTicket } from '../../../app/types';
-import { Notes } from '../../notes/List';
+import { Notes } from '../../notes/list';
 
 export const Ticket = () => {
   const navigate = useNavigate();
