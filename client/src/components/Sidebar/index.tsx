@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../app/hooks/useAppSelector';
-import { useAuthActions } from '../../features/auth/hooks/useAuthActions';
-import { useToggle } from '../../app/hooks/useToggle';
+import {
+  useToggle,
+  useAppSelector,
+  useAuthActions,
+} from '../../app/hooks';
 import { Item } from './Item';
 import { BackButton } from '../Button';
 import { GiSoccerKick, GiSoccerField } from 'react-icons/gi';
@@ -50,7 +52,7 @@ export const Sidebar = () => {
           {isOpen ? <GoThreeBars size={30} /> : <GoListUnordered size={30} />}
         </SidebarToggle>
         <SidebarProfile
-          onClick={() => navigate('/profile')}
+          onClick={() => navigate(`/profile/${user?.username}`)}
           initial={`${isOpen}`}
           animate={`${isOpen}`}
         >
