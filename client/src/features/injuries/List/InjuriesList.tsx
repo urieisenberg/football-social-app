@@ -24,7 +24,6 @@ export const InjuriesList = ({ data, title }: InjuriesListProps) => {
               injuries={injury}
               image={injury.player.photo}
               name={injury.player.name}
-              team={injury.team}
               type={injuriesReasonsHandler(injury.player.reason as unknown as string)}
             />
           ))}
