@@ -4,6 +4,7 @@ import { TeamInformation } from '../../features/teams/Info';
 import { VenuesItem } from '../../features/venues/Item';
 import { SocialLayout } from '../../features/social/Layout';
 import { TeamPlayersLayout } from '../../features/players/Layout';
+import { TransfersLayout } from '../../features/transfers/Layout';
 import { Standings } from '../../features/standings';
 import { Nav } from '../../components/Nav';
 
@@ -17,7 +18,7 @@ export const Team = () => {
     { path: 'social/*', element: <SocialLayout /> },
     { path: 'standings/', element: <Standings /> },
     // { path: "coach", element: <CoachLayout /> },
-    // { path: "transfers/*", element: <TransfersLayout /> },
+    { path: 'transfers/*', element: <TransfersLayout /> },
     { path: 'stadium', element: <VenuesItem /> },
     // {path:'feed', element: <>Feed</>},
   ]);
