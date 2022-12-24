@@ -16,7 +16,10 @@ export const CoachContent = styled.div.attrs({
 
 export const CoachDetail = styled.div.attrs({
   className: 'col',
-})``;
+})`
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+`;
 
 export const CoachTitle = styled.h5`
   letter-spacing: 1px;
