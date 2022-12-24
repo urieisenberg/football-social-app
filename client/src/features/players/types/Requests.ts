@@ -4,8 +4,8 @@ export interface TopPlayersRequest {
 }
 
 export interface PlayerRequest {
-  playerid: number;
-  teamid: number;
+  playerid: string;
+  teamid: string;
 }
 
 export interface SearchPlayerRequest {
