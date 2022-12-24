@@ -1,11 +1,10 @@
-import { useRoutes, Outlet, Navigate } from 'react-router-dom';
+import { useRoutes, Outlet } from 'react-router-dom';
 import { CoachList } from '../list';
-import { CoachItem } from '../styles';
+import { CoachItem } from '../item';
 
 export const CoachLayout = () => {
   let elements = useRoutes([
-    { path: '', element: <Navigate to="list" /> },
-    { path: 'list', element: <CoachList /> },
+    { path: '', element: <CoachList /> },
     { path: ':coachid', element: <CoachItem /> },
   ]);
 
