@@ -12,7 +12,7 @@ export const FixturesTeamLayout = () => {
     { path: 'last', element: <PreviousFixturesList /> },
     { path: ':fixture', element: <FixturesItem /> },
     {
-      path: ':teamids/:teamname1/:teamname2',
+      path: 'headtohead/:teamids/:teamname1/:teamname2',
       element: <HeadToHeadFixturesList />,
     },
   ]);
