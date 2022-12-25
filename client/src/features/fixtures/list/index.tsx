@@ -1,4 +1,4 @@
-import { useNavigateToVenue } from '../../../app/hooks';
+import { useNavigateToVenue, useNavigateToTeam } from '../../../app/hooks';
 import { Fixture } from '../types';
 import {
   FixturesWrapper,
@@ -28,6 +28,7 @@ export const FixturesList = ({ fixtures }: FixturesListProps) => {
   console.log(fixtures);
 
   const { navigateToVenue } = useNavigateToVenue();
+  const { navigateToTeam } = useNavigateToTeam();
 
   return (
     <FixturesWrapper>
@@ -59,9 +60,14 @@ export const FixturesList = ({ fixtures }: FixturesListProps) => {
               </FixturesContent>
               <FixturesContent>
                 <FixturesTeam>
-                  <FixturesLink>
-                    {' '}
-                    {/* navigate to team */}
+                  <FixturesLink
+                    onClick={() =>
+                      navigateToTeam(
+                        fixture.teams.home.id,
+                        fixture.teams.home.name
+                      )
+                    }
+                  >
                     <FixturesLogo
                       src={fixture.teams.home.logo}
                       alt={fixture.teams.home.name}
@@ -81,9 +87,14 @@ export const FixturesList = ({ fixtures }: FixturesListProps) => {
                   )}
                 </FixturesScore>
                 <FixturesTeam>
-                  <FixturesLink>
-                    {' '}
-                    {/* navigate to team */}
+                  <FixturesLink
+                    onClick={() =>
+                      navigateToTeam(
+                        fixture.teams.away.id,
+                        fixture.teams.away.name
+                      )
+                    }
+                  >
                     <FixturesLogo
                       src={fixture.teams.away.logo}
                       alt={fixture.teams.away.name}
