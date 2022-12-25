@@ -36,7 +36,7 @@ export const TransfersList = () => {
     ));
 
   return (
-    <Transition>
+    <Transition key="transfers">
       <TransfersContainer>
         {content}
       </TransfersContainer>
