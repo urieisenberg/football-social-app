@@ -3,15 +3,18 @@ import { LeagueInfo, LeagueLogos } from '../../features/leagues';
 import { Standings as LeagueTable } from '../../features/standings';
 import { SERIA_A } from '../../app/types';
 import { Nav } from '../../components/Nav';
-import { SocialLayout } from '../../features/social/layout';
-import { VenuesLayout } from '../../features/venues/layout';
-import { LeaguePlayersLayout } from '../../features/players/layout';
-
+import {
+  SocialLayout,
+  VenuesLayout,
+  LeaguePlayersLayout,
+  FixturesLeagueLayout,
+} from '../../app/layouts';
 export const League = () => {
   const { leagueid } = useParams();
 
   let elements = useRoutes([
-    { path: '', element: <Navigate to="social" /> },
+    { path: '', element: <Navigate to="fixtures" /> },
+    { path: 'fixtures/*', element: <FixturesLeagueLayout /> },
     { path: 'venues/*', element: <VenuesLayout /> },
     { path: 'players/*', element: <LeaguePlayersLayout /> },
     { path: 'social/*', element: <SocialLayout /> },
