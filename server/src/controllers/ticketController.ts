@@ -33,7 +33,7 @@ export const updateTicket = async (req: Request, res: Response) => {
       req,
       res,
       Model: Ticket,
-      id: req.params.ticketId,
+      id: req.params.id,
     });
     const updatedTicket = await Ticket.findByIdAndUpdate(
       req.params.id,
@@ -52,7 +52,7 @@ export const deleteTicket = async (req: Request, res: Response) => {
       req,
       res,
       Model: Ticket,
-      id: req.params.ticketId,
+      id: req.params.id,
     });
     await Ticket.findByIdAndDelete(req.params.id);
     res.status(200).send(req.params.id);
@@ -67,7 +67,7 @@ export const closeTicket = async (req: Request, res: Response) => {
       req,
       res,
       Model: Ticket,
-      id: req.params.ticketId,
+      id: req.params.id,
     });
 
     const updatedTicket = await Ticket.findByIdAndUpdate(
@@ -87,12 +87,13 @@ export const getTicketById = async (req: Request, res: Response) => {
       req,
       res,
       Model: Ticket,
-      id: req.params.ticketId,
+      id: req.params.id,
     });
 
-    const ticket = await findTicket(req.params.ticketId);
+    const ticket = await findTicket(req.params.id);
     res.status(200).json(ticket);
   } catch (error: any) {
+    console.log(error);
     handleErrors(res, error);
   }
 };
