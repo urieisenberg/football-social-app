@@ -1,4 +1,9 @@
-import { useNavigateToVenue, useNavigateToTeam } from '../../../app/hooks';
+import { useParams } from 'react-router-dom';
+import {
+  useNavigateToVenue,
+  useNavigateToTeam,
+  useNavigateToHeadToHead,
+} from '../../../app/hooks';
 import { Fixture } from '../types';
 import {
   FixturesWrapper,
@@ -25,10 +30,11 @@ interface FixturesListProps {
 }
 
 export const FixturesList = ({ fixtures }: FixturesListProps) => {
-  console.log(fixtures);
+  const { teamid, teamname } = useParams();
 
   const { navigateToVenue } = useNavigateToVenue();
   const { navigateToTeam } = useNavigateToTeam();
+  const { navigateToHeadToHead } = useNavigateToHeadToHead();
 
   return (
     <FixturesWrapper>
@@ -109,9 +115,18 @@ export const FixturesList = ({ fixtures }: FixturesListProps) => {
                 {/* navigate to fixture game zone */}
                 Click to view game zone
               </FixturesLink>
-              <FixturesLink>
-                {' '}
-                {/* navigate to fixture head to head */}
+              <FixturesLink
+                onClick={() =>
+                  navigateToHeadToHead(
+                    teamid as string,
+                    teamname as string,
+                    fixture.teams.home.id,
+                    fixture.teams.away.id,
+                    fixture.teams.home.name,
+                    fixture.teams.away.name
+                  )
+                }
+              >
                 <FixturesH2H>
                   Click to see more games between {fixture.teams.home.name} and{' '}
                   {fixture.teams.away.name}
