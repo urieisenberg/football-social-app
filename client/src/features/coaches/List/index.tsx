@@ -50,6 +50,7 @@ export const CoachList = () => {
                 <CoachDetail>Age: {coach.age}</CoachDetail>
               </CoachRow>
               <CoachDetail>Nationality: {coach.nationality}</CoachDetail>
+              <CoachLink onClick={() => navigate(`${coach.id}`)}>see more</CoachLink>
               {index !== data.length - 1 && <CoachLine />}
             </CoachContent>
           ))}
