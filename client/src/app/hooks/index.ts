@@ -14,3 +14,4 @@ export * from '../../routes/hooks/useNavigateToFixture';
 export * from '../../routes/hooks/useNavigateToPlayer';
 export * from '../../routes/hooks/useNavigateToLeagueFixture';
 export * from '../../routes/hooks/useNavigateToProfile';
+export * from '../../features/fixtures/hooks/useCountdown';
