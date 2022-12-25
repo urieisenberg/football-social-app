@@ -1,2 +1,2 @@
-export * from './LeaguePlayersLayout';
-export * from './TeamPlayersLayout';
+export * from './league';
+export * from './team';
