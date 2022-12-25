@@ -19,4 +19,5 @@ export interface League {
   flag: string;
   season: number;
   country: string;
+  round: string;
 }
