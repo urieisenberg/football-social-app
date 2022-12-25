@@ -2,19 +2,22 @@ import { useParams, useRoutes, Outlet, Navigate } from 'react-router-dom';
 import { teams } from '../../app/utils/db/teams';
 import { TeamInformation } from '../../features/teams/info';
 import { VenuesItem } from '../../features/venues/item';
-import { SocialLayout } from '../../features/social/layout';
-import { TeamPlayersLayout } from '../../features/players/layout';
-import { TransfersLayout } from '../../features/transfers/layout';
+import {
+  FixturesTeamLayout,
+  SocialLayout,
+  TeamPlayersLayout,
+  TransfersLayout,
+  CoachLayout,
+} from '../../app/layouts';
 import { Standings } from '../../features/standings';
 import { Nav } from '../../components/Nav';
-import { CoachLayout } from '../../features/coaches/layout';
 
 export const Team = () => {
   const { teamid } = useParams();
 
   let elements = useRoutes([
     { path: '', element: <Navigate to="fixtures" /> },
-    { path: 'fixtures/*', element: <>Fixtures</> },
+    { path: 'fixtures/*', element: <FixturesTeamLayout /> },
     { path: 'players/*', element: <TeamPlayersLayout /> },
     { path: 'social/*', element: <SocialLayout /> },
     { path: 'standings/', element: <Standings /> },
