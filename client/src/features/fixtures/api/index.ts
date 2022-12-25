@@ -27,7 +27,8 @@ export const fixturesApi = footballApi.injectEndpoints({
       transformResponse: transformGetFixturesResponse,
     }),
     getHeadToHead: build.query<Fixture[], string>({
-      query: (teamids) => `fixtures/headtohead=${teamids}`,
+      query: (teamids) => `fixtures/headtohead?h2h=${teamids}`,
+      transformResponse: transformGetFixturesResponse,
     }),
   }),
   overrideExisting: false,
