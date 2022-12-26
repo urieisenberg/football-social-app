@@ -3,6 +3,7 @@ import {
   useNavigateToVenue,
   useNavigateToTeam,
   useNavigateToHeadToHead,
+  useNavigateToFixture,
 } from '../../../app/hooks';
 import { Fixture } from '../types';
 import {
@@ -35,6 +36,7 @@ export const FixturesList = ({ fixtures }: FixturesListProps) => {
   const { navigateToVenue } = useNavigateToVenue();
   const { navigateToTeam } = useNavigateToTeam();
   const { navigateToHeadToHead } = useNavigateToHeadToHead();
+  const { navigateToFixture } = useNavigateToFixture();
 
   return (
     <FixturesWrapper>
@@ -110,7 +112,15 @@ export const FixturesList = ({ fixtures }: FixturesListProps) => {
                   </FixturesLink>
                 </FixturesTeam>
               </FixturesContent>
-              <FixturesLink>
+              <FixturesLink
+                onClick={() =>
+                  navigateToFixture(
+                    teamid as string,
+                    teamname as string,
+                    fixture.fixture.id
+                  )
+                }
+              >
                 {' '}
                 {/* navigate to fixture game zone */}
                 Click to view game zone
