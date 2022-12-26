@@ -12,23 +12,15 @@ export const transformCurrentRoundResponse = (response: any): any => {
   };
 };
 
-// export const transformResponse = (response: any): any => {
-//   const { data } = response;
-//   const { fixtures } = data;
-//   const transformedFixtures = fixtures.map((fixture: any) => {
-//     const { awayTeam, homeTeam, league, date } = fixture;
-//     const { name: awayTeamName, logo: awayTeamLogo } = awayTeam;
-//     const { name: homeTeamName, logo: homeTeamLogo } = homeTeam;
-//     const { name: leagueName, logo: leagueLogo } = league;
-//     return {
-//       awayTeamName,
-//       awayTeamLogo,
-//       homeTeamName,
-//       homeTeamLogo,
-//       leagueName,
-//       leagueLogo,
-//       date,
-//     };
-//   });
-//   return transformedFixtures;
-// };
+export const transformEventsFixtureResponse = (response: any): any => {
+  const goals = response.response.filter((event: any) => event.type === 'Goal');
+  const cards = response.response.filter((event: any) => event.type === 'Card');
+  const substitutions = response.response.filter(
+    (event: any) => event.type === 'Subst'
+  );
+  return {
+    goals,
+    cards,
+    substitutions,
+  };
+};
