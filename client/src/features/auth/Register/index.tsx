@@ -7,7 +7,7 @@ import { RegisterUser, User } from '../../../app/types';
 import { Form } from '../../../components/Form';
 import { Loader } from '../../../components/Loader';
 import { toast } from 'react-toastify';
-import { teams } from '../../../app/utils/db/teams';
+import { teams } from '../../../utils/db/teams';
 
 export const Register = () => {
   const { setUser } = useAuthActions();

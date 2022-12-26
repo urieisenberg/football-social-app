@@ -78,7 +78,7 @@ export const postsApi = api.injectEndpoints({
         dispatch(updatePost(result.data as unknown as Post));
       },
     }),
-    getTeamPosts: builder.query<Post[], number>({
+    getTeamPosts: builder.query<Post[], void>({
       query: () => `${URL}/team`,
       providesTags: [{ type: 'Post', id: 'TEAM' }],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {

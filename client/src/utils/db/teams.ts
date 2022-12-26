@@ -1,4 +1,4 @@
-import { Team } from '../../types';
+import { Team } from '../../app/types';
 import * as logos from '../images/logos';
 
 export const teams: Team[] = [

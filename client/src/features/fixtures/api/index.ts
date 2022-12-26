@@ -4,14 +4,16 @@ import {
   CurrentFixtureRequest,
   Round,
   FixtureLineup,
-  FixtureTeamStatistics,
+  FixturesStatistics,
   FixtureEvents,
   FixturesPlayersStatistics,
 } from '../../../app/types';
 import {
   transformGetFixturesResponse,
   transformCurrentRoundResponse,
-  transformEventsFixtureResponse
+  transformEventsFixtureResponse,
+  transformFixturesStatsResponse,
+  transformFixtureResponse,
 } from '../utils/fixturesTransformResponse';
 import { date } from '../utils/getCurrentDate';
 
@@ -48,9 +50,9 @@ export const fixturesApi = footballApi.injectEndpoints({
       query: (fixtureid) => `fixtures/events?fixture=${fixtureid}`,
       transformResponse: transformEventsFixtureResponse,
     }),
-    getFixtureStatistics: build.query<FixtureTeamStatistics, string>({
+    getFixtureStatistics: build.query<FixturesStatistics, string>({
       query: (fixtureid) => `fixtures/statistics?fixture=${fixtureid}`,
-      transformResponse: transformGetFixturesResponse,
+      transformResponse: transformFixturesStatsResponse,
     }),
     getFixturePlayersStatistics: build.query<FixturesPlayersStatistics, string>(
       {
@@ -58,6 +60,10 @@ export const fixturesApi = footballApi.injectEndpoints({
         transformResponse: transformGetFixturesResponse,
       }
     ),
+    getFixture: build.query<Fixture, string>({
+      query: (fixtureid) => `fixtures?id=${fixtureid}`,
+      transformResponse: transformFixtureResponse,
+    }),
   }),
   overrideExisting: false,
 });
@@ -72,4 +78,5 @@ export const {
   useGetFixtureEventsQuery,
   useGetFixtureStatisticsQuery,
   useGetFixturePlayersStatisticsQuery,
+  useGetFixtureQuery,
 } = fixturesApi;

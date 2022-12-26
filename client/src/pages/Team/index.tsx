@@ -1,5 +1,6 @@
+import { useAppSelector } from '../../app/hooks';
 import { useParams, useRoutes, Outlet, Navigate } from 'react-router-dom';
-import { teams } from '../../app/utils/db/teams';
+import { teams } from '../../utils/db/teams';
 import { TeamInformation } from '../../features/teams/info';
 import { VenuesItem } from '../../features/venues/item';
 import {
@@ -10,9 +11,12 @@ import {
   CoachLayout,
 } from '../../app/layouts';
 import { Standings } from '../../features/standings';
+import { PostsTeam } from '../../features/posts/list/team';
 import { Nav } from '../../components/Nav';
 
 export const Team = () => {
+  const { user } = useAppSelector((state) => state.auth);
+
   const { teamid } = useParams();
 
   let elements = useRoutes([
@@ -24,7 +28,7 @@ export const Team = () => {
     { path: 'staff/*', element: <CoachLayout /> },
     { path: 'transfers/*', element: <TransfersLayout /> },
     { path: 'stadium', element: <VenuesItem /> },
-    // {path:'feed', element: <>Feed</>},
+    { path: 'feed', element: <PostsTeam /> },
   ]);
 
   const currentTeam = teams.find((team) => team.id.toString() === teamid);
@@ -38,7 +42,9 @@ export const Team = () => {
       'stadium',
       'staff',
     ];
-    if (currentTeam) links.push('social', 'feed');
+    if (currentTeam) links.push('social');
+    if (teamid === user?.team.id.toString()) links.push('feed');
+
     return links;
   };
 

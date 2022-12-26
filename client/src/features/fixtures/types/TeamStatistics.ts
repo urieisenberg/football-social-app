@@ -1,5 +1,10 @@
 import { Team } from '../../teams/types';
 
+export interface FixturesStatistics {
+  homeTeam: FixtureTeamStatistics;
+  awayTeam: FixtureTeamStatistics;
+}
+
 export interface FixtureTeamStatistics {
   team: Team;
   statistics: [

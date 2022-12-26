@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useGetFixtureEventsQuery } from '../../api';
 import { useNavigateToPlayer } from '../../../../routes/hooks';
+import { Events } from '../../types';
 import { filterEventsByTeam } from '../../utils/filterEventsByTeam';
 import { Transition } from '../../../../components/Transition';
 import { GiSoccerBall } from 'react-icons/gi';
@@ -15,26 +16,31 @@ import {
   EventsRating,
 } from '../../styles';
 
+// interface FixtureEventsProps {
+//   homeTeam: number;
+//   awayTeam: number;
+// }
+
 interface FixtureEventsProps {
-  homeTeam: number;
-  awayTeam: number;
+  homeTeam: Events[];
+  awayTeam: Events[];
 }
 
 export const FixturesItemEvents = ({
   homeTeam,
   awayTeam,
 }: FixtureEventsProps) => {
-  const { fixture } = useParams();
-  const { data, isLoading } = useGetFixtureEventsQuery(fixture as string);
-  const { navigateToPlayer } = useNavigateToPlayer();
+  // const { fixture } = useParams();
+  // const { data, isLoading } = useGetFixtureEventsQuery(fixture as string);
+  // const { navigateToPlayer } = useNavigateToPlayer();
 
   //   const { goals, cards, substitutions } = data
 
-  const { homeEvents, awayEvents } = filterEventsByTeam(
-    data,
-    homeTeam,
-    awayTeam
-  );
+  // const { homeEvents, awayEvents } = filterEventsByTeam(
+  //   data,
+  //   homeTeam,
+  //   awayTeam
+  // );
 
   return <></>;
 };
