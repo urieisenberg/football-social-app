@@ -1,6 +1,6 @@
 import { Team } from '../../teams/types';
 
-export interface FixtureEvent {
+export interface Events {
   time: {
     elapsed: number;
     extra: number;
@@ -17,4 +17,10 @@ export interface FixtureEvent {
   type: string;
   detail: string;
   comments: string;
+}
+
+export interface FixtureEvents {
+  goals: Events[];
+  cards: Events[];
+  substitutions: Events[];
 }
