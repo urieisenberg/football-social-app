@@ -5,12 +5,13 @@ import {
   Round,
   FixtureLineup,
   FixtureTeamStatistics,
-  FixtureEvent,
+  FixtureEvents,
   FixturesPlayersStatistics,
 } from '../../../app/types';
 import {
   transformGetFixturesResponse,
   transformCurrentRoundResponse,
+  transformEventsFixtureResponse
 } from '../utils/fixturesTransformResponse';
 import { date } from '../utils/getCurrentDate';
 
@@ -43,9 +44,9 @@ export const fixturesApi = footballApi.injectEndpoints({
       query: (fixtureid) => `fixtures/lineups?fixture=${fixtureid}`,
       transformResponse: transformGetFixturesResponse,
     }),
-    getFixtureEvents: build.query<FixtureEvent[], string>({
+    getFixtureEvents: build.query<FixtureEvents, string>({
       query: (fixtureid) => `fixtures/events?fixture=${fixtureid}`,
-      transformResponse: transformGetFixturesResponse,
+      transformResponse: transformEventsFixtureResponse,
     }),
     getFixtureStatistics: build.query<FixtureTeamStatistics, string>({
       query: (fixtureid) => `fixtures/statistics?fixture=${fixtureid}`,
