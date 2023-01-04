@@ -6,3 +6,4 @@ export * from './TeamStatistics';
 export * from './Countdown';
 export * from './Requests';
 export * from './Round';
+export * from './Response';

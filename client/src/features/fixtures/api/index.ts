@@ -7,6 +7,7 @@ import {
   FixturesStatistics,
   FixtureEvents,
   FixturesPlayersStatistics,
+  FixtureResponse,
 } from '../../../app/types';
 import {
   transformGetFixturesResponse,
@@ -60,7 +61,7 @@ export const fixturesApi = footballApi.injectEndpoints({
         transformResponse: transformGetFixturesResponse,
       }
     ),
-    getFixture: build.query<Fixture, string>({
+    getFixture: build.query<FixtureResponse, string>({
       query: (fixtureid) => `fixtures?id=${fixtureid}`,
       transformResponse: transformFixtureResponse,
     }),

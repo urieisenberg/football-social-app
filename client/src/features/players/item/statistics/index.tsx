@@ -16,7 +16,7 @@ interface PlayersItemStatisticsProps {
 export const PlayersItemStatistics = ({
   stats,
 }: PlayersItemStatisticsProps) => {
-  console.log(stats)
+  console.log(stats);
   return (
     <Transition key="players-stats">
       <PlayersLine />
@@ -34,14 +34,8 @@ export const PlayersItemStatistics = ({
           <PlayersCol>Appearances: {stats.games.appearences || 0}</PlayersCol>
           <PlayersCol>Minutes: {stats.games.minutes}</PlayersCol>
           <PlayersCol>Lineups: {stats.games.lineups || 0}</PlayersCol>
-          <PlayersCol>
-            Substitutes in: {stats.substitutes
-.in || 0}
-          </PlayersCol>
-          <PlayersCol>
-            Substitutes out: {stats.substitutes
-.out || 0}
-          </PlayersCol>
+          <PlayersCol>Substitutes in: {stats.substitutes.in || 0}</PlayersCol>
+          <PlayersCol>Substitutes out: {stats.substitutes.out || 0}</PlayersCol>
         </PlayersListContainer>
         <PlayersListContainer>
           <PlayersCol>Position: {stats.games.position}</PlayersCol>

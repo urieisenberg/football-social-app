@@ -13,10 +13,14 @@ export const FixturesItem = () => {
     fixture as string
   );
   console.log(fixtureData);
-  
 
   return (
     <div>
+      {/* <FixturesItemEvents
+        homeTeam={fixtureData?.homeTeam}
+        awayTeam={fixtureData?.awayTeam}
+        playersDataAvailable={fixtureData?.playersDataAvailable}
+      /> */}
       {/* <FixturesItemEvents homeTeam={} awayTeam={121} /> */}
     </div>
   );
