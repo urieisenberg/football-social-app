@@ -46,18 +46,14 @@ export const transformFixtureResponse = (response: any): any => {
 
   const homeTeam = {
     ...data.teams.home,
-    goals: goalsHome,
-    cards: cardsHome,
-    substitutions: substitutionsHome,
+    events: goalsHome.concat(cardsHome, substitutionsHome),
     lineup: homeLineups,
     statistics: homeStatistics,
   };
 
   const awayTeam = {
     ...data.teams.away,
-    goals: goalsAway,
-    cards: cardsAway,
-    substitutions: substitutionsAway,
+    events: goalsAway.concat(cardsAway, substitutionsAway),
     lineup: awayLineups,
     statistics: awayStatistics,
   };
