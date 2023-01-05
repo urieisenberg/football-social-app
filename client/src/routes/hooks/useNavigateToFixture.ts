@@ -6,9 +6,12 @@ export const useNavigateToFixture = () => {
   const navigateToFixture = (
     teamid: string,
     teamname: string,
-    fixture: number
+    fixture: number,
+    path?: 'next' | 'last'
   ) => {
-    navigate(`/team/${teamid}/${teamname}/fixtures/${fixture}`);
+    if (path) {
+      navigate(`/team/${teamid}/${teamname}/fixtures/${path}`);
+    } else navigate(`/team/${teamid}/${teamname}/fixtures/${fixture}`);
   };
 
   return { navigateToFixture };

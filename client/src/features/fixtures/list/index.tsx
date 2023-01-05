@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
   useNavigateToVenue,
   useNavigateToTeam,
@@ -31,7 +31,8 @@ interface FixturesListProps {
 }
 
 export const FixturesList = ({ fixtures }: FixturesListProps) => {
-  const { teamid, teamname } = useParams();
+  const { teamid, teamname, leagueid } = useParams();
+  const navigate = useNavigate();
 
   const { navigateToVenue } = useNavigateToVenue();
   const { navigateToTeam } = useNavigateToTeam();
@@ -114,15 +115,15 @@ export const FixturesList = ({ fixtures }: FixturesListProps) => {
               </FixturesContent>
               <FixturesLink
                 onClick={() =>
-                  navigateToFixture(
-                    teamid as string,
-                    teamname as string,
-                    fixture.fixture.id
-                  )
+                  leagueid
+                    ? navigate(`/league/${leagueid}/fixtures/${fixture.fixture.id}`)
+                    : navigateToFixture(
+                        teamid as string,
+                        teamname as string,
+                        fixture.fixture.id
+                      )
                 }
               >
-                {' '}
-                {/* navigate to fixture game zone */}
                 Click to view game zone
               </FixturesLink>
               <FixturesLink

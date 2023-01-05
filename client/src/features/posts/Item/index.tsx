@@ -41,7 +41,7 @@ export const PostItem = ({ post }: PostItemProps) => {
             onClick={navigateToProfile}
           />
           <Name onClick={navigateToProfile}>{post.username}</Name>
-          <FollowUser post={post} />
+          {/* <FollowUser post={post} /> */}
           <CreatedAt>{createdAt}</CreatedAt>
           <PostOptions
             post={post}

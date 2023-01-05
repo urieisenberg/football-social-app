@@ -17,9 +17,8 @@ export const FixturesItem = () => {
   return (
     <div>
       {/* <FixturesItemEvents
-        homeTeam={fixtureData?.homeTeam}
-        awayTeam={fixtureData?.awayTeam}
-        playersDataAvailable={fixtureData?.playersDataAvailable}
+        homeTeam={fixtureData?.fixture.teams.home.name }
+        awayTeam={fixtureData?.fixture.teams.away.name}
       /> */}
       {/* <FixturesItemEvents homeTeam={} awayTeam={121} /> */}
     </div>
