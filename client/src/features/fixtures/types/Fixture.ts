@@ -39,3 +39,25 @@ export interface Fixture {
     penalty: HomeAway;
   };
 }
+
+export interface FixtureItem {
+  id: number;
+  referee: string;
+  date: string;
+  timestamp: number;
+  status: {
+    long: string;
+    short: string;
+    elapsed: number;
+  };
+  venue: {
+    id: number;
+    name: string;
+    city: string;
+  };
+  teams: {
+    home: FixtureTeam;
+    away: FixtureTeam;
+  };
+  goals: HomeAway;
+}
