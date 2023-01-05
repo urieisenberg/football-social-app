@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { usePathname } from '../../../routes/hooks/usePathname';
-import { useNavigateToFixture } from '../../../routes/hooks';
 import { Team } from '../../../app/types';
 import { teams } from '../../../utils/db/teams';
 import { LogosList, LogosContainer, LogosImage } from '../styles';
@@ -11,7 +10,7 @@ export const LeagueLogos = () => {
 
   const onClick = (team: Team) => {
     let path;
-    let teamPath = `/teams/${team.id}/${team.name}`;
+    let teamPath = `team/${team.id}/${team.name}`;
     if (pathMatch('next', 'includes')) {
       path = 'fixtures/next';
     } else if (pathMatch('last', 'includes')) {
@@ -25,7 +24,7 @@ export const LeagueLogos = () => {
     } else if (pathMatch('social', 'includes')) {
       path = 'social';
     } else path = '';
-    return navigate(`${teamPath}/${path}`);
+    return navigate(`/${teamPath}/${path}`);
   };
 
   return (
