@@ -3,6 +3,7 @@ import { Events } from './Event';
 import { FixtureTeamStatistics } from './TeamStatistics';
 import { FixtureLineup } from './Lineup';
 import { PlayerStatistics } from '../../players/types';
+import { FixturesPlayersStatistics } from './PlayersStatistics';
 export interface FixtureTeamResponse {
   events: Events[];
   statistics: FixtureTeamStatistics[];
@@ -10,12 +11,13 @@ export interface FixtureTeamResponse {
   winner: boolean;
 }
 
+
 export interface FixtureResponse {
   fixture: Fixture;
   homeEvents: Events[];
   awayEvents: Events[];
   lineup: FixtureLineup[];
-  statistics: FixtureTeamStatistics[];
+  statistics: FixturesPlayersStatistics[] | FixtureTeamStatistics[];
   playersDataAvailable: boolean;
   players: PlayerStatistics;
 }
