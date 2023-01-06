@@ -1,6 +1,6 @@
 import { League, Team } from '../../../app/types';
 
-interface FixtureTeam extends Team {
+export interface FixtureTeam extends Team {
   winner: boolean;
 }
 
@@ -51,11 +51,6 @@ export interface FixtureItem {
     elapsed: number;
   };
   venue: VenueFixture;
-  teams: {
-    home: FixtureTeam;
-    away: FixtureTeam;
-  };
-  goals: HomeAway;
 }
 
 export interface VenueFixture {
