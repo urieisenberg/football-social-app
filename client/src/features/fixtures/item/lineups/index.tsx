@@ -5,7 +5,6 @@ import { Transition } from '../../../../components/Transition';
 import {
   EventsContainer,
   EventsItem,
-  EventsLink,
   EventsPlayer,
   EventsTitle,
   FixturesHR,
