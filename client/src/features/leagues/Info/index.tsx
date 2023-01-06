@@ -14,11 +14,12 @@ import {
 
 export const LeagueInfo = () => {
   const { leagueid } = useParams();
-  const navigate = useNavigateToLeague(leagueid as string);
 
   const { data, isSuccess, isError } = useGetLeagueInfoQuery(
     leagueid as string
   );
+
+  const { navigateToLeague } = useNavigateToLeague();
 
   let content;
   if (isError) content = null;
@@ -30,7 +31,7 @@ export const LeagueInfo = () => {
             {leagueid !== SERIA_A && (
               <InfoLogo src={data?.league.logo} alt={data?.league.name} />
             )}
-            <InfoTitle onClick={navigate}>
+            <InfoTitle onClick={() => navigateToLeague(data?.league.id)}>
               {data?.league.name}
             </InfoTitle>
             <InfoCountry>{data?.country.name}</InfoCountry>
