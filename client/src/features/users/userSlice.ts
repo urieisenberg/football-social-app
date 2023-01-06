@@ -42,7 +42,7 @@ const userSlice = createSlice({
     setFollowers: (state, action: PayloadAction<User[]>) => {
       state.followers = action.payload;
     },
-    setFavFixtures: (state, action: PayloadAction<[]>) => {
+    saveFavFixtures: (state, action: PayloadAction<[]>) => {
       state.favFixtures = action.payload;
     },
   },
@@ -56,6 +56,6 @@ export const {
   unfollowUser,
   setFollowing,
   setFollowers,
-  setFavFixtures,
+  saveFavFixtures,
 } = userSlice.actions;
 export default userSlice.reducer;
