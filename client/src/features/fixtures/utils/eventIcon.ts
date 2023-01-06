@@ -11,6 +11,10 @@ export const handleEventIcon = (
       return '🟨';
     case 'Substitution':
       return '🔄';
+      case 'Foul':
+      return '🥊';
+      case 'Saved':
+      return '🧤';
     default:
       return '';
   }
