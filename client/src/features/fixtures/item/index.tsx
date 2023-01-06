@@ -1,7 +1,14 @@
 import { useParams } from 'react-router-dom';
 import { useGetFixtureQuery } from '../api';
+import { useToggle } from '../../../app/hooks';
 import { FixtureEvents } from './events';
-import { FixturesContainer, FixturesWrapper, FixturesHR } from '../styles';
+import {
+  FixturesContainer,
+  FixturesWrapper,
+  FixturesHR,
+  FixturesTitle,
+  FixturesLink,
+} from '../styles';
 import { Transition } from '../../../components/Transition';
 import { Loader } from '../../../components/Loader';
 import { FixtureVenue } from './venue';
@@ -10,6 +17,7 @@ import { FixtureDate } from './date';
 import { FixtureLinks } from './links';
 import { FixtureScore } from './score';
 import { FixturePlayersStats } from './statistics/player';
+import { FixtureLineups } from './lineups';
 
 export const FixturesItem = () => {
   const { fixture } = useParams();
@@ -19,7 +27,8 @@ export const FixturesItem = () => {
     isError,
     isSuccess,
   } = useGetFixtureQuery(fixture as string);
-  console.log(fixtureData);
+  const [showPlayers, togglePlayers] = useToggle(false);
+
   let content;
   if (isLoading || !fixtureData) content = <Loader />;
   else if (isError) content = <div>Something went wrong</div>;
@@ -36,17 +45,41 @@ export const FixturesItem = () => {
             />
             <FixtureScore fixture={fixtureData.fixture} />
             <FixtureLinks fixture={fixtureData.fixture} />
-            <FixtureEvents
-              playersDataAvailable={fixtureData.playersDataAvailable}
-              homeTeam={fixtureData.homeEvents}
-              awayTeam={fixtureData.awayEvents}
-            />
-            <FixturesHR />
-            <FixturePlayersStats
-              playersDataAvailable={fixtureData.playersDataAvailable}
-              homeTeam={fixtureData.players[0]}
-              awayTeam={fixtureData.players[0]}
-            />
+            { fixtureData.fixture.fixture.status.short !== 'NS' && 
+              <>
+                {' '}
+                <FixtureEvents
+                  playersDataAvailable={fixtureData.playersDataAvailable}
+                  homeTeam={fixtureData.homeEvents}
+                  awayTeam={fixtureData.awayEvents}
+                />
+                <FixturesHR />
+                <FixturesTitle>Players</FixturesTitle>
+                {!showPlayers ? (
+                  <>
+                    <FixturesLink onClick={togglePlayers}>
+                      Statistics
+                    </FixturesLink>
+                    <FixturePlayersStats
+                      playersDataAvailable={fixtureData.playersDataAvailable}
+                      homeTeam={fixtureData.players[0]}
+                      awayTeam={fixtureData.players[0]}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <FixturesLink onClick={togglePlayers}>Lineups</FixturesLink>
+
+                    <FixtureLineups
+                      playersDataAvailable={fixtureData.playersDataAvailable}
+                      homeTeam={fixtureData.lineup[0]}
+                      awayTeam={fixtureData.lineup[1]}
+                    />
+                  </>
+                )}
+                <FixturesHR />
+              </>
+            }
           </FixturesContainer>
         </Transition>
       </FixturesWrapper>
