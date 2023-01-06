@@ -17,21 +17,21 @@ interface FixtureEventsProps {
   playersDataAvailable: boolean | undefined;
 }
 
-export const FixturesItemEvents = ({
+export const FixtureEvents = ({
   homeTeam,
   awayTeam,
   playersDataAvailable,
 }: FixtureEventsProps) => {
   const { navigateToPlayer } = useNavigateToPlayer();
-
+  console.log(homeTeam, awayTeam);
 
   const handleEventsIcon = (type: string) => {
     switch (type) {
       case 'Goal':
         return <GiSoccerBall />;
-      case 'Yellow card':
+      case 'Yellow Card':
         return '🟨';
-      case 'Red card':
+      case 'Red Card':
         return '🟥';
       case 'Substitution':
         return '🔄';
@@ -43,51 +43,51 @@ export const FixturesItemEvents = ({
   else if (homeTeam.length === 0 && awayTeam.length === 0) content = null;
   else
     content = (
-      <>
-        <EventsContainer>
-          <EventsItem>
-            {homeTeam.map((event) => (
-              <EventsPlayer key={event.time.elapsed}>
-                <EventsLink
-                  onClick={() =>
-                    playersDataAvailable &&
-                    navigateToPlayer(
-                      event.team.id,
-                      event.team.name,
-                      event.player.id
-                    )
-                  }
-                >
-                  {event.player.name + ' (' + event.time.elapsed + ') '}
-                  {handleEventsIcon(event.type)}
-                </EventsLink>
-              </EventsPlayer>
-            ))}
-          </EventsItem>
-        </EventsContainer>
-        <EventsContainer></EventsContainer>
-        <EventsContainer>
-          <EventsItem>
-            {awayTeam.map((event) => (
-              <EventsPlayer key={event.time.elapsed}>
-                <EventsLink
-                  onClick={() =>
-                    playersDataAvailable &&
-                    navigateToPlayer(
-                      event.team.id,
-                      event.team.name,
-                      event.player.id
-                    )
-                  }
-                >
-                  {event.player.name + ' (' + event.time.elapsed + ') '}
-                  {handleEventsIcon(event.type)}
-                </EventsLink>
-              </EventsPlayer>
-            ))}
-          </EventsItem>
-        </EventsContainer>
-      </>
+      <EventsContainer>
+        <EventsItem>
+          {homeTeam.map((event) => (
+            <EventsPlayer key={event.time.elapsed}>
+              <EventsLink
+                onClick={() =>
+                  playersDataAvailable &&
+                  navigateToPlayer(
+                    event.team.id,
+                    event.team.name,
+                    event.player.id
+                  )
+                }
+              >
+                {event.player.name + ' (' + event.time.elapsed + ') '}
+                {handleEventsIcon(
+                  event.type === 'Card' ? event.detail : event.type
+                )}
+              </EventsLink>
+            </EventsPlayer>
+          ))}
+        </EventsItem>
+        <EventsPlayer></EventsPlayer>
+        <EventsItem>
+          {awayTeam.map((event) => (
+            <EventsPlayer key={event.time.elapsed}>
+              <EventsLink
+                onClick={() =>
+                  playersDataAvailable &&
+                  navigateToPlayer(
+                    event.team.id,
+                    event.team.name,
+                    event.player.id
+                  )
+                }
+              >
+                {event.player.name + ' (' + event.time.elapsed + ') '}
+                {handleEventsIcon(
+                  event.type === 'Card' ? event.detail : event.type
+                )}
+              </EventsLink>
+            </EventsPlayer>
+          ))}
+        </EventsItem>
+      </EventsContainer>
     );
 
   return <>{content}</>;

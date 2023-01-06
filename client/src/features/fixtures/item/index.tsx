@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { FixturesItemEvents } from './events';
+import { FixtureEvents } from './events';
 import {
   useNavigateToVenue,
   useNavigateToTeam,
@@ -8,19 +8,7 @@ import {
 import { useGetFixtureStatisticsQuery, useGetFixtureQuery } from '../api';
 import {
   FixturesContainer,
-  FixturesContent,
-  FixturesDate,
-  FixturesLeague,
   FixturesWrapper,
-  FixturesVenue,
-  FixturesLink,
-  FixturesTeam,
-  FixturesLogo,
-  FixturesBR,
-  FixturesScore,
-  FixturesGoals,
-  FixturesH2H,
-  FixturesHR,
 } from '../styles';
 import { Transition } from '../../../components/Transition';
 import { Loader } from '../../../components/Loader';
@@ -55,6 +43,11 @@ export const FixturesItem = () => {
             />
             <FixtureScore fixture={fixtureData.fixture} />
             <FixtureLinks fixture={fixtureData.fixture} />
+            <FixtureEvents
+              playersDataAvailable={fixtureData.playersDataAvailable}
+              homeTeam={fixtureData.homeEvents}
+              awayTeam={fixtureData.awayEvents}
+            />
           </FixturesContainer>
         </Transition>
       </FixturesWrapper>
