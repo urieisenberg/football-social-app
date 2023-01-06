@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 export const FixturesWrapper = styled.div.attrs({
   className: 'container text-center justify-content-center align-items-center',
 })`
+letter-spacing: 1px;
   @media (max-width: 600px) {
     font-size: 0.8rem;
   }
