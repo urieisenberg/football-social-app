@@ -1,6 +1,4 @@
-import { useParams } from 'react-router-dom';
 import { useNavigateToPlayer } from '../../../../routes/hooks';
-import { useGetFixtureEventsQuery } from '../../api';
 import { Events } from '../../types';
 import { Transition } from '../../../../components/Transition';
 import { GiSoccerBall } from 'react-icons/gi';
@@ -9,6 +7,7 @@ import {
   EventsItem,
   EventsLink,
   EventsPlayer,
+  FixturesHR,
 } from '../../styles';
 
 interface FixtureEventsProps {
@@ -43,52 +42,54 @@ export const FixtureEvents = ({
   else if (homeTeam.length === 0 && awayTeam.length === 0) content = null;
   else
     content = (
-      <EventsContainer>
-        <EventsItem>
-          {homeTeam.map((event) => (
-            <EventsPlayer key={event.time.elapsed}>
-              <EventsLink
-                onClick={() =>
-                  playersDataAvailable &&
-                  navigateToPlayer(
-                    event.team.id,
-                    event.team.name,
-                    event.player.id
-                  )
-                }
-              >
-                {event.player.name + ' (' + event.time.elapsed + ') '}
-                {handleEventsIcon(
-                  event.type === 'Card' ? event.detail : event.type
-                )}
-              </EventsLink>
-            </EventsPlayer>
-          ))}
-        </EventsItem>
-        <EventsPlayer></EventsPlayer>
-        <EventsItem>
-          {awayTeam.map((event) => (
-            <EventsPlayer key={event.time.elapsed}>
-              <EventsLink
-                onClick={() =>
-                  playersDataAvailable &&
-                  navigateToPlayer(
-                    event.team.id,
-                    event.team.name,
-                    event.player.id
-                  )
-                }
-              >
-                {event.player.name + ' (' + event.time.elapsed + ') '}
-                {handleEventsIcon(
-                  event.type === 'Card' ? event.detail : event.type
-                )}
-              </EventsLink>
-            </EventsPlayer>
-          ))}
-        </EventsItem>
-      </EventsContainer>
+      <>
+        <EventsContainer>
+          <EventsItem>
+            {homeTeam.map((event) => (
+              <EventsPlayer key={event.time.elapsed}>
+                <EventsLink
+                  onClick={() =>
+                    playersDataAvailable &&
+                    navigateToPlayer(
+                      event.team.id,
+                      event.team.name,
+                      event.player.id
+                    )
+                  }
+                >
+                  {event.player.name + ' (' + event.time.elapsed + ') '}
+                  {handleEventsIcon(
+                    event.type === 'Card' ? event.detail : event.type
+                  )}
+                </EventsLink>
+              </EventsPlayer>
+            ))}
+          </EventsItem>
+          <EventsPlayer></EventsPlayer>
+          <EventsItem>
+            {awayTeam.map((event) => (
+              <EventsPlayer key={event.time.elapsed}>
+                <EventsLink
+                  onClick={() =>
+                    playersDataAvailable &&
+                    navigateToPlayer(
+                      event.team.id,
+                      event.team.name,
+                      event.player.id
+                    )
+                  }
+                >
+                  {event.player.name + ' (' + event.time.elapsed + ') '}
+                  {handleEventsIcon(
+                    event.type === 'Card' ? event.detail : event.type
+                  )}
+                </EventsLink>
+              </EventsPlayer>
+            ))}
+          </EventsItem>
+        </EventsContainer>
+        <FixturesHR />
+      </>
     );
-
-  return <>{content}</>;
+  return <Transition key="events">{content}</Transition>;
 };
