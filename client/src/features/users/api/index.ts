@@ -9,7 +9,7 @@ import {
   unfollowUser,
   setFollowing,
   setFollowers,
-  setFavFixtures,
+  saveFavFixtures,
 } from '../userSlice';
 
 const URL = '/users';
@@ -71,7 +71,7 @@ export const usersApi = api.injectEndpoints({
       invalidatesTags: [{ type: 'User', id: 'LIST' }],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         const result = await queryFulfilled;
-        console.log(result.data)
+        console.log(result.data);
         dispatch(followUser(result.data));
       },
     }),
@@ -86,6 +86,18 @@ export const usersApi = api.injectEndpoints({
         dispatch(unfollowUser(result.data));
       },
     }),
+    // saveFavFixtures: builder.mutation<User, []>({
+    //   query: (fixtures) => ({
+    //     url: `${URL}/save-fav-fixtures`,
+    //     method: 'PUT',
+    //     body: fixtures,
+    //   }),
+    //   invalidatesTags: [{ type: 'User', id: 'LIST' }],
+    //   async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+    //     const result = await queryFulfilled;
+    //     dispatch(saveFavFixtures(result.data));
+    //   },
+    // }),
   }),
 });
 
