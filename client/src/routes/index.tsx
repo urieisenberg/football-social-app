@@ -14,6 +14,7 @@ import { Feed } from '../pages/Feed';
 import { Contact } from '../pages/Contact';
 import { League } from '../pages/League';
 import { Team } from '../pages/Team';
+import { Profile } from '../pages/Profile';
 
 export const Routes = () => {
   const location = useLocation();
@@ -25,6 +26,7 @@ export const Routes = () => {
         <Route path="league/:leagueid/*" element={<League />} />
         <Route path="team/:teamid/:teamname/*" element={<Team />} />
         <Route path="feed/*" element={<Feed />} />
+        <Route path="profile/:username/*" element={<Profile />} />
         <Route path="contact/*" element={<Contact />} />
         <Route path="*" element={<NotFound />} />
       </Route>
