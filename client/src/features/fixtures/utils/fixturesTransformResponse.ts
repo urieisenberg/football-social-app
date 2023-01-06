@@ -21,7 +21,7 @@ export const transformFixtureResponse = (response: any): any => {
   );
 
   const goalsHome = homeEvents.filter((event: any) => event.type === 'Goal');
-  const cardsHome = homeEvents.filter((event: any) => event.type === 'Card');
+  const cardsHome = homeEvents.filter((event: any) => event.detail === 'Red Card');
   const substitutionsHome = homeEvents.filter(
     (event: any) => event.type === 'Subst'
   );
@@ -31,7 +31,7 @@ export const transformFixtureResponse = (response: any): any => {
   );
 
   const goalsAway = awayEvents.filter((event: any) => event.type === 'Goal');
-  const cardsAway = awayEvents.filter((event: any) => event.type === 'Card');
+  const cardsAway = awayEvents.filter((event: any) => event.detail === 'Red Card');
   const substitutionsAway = awayEvents.filter(
     (event: any) => event.type === 'Subst'
   );
@@ -50,69 +50,6 @@ export const transformFixtureResponse = (response: any): any => {
     players: data.players,
   };
 };
-
-// export const transformFixtureResponse = (response: any): any => {
-//   const data = response.response[0];
-//   const homeEvents = data.events.filter(
-//     (event: any) => event.team.id === data.teams.home.id
-//   );
-
-//   const goalsHome = homeEvents.filter((event: any) => event.type === 'Goal');
-//   const cardsHome = homeEvents.filter((event: any) => event.type === 'Card');
-//   const substitutionsHome = homeEvents.filter(
-//     (event: any) => event.type === 'Subst'
-//   );
-
-//   const awayEvents = data.events.filter(
-//     (event: any) => event.team.id === data.teams.away.id
-//   );
-
-//   const goalsAway = awayEvents.filter((event: any) => event.type === 'Goal');
-//   const cardsAway = awayEvents.filter((event: any) => event.type === 'Card');
-//   const substitutionsAway = awayEvents.filter(
-//     (event: any) => event.type === 'Subst'
-//   );
-
-//   const homeLineups = data.lineups.filter(
-//     (lineup: any) => lineup.team.id === data.teams.home.id
-//   );
-
-//   const awayLineups = data.lineups.filter(
-//     (lineup: any) => lineup.team.id === data.teams.away.id
-//   );
-
-//   const homeStatistics = data.statistics.filter(
-//     (statistic: any) => statistic.team.id === data.teams.home.id
-//   );
-
-//   const awayStatistics = data.statistics.filter(
-//     (statistic: any) => statistic.team.id === data.teams.away.id
-//   );
-
-//   const playersDataAvailable = data.fixture.date.includes('2022');
-
-//   const homeTeam = {
-//     ...data.teams.home,
-//     events: goalsHome.concat(cardsHome, substitutionsHome),
-//     lineup: homeLineups,
-//     statistics: homeStatistics,
-//   };
-
-//   const awayTeam = {
-//     ...data.teams.away,
-//     events: goalsAway.concat(cardsAway, substitutionsAway),
-//     lineup: awayLineups,
-//     statistics: awayStatistics,
-//   };
-
-//   return {
-//     fixture: data.fixture,
-//     league: data.league,
-//     homeTeam,
-//     awayTeam,
-//     playersDataAvailable,
-//   };
-// };
 
 export const transformCurrentRoundResponse = (response: any): any => {
   const previousRound = getPreviousRound(response.response[0]);
