@@ -11,7 +11,7 @@ interface FixtureLinksProps {
 }
 
 export const FixtureLinks = ({ fixture }: FixtureLinksProps) => {
-  const { teamid, teamname, leagueid } = useParams();
+  const { teamid, teamname, leagueid, fixture: fixtureid } = useParams();
   const navigate = useNavigate();
   const { navigateToHeadToHead } = useNavigateToHeadToHead();
   const { navigateToFixture } = useNavigateToFixture();
@@ -27,9 +27,9 @@ export const FixtureLinks = ({ fixture }: FixtureLinksProps) => {
 
   return (
     <>
-      <FixturesLink onClick={navToGameZone}>
+     {!fixtureid && <FixturesLink onClick={navToGameZone}>
         Click to view game zone
-      </FixturesLink>
+      </FixturesLink>}
       <FixturesLink
         onClick={() =>
           navigateToHeadToHead(
