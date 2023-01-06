@@ -50,14 +50,16 @@ export interface FixtureItem {
     short: string;
     elapsed: number;
   };
-  venue: {
-    id: number;
-    name: string;
-    city: string;
-  };
+  venue: VenueFixture;
   teams: {
     home: FixtureTeam;
     away: FixtureTeam;
   };
   goals: HomeAway;
+}
+
+export interface VenueFixture {
+  id: number;
+  name: string;
+  city: string;
 }
