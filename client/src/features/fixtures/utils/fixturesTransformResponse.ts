@@ -13,13 +13,12 @@ export const transformFixtureResponse = (response: any): any => {
     goals: data.goals,
     score: data.score,
   };
-  
 
   const playersDataAvailable = data.fixture.date.includes('2022');
 
-  const homeEvents = data.events.filter(
-    (event: any) => event.team.id === data.teams.home.id
-  );
+  const homeEvents = data.events
+    .filter((event: any) => event.team.id === data.teams.home.id)
+    .sort((a: any, b: any) => a.time.elapsed - b.time.elapsed);
 
   const goalsHome = homeEvents.filter((event: any) => event.type === 'Goal');
   const cardsHome = homeEvents.filter((event: any) => event.type === 'Card');
@@ -27,9 +26,9 @@ export const transformFixtureResponse = (response: any): any => {
     (event: any) => event.type === 'Subst'
   );
 
-  const awayEvents = data.events.filter(
-    (event: any) => event.team.id === data.teams.away.id
-  );
+  const awayEvents = data.events
+    .filter((event: any) => event.team.id === data.teams.away.id)
+    .sort((a: any, b: any) => a.time.elapsed - b.time.elapsed);
 
   const goalsAway = awayEvents.filter((event: any) => event.type === 'Goal');
   const cardsAway = awayEvents.filter((event: any) => event.type === 'Card');
