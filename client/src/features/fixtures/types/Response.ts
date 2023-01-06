@@ -17,7 +17,7 @@ export interface FixtureResponse {
   homeEvents: Events[];
   awayEvents: Events[];
   lineup: FixtureLineup[];
-  statistics: FixturesPlayersStatistics[] | FixtureTeamStatistics[];
+  statistics: FixtureTeamStatistics[];
   playersDataAvailable: boolean;
-  players: PlayerStatistics;
+  players: FixturesPlayersStatistics[];
 }
