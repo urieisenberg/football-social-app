@@ -42,11 +42,11 @@ export const FixturesItem = () => {
               awayTeam={fixtureData.awayEvents}
             />
             <FixturesHR />
-            {/* <FixturePlayersStats
+            <FixturePlayersStats
               playersDataAvailable={fixtureData.playersDataAvailable}
-              homeTeam={fixtureData.statistics[0]}
-              awayTeam={fixtureData.statistics[0]}
-            /> */}
+              homeTeam={fixtureData.players[0]}
+              awayTeam={fixtureData.players[0]}
+            />
           </FixturesContainer>
         </Transition>
       </FixturesWrapper>
