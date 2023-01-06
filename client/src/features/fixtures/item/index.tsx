@@ -18,6 +18,7 @@ import { FixtureLinks } from './links';
 import { FixtureScore } from './score';
 import { FixturePlayersStats } from './statistics/player';
 import { FixtureLineups } from './lineups';
+import { FixtureTeamStats } from './statistics/team';
 
 export const FixturesItem = () => {
   const { fixture } = useParams();
@@ -45,7 +46,7 @@ export const FixturesItem = () => {
             />
             <FixtureScore fixture={fixtureData.fixture} />
             <FixtureLinks fixture={fixtureData.fixture} />
-            { fixtureData.fixture.fixture.status.short !== 'NS' && 
+            {fixtureData.fixture.fixture.status.short !== 'NS' && (
               <>
                 {' '}
                 <FixtureEvents
@@ -78,8 +79,13 @@ export const FixturesItem = () => {
                   </>
                 )}
                 <FixturesHR />
+                <FixtureTeamStats
+                  playersDataAvailable={fixtureData.playersDataAvailable}
+                  homeTeam={fixtureData.statistics[0]}
+                  awayTeam={fixtureData.statistics[1]}
+                />
               </>
-            }
+            )}
           </FixturesContainer>
         </Transition>
       </FixturesWrapper>
