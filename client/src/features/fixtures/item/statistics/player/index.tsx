@@ -7,6 +7,7 @@ import {
   EventsItem,
   EventsPlayer,
   EventsRating,
+  EventsLink,
 } from '../../../styles';
 
 interface FixturePlayersStatsProps {
@@ -35,51 +36,53 @@ export const FixturePlayersStats = ({
       <EventsContainer>
         <EventsItem>
           {homeTeam.players.map((p) => (
-            <EventsPlayer
-              key={p.player.id}
-              onClick={() =>
-                playersDataAvailable &&
-                navigateToPlayer(
-                  homeTeam.team.id,
-                  homeTeam.team.name,
-                  p.player.id
-                )
-              }
-            >
-              <EventsRating>{p.statistics[0].games.rating}</EventsRating>
-              {p.player.name}
-              <></>
-              {handleIcons('Red Card', p.statistics[0].cards.red)}
-              {handleIcons('Yellow Card', p.statistics[0].cards.yellow)}
-              {handleIcons('Goal', p.statistics[0].goals.total)}
-              {handleIcons('Foul', p.statistics[0].fouls.committed)}
-              {handleIcons('Saved', p.statistics[0].goals.saves)}
-            </EventsPlayer>
+            <EventsLink key={p.player.id}>
+              <EventsPlayer
+                onClick={() =>
+                  playersDataAvailable &&
+                  navigateToPlayer(
+                    homeTeam.team.id,
+                    homeTeam.team.name,
+                    p.player.id
+                  )
+                }
+              >
+                <EventsRating>{p.statistics[0].games.rating}</EventsRating>
+                {p.player.name}
+                <></>
+                {handleIcons('Red Card', p.statistics[0].cards.red)}
+                {handleIcons('Yellow Card', p.statistics[0].cards.yellow)}
+                {handleIcons('Goal', p.statistics[0].goals.total)}
+                {handleIcons('Foul', p.statistics[0].fouls.committed)}
+                {handleIcons('Saved', p.statistics[0].goals.saves)}
+              </EventsPlayer>
+            </EventsLink>
           ))}
         </EventsItem>
         <EventsPlayer></EventsPlayer>
         <EventsItem>
           {awayTeam.players.map((p) => (
-            <EventsPlayer
-              key={p.player.id}
-              onClick={() =>
-                playersDataAvailable &&
-                navigateToPlayer(
-                  awayTeam.team.id,
-                  awayTeam.team.name,
-                  p.player.id
-                )
-              }
-            >
-              <EventsRating>{p.statistics[0].games.rating}</EventsRating>
-              {p.player.name}
-              <></>
-              {handleIcons('Red Card', p.statistics[0].cards.red)}
-              {handleIcons('Yellow Card', p.statistics[0].cards.yellow)}
-              {handleIcons('Goal', p.statistics[0].goals.total)}
-              {handleIcons('Foul', p.statistics[0].fouls.committed)}
-              {handleIcons('Saved', p.statistics[0].goals.saves)}
-            </EventsPlayer>
+            <EventsLink key={p.player.id}>
+              <EventsPlayer
+                onClick={() =>
+                  playersDataAvailable &&
+                  navigateToPlayer(
+                    awayTeam.team.id,
+                    awayTeam.team.name,
+                    p.player.id
+                  )
+                }
+              >
+                <EventsRating>{p.statistics[0].games.rating}</EventsRating>
+                {p.player.name}
+                <></>
+                {handleIcons('Red Card', p.statistics[0].cards.red)}
+                {handleIcons('Yellow Card', p.statistics[0].cards.yellow)}
+                {handleIcons('Goal', p.statistics[0].goals.total)}
+                {handleIcons('Foul', p.statistics[0].fouls.committed)}
+                {handleIcons('Saved', p.statistics[0].goals.saves)}
+              </EventsPlayer>
+            </EventsLink>
           ))}
         </EventsItem>
       </EventsContainer>

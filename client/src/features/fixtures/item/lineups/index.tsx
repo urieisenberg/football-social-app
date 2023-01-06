@@ -5,6 +5,7 @@ import { Transition } from '../../../../components/Transition';
 import {
   EventsContainer,
   EventsItem,
+  EventsLink,
   EventsPlayer,
   EventsTitle,
   FixturesHR,
@@ -41,7 +42,7 @@ export const FixtureLineups = ({
           >
             {homeTeam.coach.name}
           </FixturesLink>
-          <FixturesHR/>
+          <FixturesHR />
           <EventsTitle>Start XI</EventsTitle>
           {homeTeam.startXI.map((p) => (
             <EventsPlayer
@@ -55,10 +56,10 @@ export const FixtureLineups = ({
                 )
               }
             >
-              {p.player.name}
+              <EventsLink>{p.player.name}</EventsLink>
             </EventsPlayer>
           ))}
-           <FixturesHR/>
+          <FixturesHR />
           <EventsTitle>Substitutes</EventsTitle>
 
           {homeTeam.substitutes.map((p) => (
@@ -73,13 +74,12 @@ export const FixtureLineups = ({
                 )
               }
             >
-              {p.player.name}
+              <EventsLink>{p.player.name}</EventsLink>
             </EventsPlayer>
           ))}
         </EventsItem>
         <EventsItem></EventsItem>
         <EventsItem>
-
           <EventsTitle>Coach</EventsTitle>
           <FixturesLink
             onClick={() =>
@@ -90,7 +90,7 @@ export const FixtureLineups = ({
           >
             {awayTeam.coach.name}
           </FixturesLink>
-          <FixturesHR/>
+          <FixturesHR />
           <EventsTitle>Start XI</EventsTitle>
           {awayTeam.startXI.map((p) => (
             <EventsPlayer
@@ -104,10 +104,10 @@ export const FixtureLineups = ({
                 )
               }
             >
-              {p.player.name}
+              <EventsLink>{p.player.name}</EventsLink>
             </EventsPlayer>
           ))}
-           <FixturesHR/>
+          <FixturesHR />
           <EventsTitle>Substitutes</EventsTitle>
           {awayTeam.substitutes.map((p) => (
             <EventsPlayer
@@ -121,7 +121,7 @@ export const FixtureLineups = ({
                 )
               }
             >
-              {p.player.name}
+              <EventsLink>{p.player.name}</EventsLink>
             </EventsPlayer>
           ))}
         </EventsItem>
