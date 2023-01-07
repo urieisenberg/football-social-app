@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
+export const ListWrapper = styled.div.attrs(() => ({
+  className: 'container text-center align-items-center',
+}))``;
+
 export const ListContainer = styled.div.attrs(() => ({
   className: 'row row-cols justify-content-center',
 }))``;
@@ -19,12 +23,9 @@ export const ListItem = styled(motion.div).attrs(() => ({
   whileHover: { scale: 1.1 },
   whileTap: { scale: 1.3 },
 }))`
+  cursor: pointer;
   max-width: 300px;
   width: 100%;
-`;
-
-export const ListFixture = styled.div`
-  curso: pointer;
 `;
 
 export const ListImg = styled.img.attrs(() => ({
