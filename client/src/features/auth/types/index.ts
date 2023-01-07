@@ -1,13 +1,11 @@
+import { Team } from "../../teams/types";
+
 export interface User {
   _id: string;
   username: string;
   email: string;
   password: string;
-  team: {
-    id: number;
-    name: string;
-    logo: string;
-  };
+  team: Team; 
   profilePicture: string;
   following: Array<string>;
   followers: Array<string>;
