@@ -20,8 +20,8 @@ router.route('/follow/:id').put(protect, followUser);
 
 router.route('/unfollow/:id').put(protect, unfollowUser);
 
-router.route(':id/followers').get(protect, getFollowers);
+router.route('/:id/followers').get(protect, getFollowers);
 
-router.route(':id/following').get(protect, getFollowing);
+router.route('/:id/following').get(protect, getFollowing);
 
 export { router as userRoutes };
