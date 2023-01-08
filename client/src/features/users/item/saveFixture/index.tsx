@@ -1,7 +1,9 @@
+import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../../../app/hooks';
 import {
   useSaveFavFixturesMutation,
   useDeleteFavFixturesMutation,
+  useGetFavFixturesQuery,
 } from '../../api';
 import { toast } from 'react-toastify';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
@@ -14,24 +16,30 @@ interface SaveFavFixtureProps {
 
 export const SaveFavFixture = ({ fixture }: SaveFavFixtureProps) => {
   const { user } = useAppSelector((state) => state.auth);
-  const { favFixtures } = useAppSelector((state) => state.user);
 
-  const checkDuplicate = favFixtures?.some((f) => f?.id === fixture?.id);
+  const [checkDuplicate, setCheckDuplicate] = useState(false);
 
-  console.log(user);
+  const { data: favFixtures } = useGetFavFixturesQuery(user?._id as string);
 
   const [saveFavFixtures, { isLoading }] = useSaveFavFixturesMutation();
 
   const [deleteFavFixtures, { isLoading: isDeleting }] =
     useDeleteFavFixturesMutation();
 
+  useEffect(() => {
+    const fixtureAlreadyIn = favFixtures?.some(
+      (favFixture) => favFixture?.id === fixture?.id
+    );
+    setCheckDuplicate(fixtureAlreadyIn ? true : false);
+  }, [favFixtures, fixture]);
+
   const onClick = () => {
     if (!checkDuplicate) {
-      saveFavFixtures({ fixture: fixture.id, id: user?._id as string });
+      saveFavFixtures({ fixture, id: user?._id as string });
       toast.success('Fixture is now saved to your favourites');
     } else {
-      deleteFavFixtures({ fixture: fixture.id, id: user?._id as string });
-      toast.error('Fixture is already saved to your favourites');
+      deleteFavFixtures({ fixture, id: user?._id as string });
+      toast.success('Fixture is now removed from your favourites');
     }
   };
 
