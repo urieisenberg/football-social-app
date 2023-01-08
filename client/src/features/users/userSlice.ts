@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User, UserState } from '../../app/types';
+import { FavFixtures, User, UserState } from '../../app/types';
 
 const localStorageUser = JSON.parse(localStorage.getItem('user') || 'null');
 
@@ -42,7 +42,7 @@ const userSlice = createSlice({
     setFollowers: (state, action: PayloadAction<User[]>) => {
       state.followers = action.payload;
     },
-    saveFavFixtures: (state, action: PayloadAction<[]>) => {
+    saveFavFixtures: (state, action: PayloadAction<FavFixtures[]>) => {
       state.favFixtures = action.payload;
     },
   },
