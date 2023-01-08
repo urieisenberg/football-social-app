@@ -1,7 +1,4 @@
-import {
-  useToggle,
-  useNavigateToProfile,
-} from '../../../app/hooks';
+import { useToggle, useNavigateToProfile } from '../../../app/hooks';
 import { Post } from '../../../app/types';
 import { Comments } from '../../comments';
 import { LikePost } from './LikePost';
@@ -15,8 +12,9 @@ import {
   CreatedAt,
   UpdatedAt,
   Text,
+  Follow,
 } from './styles';
-import { FollowUser } from './Follow';
+import { FollowUser } from '../../users/item/follow';
 
 interface PostItemProps {
   post: Post;
@@ -41,7 +39,9 @@ export const PostItem = ({ post }: PostItemProps) => {
             onClick={navigateToProfile}
           />
           <Name onClick={navigateToProfile}>{post.username}</Name>
-          {/* <FollowUser post={post} /> */}
+          <Follow>
+            <FollowUser id={post.user} username={post.username} />
+          </Follow>
           <CreatedAt>{createdAt}</CreatedAt>
           <PostOptions
             post={post}
