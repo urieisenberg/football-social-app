@@ -4,6 +4,7 @@ import { useGetFollowingQuery } from '../../api';
 import { ListWrapper, ListContainer, ListTitle, ListItem } from '../../styles';
 import { Loader } from '../../../../components/Loader';
 import { Card } from '../../../../components/Card';
+import { Transition } from '../../../../components/Transition';
 
 export const FollowingList = () => {
   const navigate = useNavigate();
@@ -17,24 +18,26 @@ export const FollowingList = () => {
     content = <ListTitle> {user?.username} is not following anyone</ListTitle>;
   else if (data && user)
     content = (
-      <ListWrapper>
-        <ListContainer>
-          <ListTitle>
-            {user.following.length}{' '}
-            {user.following.length === 1 ? 'following' : 'following'}
-          </ListTitle>
-          <ListItem>
-            {data.map((following) => (
-              <Card
-                key={following._id}
-                image={following.profilePicture}
-                name={following.username}
-                navigate={() => navigate(`/users/${following.username}`)}
-              />
-            ))}
-          </ListItem>
-        </ListContainer>
-      </ListWrapper>
+      <Transition key="following">
+        <ListWrapper>
+          <ListContainer>
+            <ListTitle>
+              {user.following.length}{' '}
+              {user.following.length === 1 ? 'following' : 'following'}
+            </ListTitle>
+            <ListItem>
+              {data.map((following) => (
+                <Card
+                  key={following._id}
+                  image={following.profilePicture}
+                  name={following.username}
+                  navigate={() => navigate(`/users/${following.username}`)}
+                />
+              ))}
+            </ListItem>
+          </ListContainer>
+        </ListWrapper>
+      </Transition>
     );
 
   return <>{content}</>;
