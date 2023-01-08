@@ -62,7 +62,7 @@ export const usersApi = api.injectEndpoints({
         dispatch(setFollowers(result.data));
       },
     }),
-    followUser: builder.mutation<User, string>({
+    followUser: builder.mutation<User[], string>({
       query: (id) => ({
         url: `${URL}/follow/${id}`,
         method: 'PUT',
@@ -74,7 +74,7 @@ export const usersApi = api.injectEndpoints({
         dispatch(followUser(result.data));
       },
     }),
-    unfollowUser: builder.mutation<User, string>({
+    unfollowUser: builder.mutation<User[], string>({
       query: (id) => ({
         url: `${URL}/unfollow/${id}`,
         method: 'PUT',
@@ -93,7 +93,10 @@ export const usersApi = api.injectEndpoints({
         dispatch(saveFavFixtures(result.data as any));
       },
     }),
-    saveFavFixtures: builder.mutation<string, { id: string; fixture: FavFixtures }>({
+    saveFavFixtures: builder.mutation<
+      string,
+      { id: string; fixture: FavFixtures }
+    >({
       query: ({ id, fixture }) => ({
         url: `${URL + '/' + id}/fixtures/`,
         method: 'PUT',
@@ -106,7 +109,10 @@ export const usersApi = api.injectEndpoints({
         dispatch(saveFavFixtures(result.data as any));
       },
     }),
-    deleteFavFixtures: builder.mutation<string, { id: string; fixture: FavFixtures }>({
+    deleteFavFixtures: builder.mutation<
+      string,
+      { id: string; fixture: FavFixtures }
+    >({
       query: ({ id, fixture }) => ({
         url: `${URL + '/' + id}/fixtures/`,
         method: 'DELETE',
@@ -118,7 +124,6 @@ export const usersApi = api.injectEndpoints({
         dispatch(saveFavFixtures(result.data as any));
       },
     }),
-
   }),
 });
 
