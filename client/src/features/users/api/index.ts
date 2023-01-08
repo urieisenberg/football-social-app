@@ -48,7 +48,7 @@ export const usersApi = api.injectEndpoints({
       },
     }),
     getFollowing: builder.query<User[], string>({
-      query: (id) => `${URL + id}/following/`,
+      query: (id) => `${URL + '/' + id}/following/`,
       providesTags: [{ type: 'User', id: 'LIST' }],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         const result = await queryFulfilled;
@@ -56,10 +56,11 @@ export const usersApi = api.injectEndpoints({
       },
     }),
     getFollowers: builder.query<User[], string>({
-      query: (id) => `${URL + id}/followers/`,
+      query: (id) => `${URL + '/' + id}/followers/`,
       providesTags: [{ type: 'User', id: 'LIST' }],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         const result = await queryFulfilled;
+        console.log(result.data);
         dispatch(setFollowers(result.data));
       },
     }),
