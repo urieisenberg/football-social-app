@@ -9,13 +9,13 @@ export const UserBar = () => {
   const { username } = useParams();
 
   const { data: user, isLoading } = useGetUserQuery(username as string);
-  
+
   return (
     <Transition key="user">
       <BarWrapper>
         <BarContainer>
           <BarTitle>{user?.username}</BarTitle>
-          <BarLogo src={user?.profilePicture} alt={user?.username} />
+          <BarLogo src={user?.team.logo} alt={user?.username} />
         </BarContainer>
       </BarWrapper>
     </Transition>
