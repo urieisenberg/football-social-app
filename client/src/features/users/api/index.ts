@@ -1,5 +1,5 @@
 import { api } from '../../../app/services/server-api';
-import { User } from '../../../app/types';
+import { FavFixtures, User } from '../../../app/types';
 import { store } from '../../../app/store';
 import {
   setUser,
@@ -86,7 +86,7 @@ export const usersApi = api.injectEndpoints({
         dispatch(unfollowUser(result.data));
       },
     }),
-    getFavFixtures: builder.query<User, string[]>({
+    getFavFixtures: builder.query<FavFixtures[], string>({
       query: (id) => `${URL + '/' + id}/fixtures/`,
       providesTags: [{ type: 'User', id: 'LIST' }],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
@@ -94,7 +94,7 @@ export const usersApi = api.injectEndpoints({
         dispatch(saveFavFixtures(result.data as any));
       },
     }),
-    saveFavFixtures: builder.mutation<string, { id: string; fixture: any }>({
+    saveFavFixtures: builder.mutation<string, { id: string; fixture: FavFixtures }>({
       query: ({ id, fixture }) => ({
         url: `${URL + '/' + id}/fixtures/`,
         method: 'PUT',
@@ -103,10 +103,11 @@ export const usersApi = api.injectEndpoints({
       invalidatesTags: [{ type: 'User', id: 'LIST' }],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         const result = await queryFulfilled;
+        console.log(result.data, 'result.data');
         dispatch(saveFavFixtures(result.data as any));
       },
     }),
-    deleteFavFixtures: builder.mutation<string, { id: string; fixture: any }>({
+    deleteFavFixtures: builder.mutation<string, { id: string; fixture: FavFixtures }>({
       query: ({ id, fixture }) => ({
         url: `${URL + '/' + id}/fixtures/`,
         method: 'DELETE',
