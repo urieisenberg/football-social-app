@@ -158,11 +158,10 @@ export const getFollowing = async (req: Request, res: Response) => {
 export const saveFavFixtures = async (req: Request, res: Response) => {
   try {
     const user = await findUser(req.params.id);
-    const { fixture } = req.body;
-    if (user.favFixtures.includes(fixture)) {
+    if (user.favFixtures.some((f) => f?.id === req.body.id)) {
       return res.status(400).send('You already have this fixture saved');
     }
-    user.favFixtures.push(fixture);
+    user.favFixtures.push(req.body);
     await user.save();
     res.status(200).json(user.favFixtures);
   } catch (error: any) {
@@ -173,11 +172,10 @@ export const saveFavFixtures = async (req: Request, res: Response) => {
 export const deleteFavFixture = async (req: Request, res: Response) => {
   try {
     const user = await findUser(req.params.id);
-    const { fixture } = req.body;
-    if (!user.favFixtures.includes(fixture)) {
+    if (!user.favFixtures.some((f) => f?.id === req.body?.id)) {
       return res.status(400).send('You do not have this fixture saved');
     }
-    user.favFixtures = user.favFixtures.filter((f) => f !== fixture);
+    user.favFixtures = user.favFixtures.filter((f) => f?.id !== req.body?.id);
     await user.save();
     res.status(200).json(user.favFixtures);
   } catch (error: any) {
