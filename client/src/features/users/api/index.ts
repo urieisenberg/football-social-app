@@ -60,7 +60,6 @@ export const usersApi = api.injectEndpoints({
       providesTags: [{ type: 'User', id: 'LIST' }],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         const result = await queryFulfilled;
-        console.log(result.data);
         dispatch(setFollowers(result.data));
       },
     }),
@@ -87,6 +86,39 @@ export const usersApi = api.injectEndpoints({
         dispatch(unfollowUser(result.data));
       },
     }),
+    getFavFixtures: builder.query<User, string[]>({
+      query: (id) => `${URL + '/' + id}/fixtures/`,
+      providesTags: [{ type: 'User', id: 'LIST' }],
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        const result = await queryFulfilled;
+        dispatch(saveFavFixtures(result.data as any));
+      },
+    }),
+    saveFavFixtures: builder.mutation<string, { id: string; fixture: any }>({
+      query: ({ id, fixture }) => ({
+        url: `${URL + '/' + id}/fixtures/`,
+        method: 'PUT',
+        body: fixture,
+      }),
+      invalidatesTags: [{ type: 'User', id: 'LIST' }],
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        const result = await queryFulfilled;
+        dispatch(saveFavFixtures(result.data as any));
+      },
+    }),
+    deleteFavFixtures: builder.mutation<string, { id: string; fixture: any }>({
+      query: ({ id, fixture }) => ({
+        url: `${URL + '/' + id}/fixtures/`,
+        method: 'DELETE',
+        body: fixture,
+      }),
+      invalidatesTags: [{ type: 'User', id: 'LIST' }],
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        const result = await queryFulfilled;
+        dispatch(saveFavFixtures(result.data as any));
+      },
+    }),
+
     // saveFavFixtures: builder.mutation<User, []>({
     //   query: (fixtures) => ({
     //     url: `${URL}/save-fav-fixtures`,
