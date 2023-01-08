@@ -12,3 +12,4 @@ export * from '../../features/fixtures/types';
 export * from '../../features/injuries/types';
 export * from '../../features/standings/types';
 export * from '../../features/trophies/types';
+export * from '../../features/users/types';
