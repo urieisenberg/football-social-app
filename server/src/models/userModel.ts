@@ -11,7 +11,24 @@ export interface IUser extends Document {
   };
   following: Array<string>;
   followers: Array<string>;
-  favFixtures: Array<string>;
+  favFixtures: Array<{
+    id: number;
+    date: string;
+    league: {
+      id: number;
+      logo: string;
+    };
+    homeTeam: {
+      id: number;
+      name: string;
+      logo: string;
+    };
+    awayTeam: {
+      id: number;
+      name: string;
+      logo: string;
+    };
+  }>;
 }
 
 const userSchema: Schema = new Schema(
@@ -57,4 +74,3 @@ const userSchema: Schema = new Schema(
 );
 
 export const User = model<IUser>('User', userSchema);
-
