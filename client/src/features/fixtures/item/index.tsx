@@ -19,6 +19,7 @@ import { FixtureScore } from './score';
 import { FixturePlayersStats } from './statistics/player';
 import { FixtureLineups } from './lineups';
 import { FixtureTeamStats } from './statistics/team';
+import { SaveFavFixture } from '../../users/item/saveFixture';
 
 export const FixturesItem = () => {
   const { fixture } = useParams();
@@ -37,6 +38,18 @@ export const FixturesItem = () => {
     content = (
       <FixturesWrapper>
         <Transition key={fixture + 'page'}>
+          <SaveFavFixture
+            fixture={{
+              id: fixtureData.fixture.fixture.id,
+              date: fixtureData.fixture.fixture.date,
+              league: {
+                id: fixtureData.fixture.league.id,
+                logo: fixtureData.fixture.league.logo,
+              },
+              homeTeam: fixtureData.fixture.teams.home,
+              awayTeam: fixtureData.fixture.teams.away,
+            }}
+          />
           <FixturesContainer>
             <FixtureLeague league={fixtureData.fixture.league} />
             <FixtureDate date={fixtureData.fixture.fixture.date} />
