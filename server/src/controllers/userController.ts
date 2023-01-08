@@ -155,6 +155,45 @@ export const getFollowing = async (req: Request, res: Response) => {
   }
 };
 
+export const saveFavFixtures = async (req: Request, res: Response) => {
+  try {
+    const user = await findUser(req.params.id);
+    const { fixture } = req.body;
+    if (user.favFixtures.includes(fixture)) {
+      return res.status(400).send('You already have this fixture saved');
+    }
+    user.favFixtures.push(fixture);
+    await user.save();
+    res.status(200).json(user.favFixtures);
+  } catch (error: any) {
+    handleErrors(res, error);
+  }
+};
+
+export const deleteFavFixture = async (req: Request, res: Response) => {
+  try {
+    const user = await findUser(req.params.id);
+    const { fixture } = req.body;
+    if (!user.favFixtures.includes(fixture)) {
+      return res.status(400).send('You do not have this fixture saved');
+    }
+    user.favFixtures = user.favFixtures.filter((f) => f !== fixture);
+    await user.save();
+    res.status(200).json(user.favFixtures);
+  } catch (error: any) {
+    handleErrors(res, error);
+  }
+};
+
+export const getFavFixtures = async (req: Request, res: Response) => {
+  try {
+    const user = await findUser(req.params.id);
+    res.status(200).json(user.favFixtures);
+  } catch (error: any) {
+    handleErrors(res, error);
+  }
+};
+
 // const followUser = async (req: Request, res: Response) => {
 //   try {
 //     if (req.user.id === req.params.id)
