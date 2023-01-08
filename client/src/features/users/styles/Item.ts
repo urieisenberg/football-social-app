@@ -12,8 +12,8 @@ export const Item = styled(motion.a).attrs({
     scale: 0.9,
   },
 })`
+color: ${({ theme }) => theme.text};
   &:hover {
     cursor: pointer;
-    color: ${({ theme }) => theme.primary};
   }
 `;
