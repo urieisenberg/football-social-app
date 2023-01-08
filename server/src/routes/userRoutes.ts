@@ -8,6 +8,9 @@ import {
   unfollowUser,
   getFollowers,
   getFollowing,
+  getFavFixtures,
+  deleteFavFixture,
+  saveFavFixtures,
 } from '../controllers';
 
 const router = Router();
@@ -23,5 +26,11 @@ router.route('/unfollow/:id').put(protect, unfollowUser);
 router.route('/:id/followers').get(protect, getFollowers);
 
 router.route('/:id/following').get(protect, getFollowing);
+
+router
+  .route('/:id/fixtures')
+  .get(protect, getFavFixtures)
+  .delete(protect, deleteFavFixture)
+  .put(protect, saveFavFixtures);
 
 export { router as userRoutes };
