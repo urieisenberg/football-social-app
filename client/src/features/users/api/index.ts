@@ -142,4 +142,7 @@ export const {
   useGetFollowersQuery,
   useFollowUserMutation,
   useUnfollowUserMutation,
+  useGetFavFixturesQuery,
+  useSaveFavFixturesMutation,
+  useDeleteFavFixturesMutation,
 } = usersApi;
