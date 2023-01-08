@@ -1,8 +1,12 @@
 import { useRoutes, Outlet, Navigate } from 'react-router-dom';
 import { Nav } from '../../components/Nav';
 import { UserBar } from '../../features/users/bar';
-import { FollowersList } from '../../features/users/list/followers';
-import { FollowingList } from '../../features/users/list/following';
+import {
+  FollowersList,
+  FollowingList,
+  FavFixturesList,
+} from '../../features/users/list';
+
 
 export const Profile = () => {
   let elements = useRoutes([
@@ -11,7 +15,7 @@ export const Profile = () => {
     { path: 'following', element: <FollowingList /> },
     { path: 'followers', element: <FollowersList /> },
     { path: 'likes', element: <></> },
-    { path: 'fixtures', element: <></> },
+    { path: 'fixtures', element: <FavFixturesList /> },
   ]);
 
   return (
