@@ -1,15 +1,15 @@
-import { Team } from "../../teams/types";
+import { Team, FavFixtures } from '../../../app/types';
 
 export interface User {
   _id: string;
   username: string;
   email: string;
   password: string;
-  team: Team; 
+  team: Team;
   profilePicture: string;
   following: Array<string>;
   followers: Array<string>;
-  favFixtures: Array<string>;
+  favFixtures: Array<FavFixtures>;
 }
 
 export interface AuthState {
@@ -21,7 +21,7 @@ export interface UserState {
   user: User | null;
   following: Array<User>;
   followers: Array<User>;
-  favFixtures: Array<string>;
+  favFixtures: Array<FavFixtures>;
 }
 
 export interface RegisterUser extends LoginUser {
