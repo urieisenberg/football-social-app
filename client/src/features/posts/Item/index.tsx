@@ -23,7 +23,7 @@ interface PostItemProps {
 
 export const PostItem = ({ post }: PostItemProps) => {
   const { user } = useAppSelector((state) => state.auth);
-  const navigateToProfile = useNavigateToProfile(post.username);
+  const { navigateToProfile } = useNavigateToProfile();
 
   const [showEdit, toggleEdit] = useToggle(false);
   const [showComments, toggleComments] = useToggle(false);
@@ -38,9 +38,11 @@ export const PostItem = ({ post }: PostItemProps) => {
           <Image
             src={post.pic}
             alt={post.username}
-            onClick={navigateToProfile}
+            onClick={() => navigateToProfile(post.username)}
           />
-          <Name onClick={navigateToProfile}>{post.username}</Name>
+          <Name onClick={() => navigateToProfile(post.username)}>
+            {post.username}
+          </Name>
           {post.username !== user?.username && (
             <Follow>
               <FollowUser id={post.user} username={post.username} />
