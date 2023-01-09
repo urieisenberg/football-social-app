@@ -8,7 +8,7 @@
     "start": "node server/dist/index.js",
     "server": "nodemon server/dist/index.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q server/dist/index.js\" \"npm run client\" \"npm run server\"", 
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q server/dist/index.js\" \"npm run client\" \"npm run server\"",
     "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
@@ -39,6 +39,6 @@
     "zod": "^3.19.1"
   },
   "engines": {
-    "node": "12.x"
+    "node": "18.x"
   }
 }
