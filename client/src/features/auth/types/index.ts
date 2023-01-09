@@ -10,6 +10,7 @@ export interface User {
   following: Array<string>;
   followers: Array<string>;
   favFixtures: Array<FavFixtures>;
+  createdAt?: string;
 }
 
 export interface AuthState {
