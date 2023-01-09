@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../../../../app/hooks';
 import { useGetFollowersQuery } from '../../api';
-import { ListWrapper, ListContainer, ListTitle, ListItem } from '../../styles';
+import { ListProfile, ListWrapper, ListContainer, ListTitle } from '../../styles';
 import { Loader } from '../../../../components/Loader';
 import { Card } from '../../../../components/Card';
 import { Transition } from '../../../../components/Transition';
@@ -26,16 +26,16 @@ export const FollowersList = () => {
               {user.followers.length}{' '}
               {user.followers.length === 1 ? 'follower' : 'followers'}
             </ListTitle>
-            <ListItem>
+            <ListProfile>
               {data.map((follower) => (
                 <Card
                   key={follower._id}
-                  image={follower.profilePicture}
+                  image={follower?.team?.logo}
                   name={follower.username}
                   navigate={() => navigate(`/users/${follower.username}`)}
                 />
               ))}
-            </ListItem>
+            </ListProfile>
           </ListContainer>
         </ListWrapper>
       </Transition>
