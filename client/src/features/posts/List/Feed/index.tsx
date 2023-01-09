@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useAppSelector } from '../../../../app/hooks/useAppSelector';
 import { useGetPostsQuery, useSearchPostsQuery } from '../../api';
@@ -11,7 +11,6 @@ export const PostsFeed = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
   const { pathname } = location;
-  const { user } = useAppSelector((state) => state.auth);
 
   const { posts } = useAppSelector((state) => state.post);
 
@@ -34,12 +33,6 @@ export const PostsFeed = () => {
     ?.filter((post: Post) => post.comments?.length > 0)
     .sort((a, b) => b.comments?.length - a.comments?.length);
 
-  // const postsToRender = (path: string) => {
-  //   if (path.includes('likes')) return mostLikedPosts;
-  //   else if (path.includes('comments')) return mostCommentedPosts;
-  //   else if (searchedPosts) return searchedPosts;
-  //   else return posts;
-  // };
 
   const filterPath = pathname.substring(pathname.lastIndexOf('/') + 1);
 
@@ -57,15 +50,6 @@ export const PostsFeed = () => {
         return posts;
     }
   };
-
-  // let content;
-  // if (filterPath === 'oldest') {
-  //   content = postsToRender(filterPath);
-  // } else {
-  //   content = postsToRender(filterPath)
-  //     .map((post: Post) => post)
-  //     .reverse();
-  // }
 
   const onSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
