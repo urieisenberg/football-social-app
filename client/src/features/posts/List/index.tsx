@@ -18,7 +18,7 @@ interface PostListProps {
 
 export const PostList = ({ title, posts, searchPosts }: PostListProps) => {
   let content;
-  if (posts?.length === 0)
+  if (posts?.length === 0 || !posts)
     content = <ListNotFound>No posts found</ListNotFound>;
   else
     content = (
