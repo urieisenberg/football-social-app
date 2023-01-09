@@ -12,9 +12,10 @@ import { Item } from '../../styles';
 interface FollowUserProps {
   username: string;
   id: string;
+  size?: number;
 }
 
-export const FollowUser = ({ id, username }: FollowUserProps) => {
+export const FollowUser = ({ id, username, size }: FollowUserProps) => {
   const { user } = useAppSelector((state) => state.auth);
 
   const [checkIfFollowing, setCheckIfFollowing] = useState(false);
@@ -59,7 +60,7 @@ export const FollowUser = ({ id, username }: FollowUserProps) => {
         data-bs-placement="bottom"
         title="follow user"
       >
-        <AiOutlineUserAdd size={16} />
+        <AiOutlineUserAdd size={size || 16} />
       </Item>
     );
   } else {
@@ -70,7 +71,7 @@ export const FollowUser = ({ id, username }: FollowUserProps) => {
         data-bs-placement="bottom"
         title="unfollow user"
       >
-        <AiOutlineUserDelete size={16} />
+        <AiOutlineUserDelete size={size || 16} />
       </Item>
     );
   }
