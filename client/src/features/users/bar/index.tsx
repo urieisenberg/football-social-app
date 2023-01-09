@@ -1,6 +1,7 @@
 // import { useAppSelector } from '../../../app/hooks';
 import { useParams } from 'react-router-dom';
 import { useGetUserQuery } from '../api';
+import { FollowUser } from '../item/follow';
 import { Transition } from '../../../components/Transition';
 import { BarWrapper, BarContainer, BarTitle, BarLogo } from '../styles';
 
@@ -16,6 +17,13 @@ export const UserBar = () => {
         <BarContainer>
           <BarTitle>{user?.username}</BarTitle>
           <BarLogo src={user?.team.logo} alt={user?.username} />
+          <BarTitle>
+            <FollowUser
+              id={user?._id as string}
+              username={user?.username as string}
+              size={30}
+            />
+          </BarTitle>
         </BarContainer>
       </BarWrapper>
     </Transition>
