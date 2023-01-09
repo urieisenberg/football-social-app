@@ -10,6 +10,7 @@ import {
   ListSubtitle,
   ListDate,
 } from '../../styles';
+import { RemoveFavFixture } from '../../item/removeFixture';
 import { Loader } from '../../../../components/Loader';
 import { Transition } from '../../../../components/Transition';
 
@@ -17,9 +18,9 @@ export const FavFixturesList = () => {
   const { user } = useAppSelector((state) => state.user);
   const { navigateToFixture } = useNavigateToFixture();
 
-  const { data, isSuccess, isLoading } = useGetFavFixturesQuery(user?._id as string);
-
-  console.log(data);
+  const { data, isSuccess, isLoading } = useGetFavFixturesQuery(
+    user?._id as string
+  );
 
   let content;
   if (isLoading) content = <Loader />;
@@ -40,30 +41,32 @@ export const FavFixturesList = () => {
           {/* clear all  */}
           <ListContainer>
             {data.map((fixture) => (
-              <ListItem
-                key={fixture.id}
-                onClick={() =>
-                  navigateToFixture(
-                    fixture.homeTeam.id as unknown as string,
-                    fixture.homeTeam.name,
-                    fixture.id
-                  )
-                }
-              >
-                <ListDate>
-                  {new Date(fixture.date).toLocaleDateString()}
-                </ListDate>
-                <ListImg
-                  src={fixture.homeTeam.logo}
-                  alt={fixture.homeTeam.name}
-                />
-                <ListImg
-                  src={fixture.awayTeam.logo}
-                  alt={fixture.awayTeam.name}
-                />
-                <ListSubtitle>
-                  {fixture.homeTeam.name} vs {fixture.awayTeam.name}
-                </ListSubtitle>
+              <ListItem key={fixture.id}>
+                <RemoveFavFixture fixture={fixture} />
+                <div
+                  onClick={() =>
+                    navigateToFixture(
+                      fixture.homeTeam.id as unknown as string,
+                      fixture.homeTeam.name,
+                      fixture.id
+                    )
+                  }
+                >
+                  <ListDate>
+                    {new Date(fixture.date).toLocaleDateString()}
+                  </ListDate>
+                  <ListImg
+                    src={fixture.homeTeam.logo}
+                    alt={fixture.homeTeam.name}
+                  />
+                  <ListImg
+                    src={fixture.awayTeam.logo}
+                    alt={fixture.awayTeam.name}
+                  />
+                  <ListSubtitle>
+                    {fixture.homeTeam.name} vs {fixture.awayTeam.name}
+                  </ListSubtitle>
+                </div>
               </ListItem>
             ))}
           </ListContainer>
@@ -71,6 +74,5 @@ export const FavFixturesList = () => {
       </Transition>
     );
 
-
-  return <> {content} </> ;
+  return <> {content} </>;
 };
