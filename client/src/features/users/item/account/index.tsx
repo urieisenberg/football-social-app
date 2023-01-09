@@ -1,4 +1,4 @@
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useGetUserQuery } from '../../api';
 import {
   useNavigateToTeam,
@@ -12,7 +12,6 @@ export const UserAccount = () => {
 
   const { navigateToTeam } = useNavigateToTeam();
   const { navigateToProfile } = useNavigateToProfile();
-  const navigate = useNavigate();
 
   const { data: user } = useGetUserQuery(username as string);
 
