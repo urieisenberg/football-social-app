@@ -24,7 +24,6 @@ export const createPost = async (req: Request, res: Response) => {
       comments: [],
       likes: [],
     });
-
     if (post) await post.save();
     res.status(200).json(post);
   } catch (error: any) {
@@ -81,9 +80,10 @@ export const getPosts = async (req: Request, res: Response) => {
 
 export const getTeamPosts = async (req: Request, res: Response) => {
   try {
+    const { teamname } = req.params;
     const posts = await Post.find({
       type: 'team',
-      team: req.user.team.id,
+      team: teamname,
     }).sort({ createdAt: -1 });
     if (posts) res.status(200).json(posts);
     else res.status(404).send(`No posts found for ${req.user.team.name}`);
