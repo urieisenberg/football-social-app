@@ -7,7 +7,7 @@ import { connectDB } from './config/connectDB';
 import { authRoutes, ticketRoutes, postRoutes, userRoutes } from './routes';
 
 const app: Application = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4747;
 
 dotevn.config();
 connectDB();
