@@ -1,3 +1,4 @@
+import { useAppSelector } from '../../../app/hooks';
 import { useToggle, useNavigateToProfile } from '../../../app/hooks';
 import { Post } from '../../../app/types';
 import { Comments } from '../../comments';
@@ -21,6 +22,7 @@ interface PostItemProps {
 }
 
 export const PostItem = ({ post }: PostItemProps) => {
+  const { user } = useAppSelector((state) => state.auth);
   const navigateToProfile = useNavigateToProfile(post.username);
 
   const [showEdit, toggleEdit] = useToggle(false);
@@ -39,9 +41,11 @@ export const PostItem = ({ post }: PostItemProps) => {
             onClick={navigateToProfile}
           />
           <Name onClick={navigateToProfile}>{post.username}</Name>
-          <Follow>
-            <FollowUser id={post.user} username={post.username} />
-          </Follow>
+          {post.username !== user?.username && (
+            <Follow>
+              <FollowUser id={post.user} username={post.username} />
+            </Follow>
+          )}
           <CreatedAt>{createdAt}</CreatedAt>
           <PostOptions
             post={post}
