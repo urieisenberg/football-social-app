@@ -102,7 +102,7 @@ export const Sidebar = () => {
           <Item
             title="Account"
             icon={<IoSettingsOutline size={20} />}
-            link={`account/${user?._id}`}
+            link={`account/${user?._id}/${user?.username}`}
           />
           <Item
             title={<span className="logout">Logout</span>}
