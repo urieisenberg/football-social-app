@@ -7,6 +7,7 @@ import {
   NavContent,
   NavLink,
 } from './styles';
+import { IoSettingsOutline } from 'react-icons/io5';
 
 interface NavProps {
   links: string[];
@@ -38,7 +39,7 @@ export const Nav = ({ links, mini }: NavProps) => {
                 to={link.replaceAll(' ', '/')}
                 active={pathMatch(link, 'includes') ? 'true' : 'false'}
               >
-                {link}
+                {link === 'settings' ? <IoSettingsOutline /> : link}
               </NavLink>
             </NavItem>
           ))}
