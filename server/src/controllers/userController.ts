@@ -97,29 +97,9 @@ export const getFollowers = async (req: Request, res: Response) => {
         return findUser(follower);
       })
     );
-    // let followersList: {
-    //   _id: string;
-    //   username: string;
-    //   followers: string[];
-    //   following: string[];
-    //   team: string;
-    //   pic: string;
-    // }[] = [];
-    // followers.map((follower) => {
-    //   const { _id, username, followers, following, team } = follower;
-    //   followersList.push({
-    //     _id,
-    //     username,
-    //     followers,
-    //     following,
-    //     team: team.name,
-    //     pic: team.logo,
-    //   });
-    // });
     let followersList: typeof User[] = [];
     followers.push(followersList as any);
-
-    res.status(200).json(followersList);
+    res.status(200).json(followers);
   } catch (error: any) {
     handleErrors(res, error);
   }
@@ -133,29 +113,9 @@ export const getFollowing = async (req: Request, res: Response) => {
         return findUser(follow);
       })
     );
-    console.log(following);
-    // let followingList: {
-    //   _id: string;
-    //   username: string;
-    //   followers: string[];
-    //   following: string[];
-    //   team: string;
-    //   pic: string;
-    // }[] = [];
-    // following.map((follow) => {
-    //   const { _id, username, followers, following, team } = follow;
-    //   followingList.push({
-    //     _id,
-    //     username,
-    //     followers,
-    //     following,
-    //     team: team.name,
-    //     pic: team.logo,
-    //   });
-    // });
     let followingList: typeof User[] = [];
     following.push(followingList as any);
-    res.status(200).json(followingList);
+    res.status(200).json(following);
   } catch (error: any) {
     handleErrors(res, error);
   }
