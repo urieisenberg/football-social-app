@@ -9,6 +9,11 @@ export const ListContainer = styled.div.attrs(() => ({
   className: 'row row-cols justify-content-center',
 }))``;
 
+export const ListProfile = styled.div.attrs(() => ({
+  className:
+    'row row-cols-auto mb-4 mt-4 m-auto align-items-center justify-content-center',
+}))``;
+
 export const ListTitle = styled.h4.attrs(() => ({
   className: 'text-center',
 }))`
