@@ -12,7 +12,9 @@ export const Item = styled(motion.a).attrs({
     scale: 0.9,
   },
 })`
-color: ${({ theme }) => theme.text};
+  text-decoration: none;
+  margin: 0 10px;
+  color: ${({ theme }) => theme.text};
   &:hover {
     cursor: pointer;
   }
