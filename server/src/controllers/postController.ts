@@ -6,6 +6,7 @@ import {
   findPost,
   validateUpdate,
   handleErrors,
+  findUser,
 } from '../helpers';
 
 export const createPost = async (req: Request, res: Response) => {
@@ -108,7 +109,8 @@ export const getUserPosts = async (req: Request, res: Response) => {
 
 export const getLikedPosts = async (req: Request, res: Response) => {
   try {
-    const user = req.user;
+    const user = await User.findOne({ username: req.params.username });
+    if (!user) return res.status(404).send('User not found');
     const posts = await Post.find({
       type: 'feed',
       likes: user.id,
@@ -139,7 +141,8 @@ export const searchPosts = async (req: Request, res: Response) => {
 
 export const searchUserPosts = async (req: Request, res: Response) => {
   try {
-    const user = req.user;
+    const user = await User.findOne({ username: req.params.username });
+    if (!user) return res.status(404).send('User not found');
     const { searchTerm } = req.params;
     const posts = await Post.find({
       type: 'feed',
