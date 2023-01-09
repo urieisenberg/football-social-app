@@ -1,16 +1,32 @@
 import { useAppSelector } from '../../../../app/hooks';
-import { useGetTeamPostsQuery } from '../../api';
+import { useGetTeamPostsQuery, useCreatePostMutation } from '../../api';
+import { postSchema } from '../../utils/postSchema';
+import { CreatePost } from '../../../../app/types';
 import { PostList } from '..';
+import { Form } from '../../../../components/Form';
 
 export const PostsTeam = () => {
-  const { teamPosts } = useAppSelector((state) => state.post);
   const { user } = useAppSelector((state) => state.auth);
 
-  const { data, isLoading } = useGetTeamPostsQuery();
+  const { data, isLoading } = useGetTeamPostsQuery(user?.team?.name as string);
 
-  let content;
-  if (isLoading) content = <div>Loading...</div>;
-  else content = <PostList title={` ${user?.team?.name} feed`} posts={data} />;
+  const [createPost] = useCreatePostMutation();
 
-  return <>{content}</>;
+  const onSubmit = async (data: CreatePost) => {
+    await createPost({
+      text: data.text,
+      type: 'team',
+    });
+  };
+  return (
+    <>
+      <Form
+        title="post"
+        text={`Share something with ${user?.team?.name} fans`}
+        schema={postSchema}
+        onSubmit={onSubmit}
+      />
+      <PostList title={` ${user?.team?.name} private feed`} posts={data} />
+    </>
+  );
 };
