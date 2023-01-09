@@ -6,9 +6,9 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node server/dist/index.js",
-    "server": "nodemon -q dist/index.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\" \"npm run client\" \"npm run server\"",
+    "server": "nodemon server/dist/index.js",
     "client": "npm start --prefix client",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q server/dist/index.js\" \"npm run client\" \"npm run server\"", 
     "heroku-postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
