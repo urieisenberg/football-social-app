@@ -21,7 +21,10 @@ export const Profile = () => {
     { path: 'followers', element: <FollowersList /> },
     { path: 'likes', element: <UserLikedPosts /> },
     { path: 'fixtures', element: <FavFixturesList /> },
-    { path: 'settings', element: <Navigate to={`/account/${user?._id}`} /> },
+    {
+      path: 'settings',
+      element: <Navigate to={`/account/${user?._id}/${user?.username}`} />,
+    },
   ]);
 
   const links = () => {
