@@ -1,0 +1,20 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "server/**/*.{js,ts,tsx}",
+        "use": "@vercel/node",
+        "config": {
+          "distDir": "server/dist"
+        }
+      },
+      {
+        "src": "client/**/*.{js,ts,tsx}",
+        "use": "@vercel/node",
+        "config": {
+          "distDir": "client/build"
+        }
+      }
+    ]
+  }
+  
