@@ -29,7 +29,7 @@ export const Routes = () => {
         <Route path="feed/*" element={<Feed />} />
         <Route path="profile/:username/*" element={<Profile />} />
         <Route path="contact/*" element={<Contact />} />
-        <Route path="account/:userid/*" element={<Account />} />
+        <Route path="account/:userid/:username/*" element={<Account />} />
         <Route path="*" element={<NotFound />} />
       </Route>
       {/* Public Routes */}
