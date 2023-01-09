@@ -32,7 +32,7 @@ router
   .route('/:username/search/:searchTerm?')
   .get(protect, searchUserPosts);
 
-router.route('/team').get(protect, getTeamPosts);
+router.route('/team/:teamname').get(protect, getTeamPosts);
 
 router.route('/:username/liked').get(protect, getLikedPosts);
 
