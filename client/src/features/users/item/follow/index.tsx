@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useAppSelector } from '../../../../app/hooks';
 import {
-  useGetFollowersQuery,
   useFollowUserMutation,
   useUnfollowUserMutation,
+  useGetFollowingQuery,
 } from '../../api';
 import { toast } from 'react-toastify';
 import { AiOutlineUserAdd, AiOutlineUserDelete } from 'react-icons/ai';
@@ -16,28 +16,27 @@ interface FollowUserProps {
 
 export const FollowUser = ({ id, username }: FollowUserProps) => {
   const { user } = useAppSelector((state) => state.auth);
-  const { following } = useAppSelector((state) => state.user);
 
   const [checkIfFollowing, setCheckIfFollowing] = useState(false);
 
-  const { data: followers } = useGetFollowersQuery(user?._id as string);
+  const { data: following } = useGetFollowingQuery(user?._id as string);
+
 
   const [followUser, { isLoading }] = useFollowUserMutation();
 
   const [unfollowUser, { isLoading: isUnfollowing }] =
     useUnfollowUserMutation();
 
-  console.log(followers);
-  console.log(checkIfFollowing);
-
   useEffect(() => {
-    const userAlreadyFollowing = following?.some(
-      (follower) => follower._id === user?._id
-    );
-    setCheckIfFollowing(userAlreadyFollowing ? true : false);
-  }, [following, user]);
+    const userAlreadyFollowing = following
+      ?.map((user) => user._id)
+      .includes(id);
+
+    setCheckIfFollowing(userAlreadyFollowing as boolean);
+  }, [following, user?._id, id]);
 
   const onClick = () => {
+    console.log(id, 'id');
     if (!checkIfFollowing) {
       followUser(id);
       toast.success(`You are now following ${username}`, {
