@@ -1,8 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { FavFixtures, User, UserState } from '../../app/types';
 
-const localStorageUser = JSON.parse(localStorage.getItem('user') || 'null');
-
 const userSlice = createSlice({
   name: 'user',
   initialState: {
@@ -20,6 +18,7 @@ const userSlice = createSlice({
     },
     deleteUser: (state) => {
       state.user = null;
+      localStorage.clear();
     },
     followUser: (state, action: PayloadAction<User[]>) => {
       state.following = action.payload;
