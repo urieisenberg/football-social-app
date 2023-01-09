@@ -15,6 +15,7 @@ import { Contact } from '../pages/Contact';
 import { League } from '../pages/League';
 import { Team } from '../pages/Team';
 import { Profile } from '../pages/Profile';
+import { Account } from '../pages/Account';
 
 export const Routes = () => {
   const location = useLocation();
@@ -28,6 +29,7 @@ export const Routes = () => {
         <Route path="feed/*" element={<Feed />} />
         <Route path="profile/:username/*" element={<Profile />} />
         <Route path="contact/*" element={<Contact />} />
+        <Route path="account/:userid/*" element={<Account />} />
         <Route path="*" element={<NotFound />} />
       </Route>
       {/* Public Routes */}
