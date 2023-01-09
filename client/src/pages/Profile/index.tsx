@@ -6,15 +6,15 @@ import {
   FollowingList,
   FavFixturesList,
 } from '../../features/users/list';
-
+import { UserPosts, UserLikedPosts } from '../../features/posts/list/user';
 
 export const Profile = () => {
   let elements = useRoutes([
     { path: '', element: <Navigate to="posts" /> },
-    { path: 'posts', element: <></> },
+    { path: 'posts', element: <UserPosts /> },
     { path: 'following', element: <FollowingList /> },
     { path: 'followers', element: <FollowersList /> },
-    { path: 'likes', element: <></> },
+    { path: 'likes', element: <UserLikedPosts /> },
     { path: 'fixtures', element: <FavFixturesList /> },
   ]);
 
