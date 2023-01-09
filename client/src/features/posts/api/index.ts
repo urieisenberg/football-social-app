@@ -86,9 +86,13 @@ export const postsApi = api.injectEndpoints({
         dispatch(setTeamPosts(result.data));
       },
     }),
-    getLikedPost: builder.query<Post[], number>({
-      query: () => `${URL}/liked`,
-      providesTags: [{ type: 'Post', id: 'LIKED' }],
+    getLikedPost: builder.query<Post[], string>({
+      query: (username) => `${URL}/${username}/liked`,
+      providesTags: [
+        { type: 'Post', id: 'LIKED' },
+        { type: 'Post', id: 'USER' },
+        { type: 'Post', id: 'LIST' },
+      ],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         const result = await queryFulfilled;
         dispatch(setLikedPosts(result.data));
@@ -96,7 +100,11 @@ export const postsApi = api.injectEndpoints({
     }),
     getUserPosts: builder.query<Post[], string>({
       query: (username) => `${URL}/${username}`,
-      providesTags: [{ type: 'Post', id: 'USER' }],
+      providesTags: [
+        { type: 'Post', id: 'LIKED' },
+        { type: 'Post', id: 'USER' },
+        { type: 'Post', id: 'LIST' },
+      ],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         const result = await queryFulfilled;
         dispatch(setUserPosts(result.data));
