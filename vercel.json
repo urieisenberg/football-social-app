@@ -1,20 +1,31 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "server/**/*.{js,ts,tsx}",
-        "use": "@vercel/node",
-        "config": {
-          "distDir": "server/dist"
-        }
-      },
-      {
-        "src": "client/**/*.{js,ts,tsx}",
-        "use": "@vercel/node",
-        "config": {
-          "distDir": "client/build"
-        }
-      }
-    ]
+  "version": 2,
+  "builds": [
+  {
+  "src": "client/package.json",
+  "use": "@vercel/ncc",
+  "config": {
+  "alias": {
+  "react-dom": "preact/compat",
+  "react": "preact/compat"
   }
-  
+  }
+  },
+  {
+  "src": "server/index.ts",
+  "use": "@vercel/node",
+  "config": {
+  "distDir": "server"
+  }
+  }
+  ],
+  "routes": [
+  {
+  "handle": "filesystem"
+  },
+  {
+  "src": "/api/(.*)",
+  "dest": "server/api/$1"
+  }
+  ]
+  }
