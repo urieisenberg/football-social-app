@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx tsc",
+    "build": "npx tsc --project server",
     "start": "node server/dist/index.js",
     "server": "nodemon server/dist/index.js",
     "client": "npm start --prefix client",
