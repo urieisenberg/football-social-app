@@ -4,7 +4,7 @@ import { RootState } from '../store';
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://football-social-api.vercel.app',
+    baseUrl: 'https://football-social-api.vercel.app/api',
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
       if (token) {
