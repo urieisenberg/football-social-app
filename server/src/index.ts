@@ -20,6 +20,8 @@ const corsOptions = {
   accessControlAllowOrigin: '*',
 };
 
+app.options('*', cors());
+
 app.use(morgan(':method :url :status :response-time ms'.bgWhite));
 app.use(cors(corsOptions));
 app.use(express.json());
