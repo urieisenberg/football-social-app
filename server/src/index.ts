@@ -21,9 +21,8 @@ const corsOptions = {
 };
 
 app.options('*', cors());
-
-app.use(morgan(':method :url :status :response-time ms'.bgWhite));
 app.use(cors(corsOptions));
+app.use(morgan(':method :url :status :response-time ms'.bgWhite));
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
