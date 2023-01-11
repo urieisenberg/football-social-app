@@ -14,10 +14,12 @@ dotevn.config();
 connectDB();
 
 const corsOptions = {
-  origin: 'https://football-social-app.vercel.app',
+  origin: '*',
   optionsSuccessStatus: 200,
   credentials: true,
   accessControlAllowOrigin: '*',
+  accessControlAllowHeaders: '*',
+  accessControlAllowMethods: '*',
 };
 
 app.options('*', cors());
