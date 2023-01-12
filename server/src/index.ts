@@ -14,7 +14,7 @@ dotevn.config();
 connectDB();
 
 const corsOptions = {
-  origin: 'https://football-social-app.vercel.app',
+  origin: ['https://football-social-71wvj7j9p-cpcompany1017.vercel.app', 'https://football-social-app.vercel.app'],
   optionsSuccessStatus: 200,
   credentials: true,
   accessControlAllowOrigin: '*',
