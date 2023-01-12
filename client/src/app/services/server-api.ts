@@ -6,6 +6,10 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://football-social-api.vercel.app/api',
     prepareHeaders: (headers, { getState }) => {
+      headers.set(
+        'Access-Control-Allow-Origin',
+        'https://football-social-app.vercel.app/'
+      );
       const token = (getState() as RootState).auth.token;
       if (token) {
         headers.set('authorization', `Bearer ${token}`);
