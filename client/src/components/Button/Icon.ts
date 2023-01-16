@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export interface IconButtonProps {
   size?: number;
-  home?: boolean;
+  home?: 'true' | 'false';
 }
 
 export const IconButton = styled(motion.button).attrs({
