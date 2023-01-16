@@ -3,6 +3,7 @@ import path from 'path';
 import dotevn from 'dotenv';
 import morgan from 'morgan';
 import cors from 'cors';
+import helmet from 'helmet';
 import 'colors';
 import { connectDB } from './config/connectDB';
 import { authRoutes, ticketRoutes, postRoutes, userRoutes } from './routes';
@@ -13,9 +14,9 @@ const port = process.env.PORT || 4747;
 dotevn.config();
 connectDB();
 
-
 app.options('*', cors());
 app.use(cors());
+app.use(helmet());
 app.use(morgan(':method :url :status :response-time ms'.bgWhite));
 app.use(express.json());
 
