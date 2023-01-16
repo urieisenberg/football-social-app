@@ -14,9 +14,7 @@ const port = process.env.PORT || 4747;
 dotevn.config();
 connectDB();
 
-app.options('/*', (_, res) => {
-  res.sendStatus(200);
-});
+app.options('*', cors());
 app.use(cors());
 app.use(helmet());
 app.use(morgan(':method :url :status :response-time ms'.bgWhite));
