@@ -93,7 +93,6 @@ export const getTicketById = async (req: Request, res: Response) => {
     const ticket = await findTicket(req.params.id);
     res.status(200).json(ticket);
   } catch (error: any) {
-    console.log(error);
     handleErrors(res, error);
   }
 };

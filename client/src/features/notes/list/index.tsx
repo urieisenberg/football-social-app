@@ -25,7 +25,6 @@ export const Notes = ({ ticketId }: NotesProps) => {
     });
   };
 
-  console.log(data)
 
   let content;
   if (data?.length)

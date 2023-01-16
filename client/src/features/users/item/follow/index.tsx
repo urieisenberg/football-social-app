@@ -37,7 +37,6 @@ export const FollowUser = ({ id, username, size }: FollowUserProps) => {
   }, [following, user?._id, id]);
 
   const onClick = () => {
-    console.log(id, 'id');
     if (!checkIfFollowing) {
       followUser(id);
       toast.success(`You are now following ${username}`, {

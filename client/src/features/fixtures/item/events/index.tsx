@@ -21,7 +21,6 @@ export const FixtureEvents = ({
   playersDataAvailable,
 }: FixtureEventsProps) => {
   const { navigateToPlayer } = useNavigateToPlayer();
-  console.log(homeTeam, awayTeam);
 
   let content;
   if (homeTeam === undefined || awayTeam === undefined) content = null;

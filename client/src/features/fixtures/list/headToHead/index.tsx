@@ -6,7 +6,6 @@ import { FixturesList } from '..';
 export const HeadToHeadFixturesList = () => {
     const { teamids } = useParams();
 
-    console.log(teamids);
     const { data, error, isLoading, isSuccess } = useGetHeadToHeadQuery(teamids as string);
 
     let content;

@@ -70,7 +70,6 @@ export const usersApi = api.injectEndpoints({
       invalidatesTags: [{ type: 'User', id: 'LIST' }],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         const result = await queryFulfilled;
-        console.log(result.data);
         dispatch(followUser(result.data));
       },
     }),
@@ -105,7 +104,6 @@ export const usersApi = api.injectEndpoints({
       invalidatesTags: [{ type: 'User', id: 'LIST' }],
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         const result = await queryFulfilled;
-        console.log(result.data, 'result.data');
         dispatch(saveFavFixtures(result.data as any));
       },
     }),

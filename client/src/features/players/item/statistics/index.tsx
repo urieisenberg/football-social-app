@@ -16,7 +16,6 @@ interface PlayersItemStatisticsProps {
 export const PlayersItemStatistics = ({
   stats,
 }: PlayersItemStatisticsProps) => {
-  console.log(stats);
   return (
     <Transition key="players-stats">
       <PlayersLine />
