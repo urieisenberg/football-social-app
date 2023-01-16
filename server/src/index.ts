@@ -13,14 +13,6 @@ const port = process.env.PORT || 4747;
 dotevn.config();
 connectDB();
 
-// const corsOptions = {
-//   origin: '*',
-//   optionsSuccessStatus: 200,
-//   credentials: true,
-//   accessControlAllowOrigin: '*',
-//   accessControlAllowHeaders: '*',
-//   accessControlAllowMethods: '*',
-// };
 
 app.options('*', cors());
 app.use(cors());
