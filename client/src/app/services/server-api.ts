@@ -6,7 +6,7 @@ const URL = process.env.REACT_APP_FOOTBALL_API_SERVER;
 export const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${URL}api`,
+    baseUrl: `${URL}/api`,
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
       if (token) {
